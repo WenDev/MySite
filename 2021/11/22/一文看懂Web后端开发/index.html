@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>一文看懂Web后端开发 | 江文 - 努力成为系统工程师的每一天</title>
+  <meta name="keywords" content=" 教程 , 后端开发 ">
+  <meta name="description" content="一文看懂Web后端开发 | 江文 - 努力成为系统工程师的每一天">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="抽象工厂模式抽象工厂模式的定义抽象工厂模式的定义如下：  Provide an interface for creating families of related or dependent objects without specifying their concrete classes. 为创建一组相关或者相互依赖的对象提供一个接口，而且无须指定它们的具体类。 ——《设计模式之禅》  好吧，就">
+<meta property="og:type" content="article">
+<meta property="og:title" content="抽象工厂模式">
+<meta property="og:url" content="http://www.wendev.site/2021/11/22/%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/index.html">
+<meta property="og:site_name" content="江文 - 努力成为系统工程师的每一天">
+<meta property="og:description" content="抽象工厂模式抽象工厂模式的定义抽象工厂模式的定义如下：  Provide an interface for creating families of related or dependent objects without specifying their concrete classes. 为创建一组相关或者相互依赖的对象提供一个接口，而且无须指定它们的具体类。 ——《设计模式之禅》  好吧，就">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/QNKCDZ0/pictures/raw/master/img/20210917005502.png">
+<meta property="article:published_time" content="2021-11-22T12:55:43.000Z">
+<meta property="article:modified_time" content="2021-11-22T12:56:25.394Z">
+<meta property="article:author" content="江文">
+<meta property="article:tag" content="设计模式">
+<meta property="article:tag" content="抽象工厂模式">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/QNKCDZ0/pictures/raw/master/img/20210917005502.png">
+
+
+<link rel="icon" href="/img/header.png">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-dark.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/header.png"/>
+</a>
+<div class="author">
+    <span>江文</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="github"
+               href="https://github.com/WenDev"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="zhihu"
+               href="https://www.zhihu.com/people/wendev"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-zhihu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="csdn"
+               href="https://blog.csdn.net/weixin_43887447"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-csdn"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="email"
+               href="mailto:wendev1024@icloud.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="neteasemusic"
+               href="https://music.163.com/#/user/home?id=1850247985"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-neteasemusic"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+                <small>(14)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                <li>
+                    <div data-rel="K8S">
+                        
+                        K8S
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="LeetCode">
+                        
+                        LeetCode
+                        <small>(4)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="教程">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        教程
+                        <small>(2)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="教程<--->Markdown">
+                                        
+                                        Markdown
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="教程<--->后端开发">
+                                        
+                                        后端开发
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="服务网格">
+                        
+                        服务网格
+                        <small>(2)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="架构">
+                        
+                        架构
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="设计模式">
+                        
+                        设计模式
+                        <small>(4)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+        <a 
+                                           class="friends">友链</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="14">
+<input type="hidden" id="yelog_site_word_count" value="35k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://tianhang28.cn/">水浅小庙</a></li>
+            
+            <li><a target="_blank" href="http://blog.keysking.com/">Keysking</a></li>
+            
+            <li><a target="_blank" href="http://n4tsu.top/">N4tsu</a></li>
+            
+            <li><a target="_blank" href="http://liul14n.top/">Liul14n</a></li>
+            
+            <li><a target="_blank" href="https://alicejthelast.lofter.com/">Oralear</a></li>
+            
+            <li><a target="_blank" href="http://www.monsie.site/">Monsie</a></li>
+            
+            <li><a target="_blank" href="https://www.cnblogs.com/weilinfox/">八衛門狸</a></li>
+            
+            <li><a target="_blank" href="https://echosorari.github.io">Grayi</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Istio</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>K8S</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>LeetCode</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Markdown</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Spring Boot</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>二分查找</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>单例模式</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>后端开发</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>哈希表</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>微服务</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>抽象工厂模式</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>教程</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>服务网格</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>架构设计</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>模拟</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>算法</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>设计模式</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        <a  class="全部文章 设计模式 "
+           href="/2021/11/22/%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/"
+           data-tag="设计模式,抽象工厂模式"
+           data-author="" >
+            <span class="post-title" title="抽象工厂模式">抽象工厂模式</span>
+            <span class="post-date" title="2021-11-22 20:55:43">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 设计模式 "
+           href="/2021/11/22/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/"
+           data-tag="设计模式,抽象工厂模式"
+           data-author="" >
+            <span class="post-title" title="工厂模式">工厂模式</span>
+            <span class="post-date" title="2021-11-22 20:55:01">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 设计模式 "
+           href="/2021/11/22/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/"
+           data-tag="设计模式,单例模式"
+           data-author="" >
+            <span class="post-title" title="单例模式">单例模式</span>
+            <span class="post-date" title="2021-11-22 20:53:43">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 设计模式 "
+           href="/2021/11/22/%E5%89%8D%E8%A8%80%EF%BC%9A%E6%88%91%E5%9B%9E%E6%9D%A5%E4%BA%86%EF%BC%8C%E6%88%91%E5%B8%A6%E7%9D%8023%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%9B%9E%E6%9D%A5%E4%BA%86/"
+           data-tag="设计模式"
+           data-author="" >
+            <span class="post-title" title="前言：我回来了，我带着23种设计模式回来了">前言：我回来了，我带着23种设计模式回来了</span>
+            <span class="post-date" title="2021-11-22 20:52:46">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 服务网格 "
+           href="/2021/11/22/%E3%80%90Istio%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%85%A5%E5%9C%9F%E3%80%911-Service-Mesh%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/"
+           data-tag="教程,微服务,Istio,服务网格"
+           data-author="" >
+            <span class="post-title" title="【Istio从入门到入土】1. Service Mesh是什么？">【Istio从入门到入土】1. Service Mesh是什么？</span>
+            <span class="post-date" title="2021-11-22 20:48:48">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 K8S "
+           href="/2021/11/22/%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%85%A8%E9%9D%A2%E7%9A%84Kubernetes%EF%BC%88K8S%EF%BC%89%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0/"
+           data-tag="K8S"
+           data-author="" >
+            <span class="post-title" title="史上最全面的Kubernetes（K8S）入门笔记">史上最全面的Kubernetes（K8S）入门笔记</span>
+            <span class="post-date" title="2021-11-22 20:47:14">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 架构 "
+           href="/2021/11/22/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%98%AF%E4%B8%87%E8%83%BD%E7%9A%84%E5%90%97%E2%80%94%E2%80%94%E6%88%91%E5%AF%B9%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%9A%84%E6%80%9D%E8%80%83/"
+           data-tag="微服务,架构设计"
+           data-author="" >
+            <span class="post-title" title="微服务是万能的吗——我对微服务架构的思考">微服务是万能的吗——我对微服务架构的思考</span>
+            <span class="post-date" title="2021-11-22 20:45:17">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 服务网格 "
+           href="/2021/11/22/%E4%BD%BF%E7%94%A8Spring-Boot-gRPC%E6%9E%84%E5%BB%BA%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0Istio/"
+           data-tag="微服务,Spring Boot,Istio"
+           data-author="" >
+            <span class="post-title" title="使用Spring Boot+gRPC构建微服务并部署到Istio">使用Spring Boot+gRPC构建微服务并部署到Istio</span>
+            <span class="post-date" title="2021-11-22 20:40:43">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/2021/11/22/35-%E6%90%9C%E7%B4%A2%E6%8F%92%E5%85%A5%E4%BD%8D%E7%BD%AE/"
+           data-tag="LeetCode,算法,二分查找"
+           data-author="" >
+            <span class="post-title" title="35.搜索插入位置">35.搜索插入位置</span>
+            <span class="post-date" title="2021-11-22 20:24:24">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/2021/11/22/9-%E5%9B%9E%E6%96%87%E6%95%B0/"
+           data-tag="LeetCode,算法,模拟"
+           data-author="" >
+            <span class="post-title" title="9.回文数">9.回文数</span>
+            <span class="post-date" title="2021-11-22 20:23:18">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/2021/11/22/2-%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0/"
+           data-tag="LeetCode,算法,模拟"
+           data-author="" >
+            <span class="post-title" title="2.两数相加">2.两数相加</span>
+            <span class="post-date" title="2021-11-22 20:21:43">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/2021/11/22/1-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/"
+           data-tag="LeetCode,哈希表,算法"
+           data-author="" >
+            <span class="post-title" title="1.两数之和">1.两数之和</span>
+            <span class="post-date" title="2021-11-22 20:18:57">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 教程 Markdown "
+           href="/2021/11/22/%E7%BB%99%E6%83%B3%E5%AD%A6Markdown%E7%9A%84%E4%BD%A0%E7%9A%84%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84Markdown%E8%AF%AD%E6%B3%95%E6%95%99%E7%A8%8B/"
+           data-tag="教程,Markdown"
+           data-author="" >
+            <span class="post-title" title="给想学Markdown的你的一个简单的Markdown语法教程">给想学Markdown的你的一个简单的Markdown语法教程</span>
+            <span class="post-date" title="2021-11-22 20:14:35">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 教程 后端开发 "
+           href="/2021/11/22/%E4%B8%80%E6%96%87%E7%9C%8B%E6%87%82Web%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/"
+           data-tag="教程,后端开发"
+           data-author="" >
+            <span class="post-title" title="一文看懂Web后端开发">一文看懂Web后端开发</span>
+            <span class="post-date" title="2021-11-22 20:09:20">2021/11/22</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-一文看懂Web后端开发" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">一文看懂Web后端开发</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="教程">教程</a> > 
+            
+            <a  data-rel="教程&lt;---&gt;后端开发">后端开发</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color3">教程</a>
+            
+            <a class="color5">后端开发</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2021-11-22 20:12:11'>2021-11-22 20:09</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:5.4k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E6%96%87%E7%9C%8B%E6%87%82Web%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91"><span class="toc-text">一文看懂Web后端开发</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-text">定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%B4%E4%BA%BA%E8%AF%9D%EF%BC%81"><span class="toc-text">说人话！</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E8%81%8C%E8%B4%A3"><span class="toc-text">具体职责</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%B9%E5%BE%81"><span class="toc-text">特征</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF"><span class="toc-text">技术</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%AF%E8%A7%A3"><span class="toc-text">误解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%A0%B7%E7%9A%84%E4%BA%BA%E9%80%82%E5%90%88%E5%81%9A%E5%90%8E%E7%AB%AF%EF%BC%9F"><span class="toc-text">什么样的人适合做后端？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%91%E4%B8%BA%E4%BB%80%E4%B9%88%E5%96%9C%E6%AC%A2%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91"><span class="toc-text">我为什么喜欢后端开发</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AF%AD"><span class="toc-text">结语</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-6 i,
+    .toc-level-6 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一文看懂Web后端开发"><a href="#一文看懂Web后端开发" class="headerlink" title="一文看懂Web后端开发"></a>一文看懂Web后端开发</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>由于网络上系统地介绍后端开发的文章实在太少，而最近有恰巧有许多同学问我“什么是后端开发？”、“你为什么喜欢后端开发？”、“做后端都需要学什么？”，那么我们就来讲一讲，到底什么才是后端开发。</p>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p><strong>后端开发</strong>（<code>Back-End Development</code>，也称<strong>服务端开发</strong>、<strong>服务器端开发</strong>等）是创建完整可运行的Web应用服务端程序（服务端程序和资源合称为<strong>后端</strong>，即在服务器上运行的、不涉及用户界面的部分）的过程，是Web应用程序开发的一部分。后端开发者使用<code>Java</code>、<code>Golang</code>等语言及其衍生的各种框架、库和解决方案来实现Web应用程序的核心业务逻辑，并向外提供特定的API，使得Web应用能够高效、安全、稳定地运行。</p>
+<h2 id="说人话！"><a href="#说人话！" class="headerlink" title="说人话！"></a>说人话！</h2><p>好吧，如果你看了定义仍然很懵，那我就用一些非常易于理解的表达形式来说一说“什么是后端开发”。虽然这些表述可能并不严谨或完全正确，但是我相信这样一定能使你明白什么是后端开发。</p>
+<p>这里我们拿前端来类比一下，因为我相信绝大多数看到这篇文章的人都已经对“什么是前端开发”、“什么是前端”有一定了解了：</p>
+<ol>
+<li>前端就相当于我们的肉体，后端就相当于我们的灵魂和思想；</li>
+<li>前端是如何操作游戏，后端是具体的游戏规则；</li>
+<li>前端是用户能看到的，后端是用户看不到的；</li>
+<li>前端是跑在浏览器上的，后端是跑在服务器上的；</li>
+<li>前端采集用户的输入，后端处理用户的输入；</li>
+<li>前端开发是写代码给用户看，后端开发是写代码给服务器看。</li>
+</ol>
+<p>是不是这样一讲就明白了？那我们接着往下看。</p>
+<h2 id="具体职责"><a href="#具体职责" class="headerlink" title="具体职责"></a>具体职责</h2><ol>
+<li><strong>实现Web应用程序的实际业务逻辑。</strong>即：实现Web应用程序的具体功能（如注册、发表和查询信息等）或Web应用程序在服务端执行的具体操作。这是后端开发这项工作的主要内容；</li>
+<li><strong>使用API和创建API。</strong>后端需要向前端提供前端所需的数据，也需要使用第三方API来完成业务逻辑（如完成某个功能需要通过API调用其他应用、在使用框架进行开发时需要使用语言和框架的API、操作数据库时需要使用数据库或ORM框架的API等）。因为在后端开发的过程中经常需要与API打交道，所以有人也把后端开发称为“API开发”，就像有些人将前端称为“GUI开发”一样；</li>
+<li><strong>优化。</strong>在用户量达到一定程度后，就会出现诸如响应慢等各种问题（不理解的话想想你们大学的选课系统）；同时，随着代码行数的增多，许多架构上的缺陷可能也会随之暴露出来，如代码逻辑混乱、模块划分不正确等。此时就需要后端开发人员对Web应用程序进行优化，如重构、分布式部署、优化业务逻辑、单体应用拆分成微服务等；</li>
+<li><strong>架构设计。</strong>虽然一般只有高级的后端开发人员和架构师才需要关注架构问题，但是架构设计是后端开发中非常重要的一环，因为它决定了如何组织代码、某个模块负责解决什么样的问题、系统的扩展性和可维护性如何、业务逻辑如何进行组织等，也会一定程度上影响到业务逻辑的具体实现（比如微服务和单体架构这两种架构下，同一种业务逻辑的实现可能完全不同）。</li>
+</ol>
+<h2 id="特征"><a href="#特征" class="headerlink" title="特征"></a>特征</h2><ol>
+<li>后端是工作在服务器上的，负责通过API向前端或其他系统提供其所需的信息（如数据等）；</li>
+<li>后端开发实际上是开发Web应用中对用户不可见的部分（如核心业务逻辑、数据库等），大多数的后端开发都是不涉及用户界面的（除了在前后端不分离的架构中将前端的静态页面通过模板引擎改造成动态页面时）；</li>
+<li>通常情况下，一个Web应用的绝大多数代码都属于后端代码，因为后端承担了Web应用实际的业务逻辑；</li>
+<li>后端开发的压力通常比前端开发要大，因为后端是Web应用的“灵魂”，它影响着Web应用的方方面面，除了业务逻辑之外还需要考虑安全性、稳定性、可维护性、可扩展性、伸缩性等问题。</li>
+</ol>
+<h2 id="技术"><a href="#技术" class="headerlink" title="技术"></a>技术</h2><ol>
+<li><strong>程序设计语言</strong>。许多语言都可以用于后端开发，比较流行的是<code>Java</code>和<code>Go</code>。例如我所使用的就是Go语言，也曾经使用过Java。此外，由于后端开发中经常需要和数据库打交道，所以作为后端开发者，还需要懂<code>SQL</code>语言（如果使用了<code>NoSQL</code>的话，也需要懂<code>NoSQL</code>数据库的语言）；</li>
+<li><strong>数据库</strong>。数据库作为一种简单易用的持久化机制，可以让用户的信息不因为断电等故障而丢失，Web应用开发中经常需要用到数据库，甚至许多简单的Web应用本质上都只是“数据库的可视化系统”，也因为绝大多数简单的业务逻辑本质上都只是对数据库的增删改查（即<code>CRUD</code>）；</li>
+<li><strong>框架、库和解决方案</strong>。想要高效率地开发Web应用，框架、库和解决方案是必不可少的，比如MVC框架、ORM框架、RPC框架、微服务开发框架、云基础设施（如Service Mesh、容器编排工具等）、运行时环境/容器（如Docker）、消息队列（Message Queue，MQ）、日志收集和分析工具等；这部分有一些框架是可以跨语言通用的，比如<code>gRPC</code>（RPC框架）、<code>Istio</code>（Service Mesh），也有一些是某种语言专用的，如<code>Spring Cloud</code>（微服务开发工具，JVM技术栈专用）、<code>Gin</code>（MVC框架，Go语言专用）；</li>
+<li><strong>架构和指导思想</strong>。架构是后端开发中非常重要的一部分，作为一名后端开发者需要了解常见的架构，如三层架构、SOA、微服务架构、六边形架构等，还需要了解常用于后端开发中的指导思想，如设计模式、MVC模式、DDD、CQRS/ES等；</li>
+<li><strong>包管理工具/项目管理工具</strong>。因为后端开发中经常要用到各种框架和库，所以用于管理这些框架和库的管理工具是非常重要的。每一门语言都有自己的包管理工具，如Java的<code>Maven</code>，Go语言的<code>go mod</code>等；</li>
+<li><strong>基础知识</strong>。不管是前端开发还是后端开发，都需要对操作系统、计算机网络、数据结构等基础知识有一定了解，还需要了解对应语言的编码规范、重构等知识，这可以帮助你理解框架和库，也能帮助你写出更高质量的代码；</li>
+<li><strong>开发方法</strong>。实际上这个也可以说是属于指导思想的一部分，包括CI/CD、敏捷开发、DevOps等；</li>
+<li><strong>版本管理工具</strong>。相信我，几乎没有人能离开这玩意。最常用的是<code>Git</code>。</li>
+</ol>
+<h2 id="误解"><a href="#误解" class="headerlink" title="误解"></a>误解</h2><p>有不少人其实对后端开发误解很深，以下是一些常见的误解：</p>
+<ol>
+<li>后端开发就是CRUD/后端开发太简单了；</li>
+<li>不同系统的后端面临的问题高度相似；</li>
+<li>后端开发很枯燥；</li>
+<li>后端的逻辑比前端复杂；</li>
+<li>对于后端开发者来说，设计业务逻辑是一件很简单的事情；</li>
+<li>后端开发的工作太单一了/后端不是一个综合的领域；</li>
+</ol>
+<p>这些误解有时候会劝退一些有意从事后端开发的同学，我们现在就来澄清一下这些误解：</p>
+<ol>
+<li>我不否认很多简单的Web应用确实就是CRUD，但是绝大多数的Web应用都不仅仅是CRUD。至于“太简单了”，能说出这话的人一定没做过后端，或者只做过CRUD，或者是超级大牛。如果不是超级大牛的话，请说这话的人写一个能撑住五万并发的秒杀系统出来，并做压力测试，然后再看看这句话；另外，后端开发是一个非常综合的领域，既有非常抽象的架构和指导思想，又有具体的解决方案和业务逻辑，还涉及到许多计算机底层问题（如多线程、网络、I/O等）。并且，虽然后端技术稳定，但也不至于学了点东西就可以到哪里都通吃，例如，如果你没听说过云原生、微服务、Serverless等新技术的话，那说明你已经很久没有跟上后端技术的发展了；以及，如果你现在还在用JSP，那我敢肯定你一定没有意识到诸如前后端分离之类的新问题；</li>
+<li>这个说法也完全不对。不同的系统所面临的具体问题是完全不同的。先不说对一个具体的需求可能有很多种不同的解决方案（如针对单点登录（Single Sign On，SSO）问题就有长连接（虽然我没见过落地案例）、共享Session、JWT等方案），有时候甚至当你拿到一个需求时，可能连要解决什么问题都搞不清楚，这也就是为什么诸如DDD这样的系统分析方法一直备受关注，且重构也经常在各种规模的Web应用中都引起重视，因为用户需求往往不是那么明确，可能会引导我们做出错误的设计；</li>
+<li>记住，<strong>枯燥的是CRUD，而不是后端</strong>。后端开发的技术含量实际上是非常高的，也非常有意思，充满了未知与挑战。像微服务、云原生、DDD、CQRS/ES、高并发、负载均衡、缓存、消息队列、多线程、微服务监控、Service Mesh等技术，每一项都值得我们去研究，而这些技术中有很多都是在大型Web应用中被频繁使用的，如果你真正了解后端开发的话，是绝无可能说出“后端开发很枯燥”这样的话的。请记住，并不是不涉及界面的工作就一定很枯燥；</li>
+<li>在大多数的系统中是这样的，但是有些Web应用的前端逻辑复杂程度可能不亚于后端，甚至可能还会超过后端，比如像石墨文档这样的多人协作文档系统，还有ProcessOn这样的在线绘图系统，其前端逻辑可能都是非常复杂的；</li>
+<li>参见2。能说出这话的人一定没重构过一个“大泥球”一样的应用，也没设计过一个用户需求非常模糊的系统（比如用户只给了一条需求：做一个CMS（内容管理系统），你觉得简单你可以来试试，然后用它一个月，如果你不是个有经验的后端开发者的话，我相信你一定会被你自己所写的这个系统逼疯，恨不得将它完全重构）；</li>
+<li>参见1和2。如果后端开发还不综合的话，那什么才是综合的呢？</li>
+</ol>
+<p>我不否认做一个只会CRUD的后端开发者很简单，但既然对后端开发感兴趣，那我们就要有更高的志向，不能把自己框死在CRUD里。</p>
+<p>这里送给各位未来的后端开发者一句话：“<strong>我等采石之人，当心怀大教堂之愿景</strong>”。如果自己一个人完成一个简简单单的CRUD项目，你可以有自己的想法，例如在其中应用DDD和CQRS，或不断地优化它以达到最佳状态；如果迫于工作经验而不得不CRUD，你也可以用业余时间去提升自己的技术，让自己有更光明的未来。</p>
+<h2 id="什么样的人适合做后端？"><a href="#什么样的人适合做后端？" class="headerlink" title="什么样的人适合做后端？"></a>什么样的人适合做后端？</h2><p>说了这么多，那什么样的人才适合做后端开发这份工作呢？</p>
+<ol>
+<li><strong>讨厌写用户界面或与用户界面打交道的人</strong>。有很多人是因为讨厌写界面（尤其是CSS这种反人类的东西）才来做后端开发的。这里没有界面，讨厌与用户界面打交道的人不妨尝试一下后端开发；</li>
+<li><strong>细心的人</strong>。后端开发实际上比前端开发更需要细心。就如前文所述，后端是Web应用程序的“灵魂”，后端开发中的许多问题都决定着Web应用的“生死存亡”，尤其是<strong>数据校验</strong>、<strong>多线程/多进程</strong>、<strong>锁</strong>、<strong>异步编程</strong>、<strong>事务/分布式事务</strong>、<strong>与第三方系统的交互</strong>等，这些问题有非常非常多的细节，且既复杂又非常重要，一旦在细节上出现问题（如数据校验不完全或加锁解锁的逻辑出现错误），轻则出现错误的数据或业务逻辑不能正常运行，重则直接导致整个Web应用挂掉或出现安全问题（如数据校验不完全导致的文件上传漏洞、函数使用错误导致的远程命令执行漏洞等）。所以如果你想从事后端开发，那足够细心绝对是一个必要的条件；</li>
+<li><strong>喜欢与机器打交道多于与人打交道的人</strong>。与前端开发是“写代码给人看”的不同，后端开发是“写代码给服务器看”（或者说给前端/第三方系统看）的。虽然这两个说法都不太严谨，但是后端开发更多的就是与服务器打交道（如降低资源使用率、提高Web应用程序的运行效率等等），而不是与人打交道（如提高页面的美观程度、思考用户的使用逻辑和心理等等）；</li>
+<li><strong>想编写实际的业务逻辑的人，或喜欢算法和逻辑的人</strong>。前端的逻辑更多的是交互逻辑，如点击某个按钮应该弹出什么窗口、怎么把数据渲染成用户想要看到的页面等，而后端的逻辑更多的是实际的业务逻辑，如完成某个功能需要怎样做、请求某个API应该返回什么样的数据等。如果你和我一样写前端时因为总是接触不到实际的业务逻辑而感到不爽，那么大后端欢迎你；</li>
+<li><strong>好奇心强、自学能力强且有终身学习的觉悟的人，或者喜欢钻研技术的人，或喜欢充满挑战性的工作的人</strong>。后端看似简单，实际上技术含量是非常高的。就如前面所说，现在的后端可不仅仅是CRUD，而是随着互联网和云计算技术的发展而不断改变，Web应用程序在需求不断变化的过程中功能变得越来越强，架构变得越来越复杂，对性能的考验也越来越严峻，技术含量自然也就越来越高。作为一名后端开发工程师，需要有不断学习新技术的觉悟，还需要有一定的自学能力，因为不是什么技术都有人教你的，在学习和使用最新技术时对着英文文档啃是常有的事；</li>
+<li><strong>对系统架构感兴趣或想要成为架构师的人</strong>。虽然不可否认的是由于前端至今没有“一统天下”的解决方案而使得前端开发人员经常会比后端开发人员更早地接触到架构的部分，但是传统意义上的前端说白了也就是浏览器那“一亩三分地”（前端同学别喷我，这里仅仅说的是传统的Web前端，“大前端”是不算的哈），而后端技术的天花板则是“地球上人类的数量”（接触过高并发的同学看到这句话应该很有感触吧，哈哈），而核心的业务逻辑往往存在于后端，后端的优化压力往往比前端更大，这就使得初级的后端开发者在进行开发时需要对系统的架构有一定了解、高级的后端开发者需要经常思考系统的架构设计的问题，这也使得后端开发者更容易成长为架构师；</li>
+<li><strong>沉得住气的人</strong>。除了有第5条中提到的“后端的技术含量实际上是非常高的”这一原因之外，还有一个原因就是后端并不是“所见即所得”的，经常需要你编写几十甚至几百行代码、做无数复杂的配置才能把Web应用运行起来（注意，是运行，写业务逻辑的话需要更多代码），另一个原因是后端开发的门槛比前端要高——你至少得掌握一门语言和这门语言在后端开发方面的一些框架或库才能开始开发。所以，后端开发者必须要沉得住气，不能因为写几行代码看不到任何效果就想放弃；</li>
+<li><strong>对系统的基础设施（如框架、库和解决方案等）感兴趣的人</strong>。据我所知，许多在云原生方面有深刻造诣的大佬都是从后端开发者成长起来的，许多框架的作者曾经也是后端开发者。如果你碰巧像我一样对框架、库和解决方案（如<code>Spring Boot</code>、<code>Spring Cloud</code>、<code>Gin</code>、<code>Kubernetes</code>、<code>Istio</code>等）十分感兴趣，那么可以从成为一名后端开发者开始，在编写业务代码的过程中慢慢体会框架的重要性和所用框架的优缺点，以及如何设计一个好的框架。</li>
+</ol>
+<p>虽然你并不需要满足以上每一项才能成为一个后端开发工程师，但是如果你发现你满足上面的某一条或某几条，而且你还没有找到自己的方向，那么不妨来尝试一下后端开发。</p>
+<h2 id="我为什么喜欢后端开发"><a href="#我为什么喜欢后端开发" class="headerlink" title="我为什么喜欢后端开发"></a>我为什么喜欢后端开发</h2><p>先简单介绍以下我的经历吧。我从2019年1月开始接触前端开发，于2019年8月正式转向后端开发，并一直从事后端开发至今。我喜欢后端开发的原因，其实很简单：</p>
+<ol>
+<li>我反感写界面，痛恨GUI编程，每次一写界面我就想遁地。后端开发不需要考虑界面的问题，这里没有界面，只有API；</li>
+<li>我喜欢写实在的业务逻辑，不想总是隔着个API而“任人摆布”，解决实际问题对我来说简直棒极了；</li>
+<li>我喜欢与机器打交道，可以写一天的代码而不感到无聊，但我不喜欢与人打交道，尤其是面对面交谈非技术问题时总会感到不自然（当然，聊技术我能聊一天都不嫌烦）；</li>
+<li>我想要成为一名架构师，想成就优秀的设计，而后端开发能更多地接触到系统的架构和设计；</li>
+<li>接触到后端开发后，我发现我对这一领域内的绝大多数事物都感兴趣，如云原生、DDD、Service Mesh、系统架构等；</li>
+<li>写前端会让我感到痛苦万分，因为我审美诡异、不擅长思考用户的使用逻辑、不擅长编写交互逻辑，写出来的东西又丑又反人类。而当我开始写后端时，我发现我的思考方式经常和真实的业务逻辑出奇地一致，有时候还能在做项目的过程中发现当前所使用的工具的不足，并且思考如何才能设计得更好；</li>
+<li>做后端开发做了一年左右，我越来越感觉到我喜欢这份工作。</li>
+</ol>
+<p>如果你也和我有一样的想法，那么你说不定也非常适合从事后端开发的工作。大后端欢迎你的到来。</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>很多人对后端开发的误解源于缺少一篇系统地介绍后端开发的文章。虽然作为一个仅仅入行一年半（截止到2021年3月）的菜鸟，我对后端开发的理解肯定还有许多不足与偏颇，这篇文章也并不那么“系统”，但我仍希望这篇文章能帮助到其他同学了解后端开发或消除对后端开发的误解，抑或找到自己的方向而走上后端开发这条路。</p>
+<p>如果发现文中的错漏之处，欢迎发表评论或联系我进行改正。希望能帮到更多对后端开发感兴趣的同学。</p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎各位大佬指出任何有错误或不够清晰的表达。可以发可以邮件至 wendev1024@icloud.com 或添加微信 wendev1024 联系（请注明来源于我的个人网站）。 </span>
+    </div>
+</article>
+
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>一文看懂Web后端开发</p>
+    <p><span class="copy-title">字数:</span><span class="post-count">5.4k</span></p>
+    <p><span class="copy-title">本文作者:</span><a  title="江文">江文</a></p>
+    <p><span class="copy-title">发布时间:</span>2021-11-22, 20:09:20</p>
+    <p><span class="copy-title">最后更新:</span>2021-11-22, 20:12:11</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2021/11/22/%E4%B8%80%E6%96%87%E7%9C%8B%E6%87%82Web%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/" title="一文看懂Web后端开发">http://www.wendev.site/2021/11/22/%E4%B8%80%E6%96%87%E7%9C%8B%E6%87%82Web%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">&#34;署名-非商用-相同方式共享 4.0&#34;</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry"><span class="miit">
+                <img src="/img/gov.png" title="中华人民共和国工业和信息化部">
+                <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/#/Integrated/index">鲁ICP备19064728号-1</a>
+        </span>
+    
+    ©2019-2021 江文(Martin Jiang / WenDev)
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>

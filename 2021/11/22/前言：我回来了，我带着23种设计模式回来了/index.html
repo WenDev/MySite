@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>前言：我回来了，我带着23种设计模式回来了 | 江文 - 努力成为系统工程师的每一天</title>
+  <meta name="keywords" content=" 设计模式 ">
+  <meta name="description" content="前言：我回来了，我带着23种设计模式回来了 | 江文 - 努力成为系统工程师的每一天">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="抽象工厂模式抽象工厂模式的定义抽象工厂模式的定义如下：  Provide an interface for creating families of related or dependent objects without specifying their concrete classes. 为创建一组相关或者相互依赖的对象提供一个接口，而且无须指定它们的具体类。 ——《设计模式之禅》  好吧，就">
+<meta property="og:type" content="article">
+<meta property="og:title" content="抽象工厂模式">
+<meta property="og:url" content="http://www.wendev.site/2021/11/22/%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/index.html">
+<meta property="og:site_name" content="江文 - 努力成为系统工程师的每一天">
+<meta property="og:description" content="抽象工厂模式抽象工厂模式的定义抽象工厂模式的定义如下：  Provide an interface for creating families of related or dependent objects without specifying their concrete classes. 为创建一组相关或者相互依赖的对象提供一个接口，而且无须指定它们的具体类。 ——《设计模式之禅》  好吧，就">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/QNKCDZ0/pictures/raw/master/img/20210917005502.png">
+<meta property="article:published_time" content="2021-11-22T12:55:43.000Z">
+<meta property="article:modified_time" content="2021-11-22T12:56:25.394Z">
+<meta property="article:author" content="江文">
+<meta property="article:tag" content="设计模式">
+<meta property="article:tag" content="抽象工厂模式">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/QNKCDZ0/pictures/raw/master/img/20210917005502.png">
+
+
+<link rel="icon" href="/img/header.png">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-dark.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/header.png"/>
+</a>
+<div class="author">
+    <span>江文</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="github"
+               href="https://github.com/WenDev"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="zhihu"
+               href="https://www.zhihu.com/people/wendev"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-zhihu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="csdn"
+               href="https://blog.csdn.net/weixin_43887447"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-csdn"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="email"
+               href="mailto:wendev1024@icloud.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="neteasemusic"
+               href="https://music.163.com/#/user/home?id=1850247985"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-neteasemusic"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+                <small>(14)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                <li>
+                    <div data-rel="K8S">
+                        
+                        K8S
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="LeetCode">
+                        
+                        LeetCode
+                        <small>(4)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="教程">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        教程
+                        <small>(2)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="教程<--->Markdown">
+                                        
+                                        Markdown
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="教程<--->后端开发">
+                                        
+                                        后端开发
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="服务网格">
+                        
+                        服务网格
+                        <small>(2)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="架构">
+                        
+                        架构
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="设计模式">
+                        
+                        设计模式
+                        <small>(4)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+        <a 
+                                           class="friends">友链</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="14">
+<input type="hidden" id="yelog_site_word_count" value="35k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://tianhang28.cn/">水浅小庙</a></li>
+            
+            <li><a target="_blank" href="http://blog.keysking.com/">Keysking</a></li>
+            
+            <li><a target="_blank" href="http://n4tsu.top/">N4tsu</a></li>
+            
+            <li><a target="_blank" href="http://liul14n.top/">Liul14n</a></li>
+            
+            <li><a target="_blank" href="https://alicejthelast.lofter.com/">Oralear</a></li>
+            
+            <li><a target="_blank" href="http://www.monsie.site/">Monsie</a></li>
+            
+            <li><a target="_blank" href="https://www.cnblogs.com/weilinfox/">八衛門狸</a></li>
+            
+            <li><a target="_blank" href="https://echosorari.github.io">Grayi</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Istio</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>K8S</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>LeetCode</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Markdown</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Spring Boot</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>二分查找</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>单例模式</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>后端开发</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>哈希表</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>微服务</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>抽象工厂模式</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>教程</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>服务网格</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>架构设计</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>模拟</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>算法</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>设计模式</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        <a  class="全部文章 设计模式 "
+           href="/2021/11/22/%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/"
+           data-tag="设计模式,抽象工厂模式"
+           data-author="" >
+            <span class="post-title" title="抽象工厂模式">抽象工厂模式</span>
+            <span class="post-date" title="2021-11-22 20:55:43">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 设计模式 "
+           href="/2021/11/22/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/"
+           data-tag="设计模式,抽象工厂模式"
+           data-author="" >
+            <span class="post-title" title="工厂模式">工厂模式</span>
+            <span class="post-date" title="2021-11-22 20:55:01">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 设计模式 "
+           href="/2021/11/22/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/"
+           data-tag="设计模式,单例模式"
+           data-author="" >
+            <span class="post-title" title="单例模式">单例模式</span>
+            <span class="post-date" title="2021-11-22 20:53:43">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 设计模式 "
+           href="/2021/11/22/%E5%89%8D%E8%A8%80%EF%BC%9A%E6%88%91%E5%9B%9E%E6%9D%A5%E4%BA%86%EF%BC%8C%E6%88%91%E5%B8%A6%E7%9D%8023%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%9B%9E%E6%9D%A5%E4%BA%86/"
+           data-tag="设计模式"
+           data-author="" >
+            <span class="post-title" title="前言：我回来了，我带着23种设计模式回来了">前言：我回来了，我带着23种设计模式回来了</span>
+            <span class="post-date" title="2021-11-22 20:52:46">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 服务网格 "
+           href="/2021/11/22/%E3%80%90Istio%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%85%A5%E5%9C%9F%E3%80%911-Service-Mesh%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/"
+           data-tag="教程,微服务,Istio,服务网格"
+           data-author="" >
+            <span class="post-title" title="【Istio从入门到入土】1. Service Mesh是什么？">【Istio从入门到入土】1. Service Mesh是什么？</span>
+            <span class="post-date" title="2021-11-22 20:48:48">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 K8S "
+           href="/2021/11/22/%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%85%A8%E9%9D%A2%E7%9A%84Kubernetes%EF%BC%88K8S%EF%BC%89%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0/"
+           data-tag="K8S"
+           data-author="" >
+            <span class="post-title" title="史上最全面的Kubernetes（K8S）入门笔记">史上最全面的Kubernetes（K8S）入门笔记</span>
+            <span class="post-date" title="2021-11-22 20:47:14">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 架构 "
+           href="/2021/11/22/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%98%AF%E4%B8%87%E8%83%BD%E7%9A%84%E5%90%97%E2%80%94%E2%80%94%E6%88%91%E5%AF%B9%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%9A%84%E6%80%9D%E8%80%83/"
+           data-tag="微服务,架构设计"
+           data-author="" >
+            <span class="post-title" title="微服务是万能的吗——我对微服务架构的思考">微服务是万能的吗——我对微服务架构的思考</span>
+            <span class="post-date" title="2021-11-22 20:45:17">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 服务网格 "
+           href="/2021/11/22/%E4%BD%BF%E7%94%A8Spring-Boot-gRPC%E6%9E%84%E5%BB%BA%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0Istio/"
+           data-tag="微服务,Spring Boot,Istio"
+           data-author="" >
+            <span class="post-title" title="使用Spring Boot+gRPC构建微服务并部署到Istio">使用Spring Boot+gRPC构建微服务并部署到Istio</span>
+            <span class="post-date" title="2021-11-22 20:40:43">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/2021/11/22/35-%E6%90%9C%E7%B4%A2%E6%8F%92%E5%85%A5%E4%BD%8D%E7%BD%AE/"
+           data-tag="LeetCode,算法,二分查找"
+           data-author="" >
+            <span class="post-title" title="35.搜索插入位置">35.搜索插入位置</span>
+            <span class="post-date" title="2021-11-22 20:24:24">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/2021/11/22/9-%E5%9B%9E%E6%96%87%E6%95%B0/"
+           data-tag="LeetCode,算法,模拟"
+           data-author="" >
+            <span class="post-title" title="9.回文数">9.回文数</span>
+            <span class="post-date" title="2021-11-22 20:23:18">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/2021/11/22/2-%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0/"
+           data-tag="LeetCode,算法,模拟"
+           data-author="" >
+            <span class="post-title" title="2.两数相加">2.两数相加</span>
+            <span class="post-date" title="2021-11-22 20:21:43">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/2021/11/22/1-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/"
+           data-tag="LeetCode,哈希表,算法"
+           data-author="" >
+            <span class="post-title" title="1.两数之和">1.两数之和</span>
+            <span class="post-date" title="2021-11-22 20:18:57">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 教程 Markdown "
+           href="/2021/11/22/%E7%BB%99%E6%83%B3%E5%AD%A6Markdown%E7%9A%84%E4%BD%A0%E7%9A%84%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84Markdown%E8%AF%AD%E6%B3%95%E6%95%99%E7%A8%8B/"
+           data-tag="教程,Markdown"
+           data-author="" >
+            <span class="post-title" title="给想学Markdown的你的一个简单的Markdown语法教程">给想学Markdown的你的一个简单的Markdown语法教程</span>
+            <span class="post-date" title="2021-11-22 20:14:35">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 教程 后端开发 "
+           href="/2021/11/22/%E4%B8%80%E6%96%87%E7%9C%8B%E6%87%82Web%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/"
+           data-tag="教程,后端开发"
+           data-author="" >
+            <span class="post-title" title="一文看懂Web后端开发">一文看懂Web后端开发</span>
+            <span class="post-date" title="2021-11-22 20:09:20">2021/11/22</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-前言：我回来了，我带着23种设计模式回来了" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">前言：我回来了，我带着23种设计模式回来了</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="设计模式">设计模式</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color5">设计模式</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2021-11-22 20:53:07'>2021-11-22 20:52</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:706</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A%E6%88%91%E5%9B%9E%E6%9D%A5%E4%BA%86%EF%BC%8C%E6%88%91%E5%B8%A6%E7%9D%8023%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%9B%9E%E6%9D%A5%E4%BA%86"><span class="toc-text">前言：我回来了，我带着23种设计模式回来了</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-6 i,
+    .toc-level-6 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="前言：我回来了，我带着23种设计模式回来了"><a href="#前言：我回来了，我带着23种设计模式回来了" class="headerlink" title="前言：我回来了，我带着23种设计模式回来了"></a>前言：我回来了，我带着23种设计模式回来了</h1><p>鸽了那么久，我终于回来了！我宣布从今天开始，高产的Martin Jiang又回来了，从今天开始我将努力做到日更，争取每天都能产出一篇高质量的笔记或者文章，直到我找到满意的工作为止。当然，找到工作并不意味着学习这个过程就结束了，只是找到工作之后的事情现在还未可知。</p>
+<p>那么我要填的第一个坑就是鸽了大半年的<strong>Go语言实现23种设计模式</strong>。众所周知，懂得设计模式是每一个有志于从事服务端开发的萌新所必须掌握的知识；并且，设计模式在开发中也是很常用的（例如我之前曾经写过的一篇文章：《使用责任链模式解决多种用户同一个入口登录的问题》）。但是现在虽然市面上讲设计模式的文章、视频、书籍非常多，但是用Go语言描述的却屈指可数，且由于Go语言自身的一些特点，导致很多书中的代码都需要经过大刀阔斧的改造才能运用到Go语言中。那么趁着三刷《设计模式之禅》这个机会，我决定将《设计模式之禅》中的代码使用Go语言重写，对于我在项目中使用过的一些设计模式我也会尝试使用项目中的场景来进行解释，以此达到既学习设计模式，同时又学习Go语言语法与特性的目的。</p>
+<p>话不多说，我们赶紧开始吧。本系列文章的所有代码都将会上传到GitHub，地址：<a target="_blank" rel="noopener" href="https://github.com/WenDev/golang-with-design-patterns">WenDev/golang-with-design-patterns</a>，如果对你有帮助的话欢迎帮忙点个Star和Fork，会给我很大很大的鼓励！感谢你的支持~如果在阅读的过程中发现错误或者发现更好的写法欢迎提出Issue或者联系我，我会第一时间进行改正。</p>
+<p>参考资料：</p>
+<ul>
+<li>《设计模式之禅（第2版）》——秦小波</li>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1GD4y1D7D3">5小时go语言了解设计模式（23个完整）</a></li>
+<li>其余的参考资料会在每篇文章的最后列出。</li>
+</ul>
+<p>以下是一个施工进度表：</p>
+<p>✅：已完成；🚧：施工中；❌：未开始。</p>
+<ul>
+<li>单例模式✅</li>
+<li>工厂模式✅</li>
+<li>抽象工厂模式✅</li>
+<li>模板模式🚧</li>
+<li>建造者模式❌</li>
+<li>代理模式❌</li>
+<li>原型模式❌</li>
+<li>中介者模式❌</li>
+<li>命令模式❌</li>
+<li>责任链模式❌</li>
+<li>装饰模式❌</li>
+<li>策略模式❌</li>
+<li>适配器模式❌</li>
+<li>迭代器模式❌</li>
+<li>组合模式❌</li>
+<li>观察者模式❌</li>
+<li>门面模式❌</li>
+<li>备忘录模式❌</li>
+<li>访问者模式❌</li>
+<li>状态模式❌</li>
+<li>解释器模式❌</li>
+<li>享元模式❌</li>
+<li>桥梁模式❌</li>
+</ul>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎各位大佬指出任何有错误或不够清晰的表达。可以发可以邮件至 wendev1024@icloud.com 或添加微信 wendev1024 联系（请注明来源于我的个人网站）。 </span>
+    </div>
+</article>
+
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>前言：我回来了，我带着23种设计模式回来了</p>
+    <p><span class="copy-title">字数:</span><span class="post-count">706</span></p>
+    <p><span class="copy-title">本文作者:</span><a  title="江文">江文</a></p>
+    <p><span class="copy-title">发布时间:</span>2021-11-22, 20:52:46</p>
+    <p><span class="copy-title">最后更新:</span>2021-11-22, 20:53:07</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2021/11/22/%E5%89%8D%E8%A8%80%EF%BC%9A%E6%88%91%E5%9B%9E%E6%9D%A5%E4%BA%86%EF%BC%8C%E6%88%91%E5%B8%A6%E7%9D%8023%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%9B%9E%E6%9D%A5%E4%BA%86/" title="前言：我回来了，我带着23种设计模式回来了">http://www.wendev.site/2021/11/22/%E5%89%8D%E8%A8%80%EF%BC%9A%E6%88%91%E5%9B%9E%E6%9D%A5%E4%BA%86%EF%BC%8C%E6%88%91%E5%B8%A6%E7%9D%8023%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%9B%9E%E6%9D%A5%E4%BA%86/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">&#34;署名-非商用-相同方式共享 4.0&#34;</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry"><span class="miit">
+                <img src="/img/gov.png" title="中华人民共和国工业和信息化部">
+                <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/#/Integrated/index">鲁ICP备19064728号-1</a>
+        </span>
+    
+    ©2019-2021 江文(Martin Jiang / WenDev)
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
