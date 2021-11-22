@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>前言：我回来了，我带着23种设计模式回来了 | 江文 - Golang | Back-End Develop | Cloud Native</title>
-  <meta name="keywords" content=" 设计模式 ">
-  <meta name="description" content="前言：我回来了，我带着23种设计模式回来了 | 江文 - Golang | Back-End Develop | Cloud Native">
+  <title>Golang实现前缀树Trie | 江文 - Golang | Back-End Develop | Cloud Native</title>
+  <meta name="keywords" content=" Golang , Trie ">
+  <meta name="description" content="Golang实现前缀树Trie | 江文 - Golang | Back-End Develop | Cloud Native">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="【Go语言实现常见数据结构】前缀树Trie什么是前缀树前缀树，又称Trie、字典树、单词查找树或键树，是多叉树的一种特殊形式。前缀树中的每一个结点都代表一个字符，根结点代表空字符串，其子结点保存的字符串是由通往该子结点路径上的所有字符组成的，并且每个子结点包含的字符都不相同。 前缀树的核心思想是空间换时间，利用字符串的公共前缀来降低查询时间的开销以达到提高效率的目的。 代码实现结点的实现我们先只考">
 <meta property="og:type" content="article">
@@ -838,9 +838,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-前言：我回来了，我带着23种设计模式回来了" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Golang实现前缀树Trie" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">前言：我回来了，我带着23种设计模式回来了</h1>
+        <h1 class="article-title">Golang实现前缀树Trie</h1>
     
     <div class="article-meta">
         
@@ -850,7 +850,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="设计模式">设计模式</a>
+            <a  data-rel="数据结构">数据结构</a>
             
         </span>
         
@@ -858,19 +858,21 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color5">设计模式</a>
+            <a class="color2">Golang</a>
+            
+            <a class="color5">Trie</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-11-22 20:53:07'>2021-11-22 20:52</time>
+            发布时间 : <time class="date" title='最后更新: 2021-11-22 21:56:17'>2021-11-22 21:55</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:706</span>
+        <span>字数:1.7k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -889,7 +891,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A%E6%88%91%E5%9B%9E%E6%9D%A5%E4%BA%86%EF%BC%8C%E6%88%91%E5%B8%A6%E7%9D%8023%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%9B%9E%E6%9D%A5%E4%BA%86"><span class="toc-text">前言：我回来了，我带着23种设计模式回来了</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E3%80%90Go%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E3%80%91%E5%89%8D%E7%BC%80%E6%A0%91Trie"><span class="toc-text">【Go语言实现常见数据结构】前缀树Trie</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%89%8D%E7%BC%80%E6%A0%91"><span class="toc-text">什么是前缀树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-text">代码实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E7%82%B9%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-text">结点的实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%92%E5%85%A5%E6%96%B9%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-text">插入方法的实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE%E6%96%B9%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-text">查找方法的实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A4%E6%96%AD%E5%89%8D%E7%BC%80%E6%96%B9%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-text">判断前缀方法的实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%8C%E6%95%B4%E4%BB%A3%E7%A0%81"><span class="toc-text">完整代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-text">参考资料</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -905,41 +907,158 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="前言：我回来了，我带着23种设计模式回来了"><a href="#前言：我回来了，我带着23种设计模式回来了" class="headerlink" title="前言：我回来了，我带着23种设计模式回来了"></a>前言：我回来了，我带着23种设计模式回来了</h1><p>鸽了那么久，我终于回来了！我宣布从今天开始，高产的Martin Jiang又回来了，从今天开始我将努力做到日更，争取每天都能产出一篇高质量的笔记或者文章，直到我找到满意的工作为止。当然，找到工作并不意味着学习这个过程就结束了，只是找到工作之后的事情现在还未可知。</p>
-<p>那么我要填的第一个坑就是鸽了大半年的<strong>Go语言实现23种设计模式</strong>。众所周知，懂得设计模式是每一个有志于从事服务端开发的萌新所必须掌握的知识；并且，设计模式在开发中也是很常用的（例如我之前曾经写过的一篇文章：《使用责任链模式解决多种用户同一个入口登录的问题》）。但是现在虽然市面上讲设计模式的文章、视频、书籍非常多，但是用Go语言描述的却屈指可数，且由于Go语言自身的一些特点，导致很多书中的代码都需要经过大刀阔斧的改造才能运用到Go语言中。那么趁着三刷《设计模式之禅》这个机会，我决定将《设计模式之禅》中的代码使用Go语言重写，对于我在项目中使用过的一些设计模式我也会尝试使用项目中的场景来进行解释，以此达到既学习设计模式，同时又学习Go语言语法与特性的目的。</p>
-<p>话不多说，我们赶紧开始吧。本系列文章的所有代码都将会上传到GitHub，地址：<a target="_blank" rel="noopener" href="https://github.com/WenDev/golang-with-design-patterns">WenDev/golang-with-design-patterns</a>，如果对你有帮助的话欢迎帮忙点个Star和Fork，会给我很大很大的鼓励！感谢你的支持~如果在阅读的过程中发现错误或者发现更好的写法欢迎提出Issue或者联系我，我会第一时间进行改正。</p>
-<p>参考资料：</p>
-<ul>
-<li>《设计模式之禅（第2版）》——秦小波</li>
-<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1GD4y1D7D3">5小时go语言了解设计模式（23个完整）</a></li>
-<li>其余的参考资料会在每篇文章的最后列出。</li>
-</ul>
-<p>以下是一个施工进度表：</p>
-<p>✅：已完成；🚧：施工中；❌：未开始。</p>
-<ul>
-<li>单例模式✅</li>
-<li>工厂模式✅</li>
-<li>抽象工厂模式✅</li>
-<li>模板模式🚧</li>
-<li>建造者模式❌</li>
-<li>代理模式❌</li>
-<li>原型模式❌</li>
-<li>中介者模式❌</li>
-<li>命令模式❌</li>
-<li>责任链模式❌</li>
-<li>装饰模式❌</li>
-<li>策略模式❌</li>
-<li>适配器模式❌</li>
-<li>迭代器模式❌</li>
-<li>组合模式❌</li>
-<li>观察者模式❌</li>
-<li>门面模式❌</li>
-<li>备忘录模式❌</li>
-<li>访问者模式❌</li>
-<li>状态模式❌</li>
-<li>解释器模式❌</li>
-<li>享元模式❌</li>
-<li>桥梁模式❌</li>
+        <h1 id="【Go语言实现常见数据结构】前缀树Trie"><a href="#【Go语言实现常见数据结构】前缀树Trie" class="headerlink" title="【Go语言实现常见数据结构】前缀树Trie"></a>【Go语言实现常见数据结构】前缀树Trie</h1><h2 id="什么是前缀树"><a href="#什么是前缀树" class="headerlink" title="什么是前缀树"></a>什么是前缀树</h2><p>前缀树，又称Trie、字典树、单词查找树或键树，是多叉树的一种特殊形式。前缀树中的每一个结点都代表一个字符，根结点代表空字符串，其子结点保存的字符串是由通往该子结点路径上的所有字符组成的，并且每个子结点包含的字符都不相同。</p>
+<p>前缀树的核心思想是空间换时间，利用字符串的公共前缀来降低查询时间的开销以达到提高效率的目的。</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="结点的实现"><a href="#结点的实现" class="headerlink" title="结点的实现"></a>结点的实现</h3><p>我们先只考虑存储26个小写英文字母的前缀树，这是一棵26叉树，可以用一个长度为26的数组保存其所有子结点。由于我们走到某个结点的时候需要知道是不是已经达到该单词的末尾了（例如前缀树里有字符串<code>goroutines</code>但没有<code>goroutine</code>，读到<code>e</code>的时候显然就没有读到单词末尾，而读到<code>s</code>的时候则达到了单词尾），所以每个结点都需要附带一个<code>isWord</code>字段来标识是否已经达到单词尾。</p>
+<pre><code class="go">// Trie 前缀树结点
+type Trie struct &#123;
+    isWord   bool      // 判断一个结点是不是走到单词尾
+    children [26]*Trie // 子结点,长度为26的数组
+&#125;
+</code></pre>
+<p>注意：如果要实现存储任意字符的前缀树，可以把<code>children</code>数组替换为<code>map[rune]*Trie</code>。</p>
+<h3 id="插入方法的实现"><a href="#插入方法的实现" class="headerlink" title="插入方法的实现"></a>插入方法的实现</h3><p>再来看看如何向前缀树中插入一个单词。我们使用一个指针指向前缀树的根结点，然后遍历单词中的每一个字符，对于当前遍历到的字符求出其相对于字母<code>a</code>的偏移量（也就是这个字符在<code>children</code>数组中的位置），然后查看数组对应位置上的值是不是<code>nil</code>。如果是，则在这个位置上新建一个结点，并把指针移动到新建的结点上；如果不是，则直接把指针移动到这个已存在的子结点上。读到单词尾后，将指针指向的结点的<code>isWord</code>字段置为<code>true</code>，表示读到该位置之后单词已经结束。</p>
+<p>代码如下：</p>
+<pre><code class="go">// Insert 向前缀树中插入一个单词
+func (root *Trie) Insert(word string) &#123;
+    cur := root
+    for i, c := range word &#123;
+        // 计算出当前位置上字符的偏移量
+        loc := c - &#39;a&#39;
+        // 如果这个位置上没有子结点,就新建一个
+        if cur.children[loc] == nil &#123;
+            cur.children[loc] = &amp;Trie&#123;&#125;
+        &#125;
+        // 把指针移动到被插入的结点上
+        cur = cur.children[loc]
+        // 如果读到单词尾,那么把这个结点设为单词结尾
+        if i == len(word)-1 &#123;
+            cur.isWord = true
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p>注意：如果使用<code>map</code>而不是数组，判断子结点是否存在的时候可以使用<code>_, ok := children[c]; !ok</code>（其中<code>c</code>为当前遍历到的字符）。</p>
+<h3 id="查找方法的实现"><a href="#查找方法的实现" class="headerlink" title="查找方法的实现"></a>查找方法的实现</h3><p>查找和插入是比较相似的，仍然是一个指针遍历的过程，区别在于如果遍历到某个结点时发现当前结点的子结点中不存在字符串当前位置上的字符，则直接返回<code>false</code>表示查找失败，并且遍历完成之后还要判断最后遍历到的结点的<code>isWord</code>字段是不是<code>true</code>。</p>
+<pre><code class="go">// Search 查找一个前缀树里有没有某个单词
+func (root *Trie) Search(word string) bool &#123;
+    cur := root
+    for _, c := range word &#123;
+        loc := c - &#39;a&#39;
+        // 如果当前位置对应的子结点里没有要查找的结点,那说明这个单词不在前缀树里
+        if cur.children[loc] == nil &#123;
+            return false
+        &#125;
+        // 如果有,则把指针移动到这个结点上
+        cur = cur.children[loc]
+    &#125;
+    // 遍历结束之后判断一下是否读到单词尾,如果是,则返回true
+    // 如果没有读到单词尾,那说明这个单词还没有结束，要查找的单词没有被插入前缀树
+    return cur.isWord
+&#125;
+</code></pre>
+<h3 id="判断前缀方法的实现"><a href="#判断前缀方法的实现" class="headerlink" title="判断前缀方法的实现"></a>判断前缀方法的实现</h3><p>判断前缀和查找比较相似，但由于不需要判断是否读到单词尾，所以只需要把最后的判断条件去掉而是直接返回<code>true</code>。</p>
+<pre><code class="go">// StartWith 查找某个前缀是否存在于前缀树中
+func (root *Trie) StartWith(prefix string) bool &#123;
+    cur := root
+    for _, c := range prefix &#123;
+        loc := c - &#39;a&#39;
+        // 当前位置对应的子结点里没有要查找的结点,说明这个前缀不在前缀树里
+        if cur.children[loc] == nil &#123;
+            return false
+        &#125;
+        cur = cur.children[loc]
+    &#125;
+    return true
+&#125;
+</code></pre>
+<h2 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h2><pre><code class="go">package trie
+
+// Trie 前缀树结点
+type Trie struct &#123;
+    isWord   bool      // 判断一个结点是不是走到单词尾
+    children [26]*Trie // 子结点,长度为26的数组
+&#125;
+
+// NewTrie 新建一个前缀树
+func NewTrie() *Trie &#123;
+    return &amp;Trie&#123;&#125;
+&#125;
+
+// Insert 向前缀树中插入一个单词
+func (root *Trie) Insert(word string) &#123;
+    cur := root
+    for i, c := range word &#123;
+        // 计算出当前位置上字符的偏移量
+        loc := c - &#39;a&#39;
+        // 如果这个位置上没有子结点,就新建一个
+        if cur.children[loc] == nil &#123;
+            cur.children[loc] = &amp;Trie&#123;&#125;
+        &#125;
+        // 把指针移动到被插入的结点上
+        cur = cur.children[loc]
+        // 如果读到单词尾,那么把这个结点设为单词结尾
+        if i == len(word)-1 &#123;
+            cur.isWord = true
+        &#125;
+    &#125;
+&#125;
+
+// Search 查找一个前缀树里有没有某个单词
+func (root *Trie) Search(word string) bool &#123;
+    cur := root
+    for _, c := range word &#123;
+        loc := c - &#39;a&#39;
+        // 如果当前位置对应的子结点里没有要查找的结点,那说明这个单词不在前缀树里
+        if cur.children[loc] == nil &#123;
+            return false
+        &#125;
+        // 如果有,则把指针移动到这个结点上
+        cur = cur.children[loc]
+    &#125;
+    // 遍历结束之后判断一下是否读到单词尾,如果是,则返回true
+    // 如果没有读到单词尾,那说明这个单词还没有结束，要查找的单词没有被插入前缀树
+    return cur.isWord
+&#125;
+
+// StartWith 查找某个前缀是否存在于前缀树中
+func (root *Trie) StartWith(prefix string) bool &#123;
+    cur := root
+    for _, c := range prefix &#123;
+        loc := c - &#39;a&#39;
+        // 当前位置对应的子结点里没有要查找的结点,说明这个前缀不在前缀树里
+        if cur.children[loc] == nil &#123;
+            return false
+        &#125;
+        cur = cur.children[loc]
+    &#125;
+    return true
+&#125;
+</code></pre>
+<p>测试代码：</p>
+<pre><code class="go">package trie
+
+import (
+    &quot;fmt&quot;
+    &quot;testing&quot;
+)
+
+func TestTrie(t *testing.T) &#123;
+    trie := NewTrie()
+    trie.Insert(&quot;golang&quot;)
+    trie.Insert(&quot;goroutines&quot;)
+    fmt.Println(trie.StartWith(&quot;go&quot;))      // true
+    fmt.Println(trie.Search(&quot;goroutine&quot;))  // false
+    fmt.Println(trie.Search(&quot;golang&quot;))     // true
+    fmt.Println(trie.Search(&quot;goroutines&quot;)) // true
+&#125;
+</code></pre>
+<p>测试结果：</p>
+<img src="https://gitee.com/QNKCDZ0/pictures/raw/master/img/20211116211006.png" style="zoom:50%;" />
+
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/idwtwt/article/details/88193548">前缀树Trie及代码实现（golang）</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/terrygmx/article/details/88921823">Golang实现Trie（前缀树）</a></li>
 </ul>
 
       
@@ -950,12 +1069,12 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>前言：我回来了，我带着23种设计模式回来了</p>
-    <p><span class="copy-title">字数:</span><span class="post-count">706</span></p>
+    <p><span class="copy-title">文章标题:</span>Golang实现前缀树Trie</p>
+    <p><span class="copy-title">字数:</span><span class="post-count">1.7k</span></p>
     <p><span class="copy-title">本文作者:</span><a  title="江文">江文</a></p>
-    <p><span class="copy-title">发布时间:</span>2021-11-22, 20:52:46</p>
-    <p><span class="copy-title">最后更新:</span>2021-11-22, 20:53:07</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2021/11/22/%E5%89%8D%E8%A8%80%EF%BC%9A%E6%88%91%E5%9B%9E%E6%9D%A5%E4%BA%86%EF%BC%8C%E6%88%91%E5%B8%A6%E7%9D%8023%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%9B%9E%E6%9D%A5%E4%BA%86/" title="前言：我回来了，我带着23种设计模式回来了">http://www.wendev.site/2021/11/22/%E5%89%8D%E8%A8%80%EF%BC%9A%E6%88%91%E5%9B%9E%E6%9D%A5%E4%BA%86%EF%BC%8C%E6%88%91%E5%B8%A6%E7%9D%8023%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%9B%9E%E6%9D%A5%E4%BA%86/</a>
+    <p><span class="copy-title">发布时间:</span>2021-11-22, 21:55:31</p>
+    <p><span class="copy-title">最后更新:</span>2021-11-22, 21:56:17</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2021/11/22/Golang%E5%AE%9E%E7%8E%B0%E5%89%8D%E7%BC%80%E6%A0%91Trie/" title="Golang实现前缀树Trie">http://www.wendev.site/2021/11/22/Golang%E5%AE%9E%E7%8E%B0%E5%89%8D%E7%BC%80%E6%A0%91Trie/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">&#34;署名-非商用-相同方式共享 4.0&#34;</a> 转载请保留原文链接及作者。
     </p>

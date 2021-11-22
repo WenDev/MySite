@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>Golang实现前缀树Trie</title>
+      <link href="/2021/11/22/Golang%E5%AE%9E%E7%8E%B0%E5%89%8D%E7%BC%80%E6%A0%91Trie/"/>
+      <url>/2021/11/22/Golang%E5%AE%9E%E7%8E%B0%E5%89%8D%E7%BC%80%E6%A0%91Trie/</url>
+      
+        <content type="html"><![CDATA[<h1 id="【Go语言实现常见数据结构】前缀树Trie"><a href="#【Go语言实现常见数据结构】前缀树Trie" class="headerlink" title="【Go语言实现常见数据结构】前缀树Trie"></a>【Go语言实现常见数据结构】前缀树Trie</h1><h2 id="什么是前缀树"><a href="#什么是前缀树" class="headerlink" title="什么是前缀树"></a>什么是前缀树</h2><p>前缀树，又称Trie、字典树、单词查找树或键树，是多叉树的一种特殊形式。前缀树中的每一个结点都代表一个字符，根结点代表空字符串，其子结点保存的字符串是由通往该子结点路径上的所有字符组成的，并且每个子结点包含的字符都不相同。</p><p>前缀树的核心思想是空间换时间，利用字符串的公共前缀来降低查询时间的开销以达到提高效率的目的。</p><h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="结点的实现"><a href="#结点的实现" class="headerlink" title="结点的实现"></a>结点的实现</h3><p>我们先只考虑存储26个小写英文字母的前缀树，这是一棵26叉树，可以用一个长度为26的数组保存其所有子结点。由于我们走到某个结点的时候需要知道是不是已经达到该单词的末尾了（例如前缀树里有字符串<code>goroutines</code>但没有<code>goroutine</code>，读到<code>e</code>的时候显然就没有读到单词末尾，而读到<code>s</code>的时候则达到了单词尾），所以每个结点都需要附带一个<code>isWord</code>字段来标识是否已经达到单词尾。</p><pre><code class="go">// Trie 前缀树结点type Trie struct &#123;    isWord   bool      // 判断一个结点是不是走到单词尾    children [26]*Trie // 子结点,长度为26的数组&#125;</code></pre><p>注意：如果要实现存储任意字符的前缀树，可以把<code>children</code>数组替换为<code>map[rune]*Trie</code>。</p><h3 id="插入方法的实现"><a href="#插入方法的实现" class="headerlink" title="插入方法的实现"></a>插入方法的实现</h3><p>再来看看如何向前缀树中插入一个单词。我们使用一个指针指向前缀树的根结点，然后遍历单词中的每一个字符，对于当前遍历到的字符求出其相对于字母<code>a</code>的偏移量（也就是这个字符在<code>children</code>数组中的位置），然后查看数组对应位置上的值是不是<code>nil</code>。如果是，则在这个位置上新建一个结点，并把指针移动到新建的结点上；如果不是，则直接把指针移动到这个已存在的子结点上。读到单词尾后，将指针指向的结点的<code>isWord</code>字段置为<code>true</code>，表示读到该位置之后单词已经结束。</p><p>代码如下：</p><pre><code class="go">// Insert 向前缀树中插入一个单词func (root *Trie) Insert(word string) &#123;    cur := root    for i, c := range word &#123;        // 计算出当前位置上字符的偏移量        loc := c - &#39;a&#39;        // 如果这个位置上没有子结点,就新建一个        if cur.children[loc] == nil &#123;            cur.children[loc] = &amp;Trie&#123;&#125;        &#125;        // 把指针移动到被插入的结点上        cur = cur.children[loc]        // 如果读到单词尾,那么把这个结点设为单词结尾        if i == len(word)-1 &#123;            cur.isWord = true        &#125;    &#125;&#125;</code></pre><p>注意：如果使用<code>map</code>而不是数组，判断子结点是否存在的时候可以使用<code>_, ok := children[c]; !ok</code>（其中<code>c</code>为当前遍历到的字符）。</p><h3 id="查找方法的实现"><a href="#查找方法的实现" class="headerlink" title="查找方法的实现"></a>查找方法的实现</h3><p>查找和插入是比较相似的，仍然是一个指针遍历的过程，区别在于如果遍历到某个结点时发现当前结点的子结点中不存在字符串当前位置上的字符，则直接返回<code>false</code>表示查找失败，并且遍历完成之后还要判断最后遍历到的结点的<code>isWord</code>字段是不是<code>true</code>。</p><pre><code class="go">// Search 查找一个前缀树里有没有某个单词func (root *Trie) Search(word string) bool &#123;    cur := root    for _, c := range word &#123;        loc := c - &#39;a&#39;        // 如果当前位置对应的子结点里没有要查找的结点,那说明这个单词不在前缀树里        if cur.children[loc] == nil &#123;            return false        &#125;        // 如果有,则把指针移动到这个结点上        cur = cur.children[loc]    &#125;    // 遍历结束之后判断一下是否读到单词尾,如果是,则返回true    // 如果没有读到单词尾,那说明这个单词还没有结束，要查找的单词没有被插入前缀树    return cur.isWord&#125;</code></pre><h3 id="判断前缀方法的实现"><a href="#判断前缀方法的实现" class="headerlink" title="判断前缀方法的实现"></a>判断前缀方法的实现</h3><p>判断前缀和查找比较相似，但由于不需要判断是否读到单词尾，所以只需要把最后的判断条件去掉而是直接返回<code>true</code>。</p><pre><code class="go">// StartWith 查找某个前缀是否存在于前缀树中func (root *Trie) StartWith(prefix string) bool &#123;    cur := root    for _, c := range prefix &#123;        loc := c - &#39;a&#39;        // 当前位置对应的子结点里没有要查找的结点,说明这个前缀不在前缀树里        if cur.children[loc] == nil &#123;            return false        &#125;        cur = cur.children[loc]    &#125;    return true&#125;</code></pre><h2 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h2><pre><code class="go">package trie// Trie 前缀树结点type Trie struct &#123;    isWord   bool      // 判断一个结点是不是走到单词尾    children [26]*Trie // 子结点,长度为26的数组&#125;// NewTrie 新建一个前缀树func NewTrie() *Trie &#123;    return &amp;Trie&#123;&#125;&#125;// Insert 向前缀树中插入一个单词func (root *Trie) Insert(word string) &#123;    cur := root    for i, c := range word &#123;        // 计算出当前位置上字符的偏移量        loc := c - &#39;a&#39;        // 如果这个位置上没有子结点,就新建一个        if cur.children[loc] == nil &#123;            cur.children[loc] = &amp;Trie&#123;&#125;        &#125;        // 把指针移动到被插入的结点上        cur = cur.children[loc]        // 如果读到单词尾,那么把这个结点设为单词结尾        if i == len(word)-1 &#123;            cur.isWord = true        &#125;    &#125;&#125;// Search 查找一个前缀树里有没有某个单词func (root *Trie) Search(word string) bool &#123;    cur := root    for _, c := range word &#123;        loc := c - &#39;a&#39;        // 如果当前位置对应的子结点里没有要查找的结点,那说明这个单词不在前缀树里        if cur.children[loc] == nil &#123;            return false        &#125;        // 如果有,则把指针移动到这个结点上        cur = cur.children[loc]    &#125;    // 遍历结束之后判断一下是否读到单词尾,如果是,则返回true    // 如果没有读到单词尾,那说明这个单词还没有结束，要查找的单词没有被插入前缀树    return cur.isWord&#125;// StartWith 查找某个前缀是否存在于前缀树中func (root *Trie) StartWith(prefix string) bool &#123;    cur := root    for _, c := range prefix &#123;        loc := c - &#39;a&#39;        // 当前位置对应的子结点里没有要查找的结点,说明这个前缀不在前缀树里        if cur.children[loc] == nil &#123;            return false        &#125;        cur = cur.children[loc]    &#125;    return true&#125;</code></pre><p>测试代码：</p><pre><code class="go">package trieimport (    &quot;fmt&quot;    &quot;testing&quot;)func TestTrie(t *testing.T) &#123;    trie := NewTrie()    trie.Insert(&quot;golang&quot;)    trie.Insert(&quot;goroutines&quot;)    fmt.Println(trie.StartWith(&quot;go&quot;))      // true    fmt.Println(trie.Search(&quot;goroutine&quot;))  // false    fmt.Println(trie.Search(&quot;golang&quot;))     // true    fmt.Println(trie.Search(&quot;goroutines&quot;)) // true&#125;</code></pre><p>测试结果：</p><img src="https://gitee.com/QNKCDZ0/pictures/raw/master/img/20211116211006.png" style="zoom:50%;" /><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul><li><a href="https://blog.csdn.net/idwtwt/article/details/88193548">前缀树Trie及代码实现（golang）</a></li><li><a href="https://blog.csdn.net/terrygmx/article/details/88921823">Golang实现Trie（前缀树）</a></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 数据结构 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Golang </tag>
+            
+            <tag> Trie </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>1436.旅行终点站</title>
       <link href="/2021/11/22/1436-%E6%97%85%E8%A1%8C%E7%BB%88%E7%82%B9%E7%AB%99/"/>
       <url>/2021/11/22/1436-%E6%97%85%E8%A1%8C%E7%BB%88%E7%82%B9%E7%AB%99/</url>
