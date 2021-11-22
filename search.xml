@@ -4,6 +4,267 @@
   
     
     <entry>
+      <title>326.3的幂</title>
+      <link href="/2021/11/22/326-3%E7%9A%84%E5%B9%82/"/>
+      <url>/2021/11/22/326-3%E7%9A%84%E5%B9%82/</url>
+      
+        <content type="html"><![CDATA[<h1 id="326-3的幂"><a href="#326-3的幂" class="headerlink" title="326. 3的幂"></a>326. 3的幂</h1><p>题目地址：<a href="https://leetcode-cn.com/problems/power-of-three/">326. 3的幂</a></p><h2 id="解法：循环"><a href="#解法：循环" class="headerlink" title="解法：循环"></a>解法：循环</h2><p>最简单的方法当然是循环，每次循环都判断一下当前的数是否可以被3整除，可以的话将其除以3，直到该数为1时跳出循环。不使用循环的数论解法一般考不到（其实也不难啦，看题解之前一般想不到但是看了题解很容易懂，就是判断这个数能不能被<code>int</code>范围内最大的是3的幂的数<code>1162261467</code>整除即可，0或负数的情况需要特殊判断）。</p><p>当然不使用循环的解法除了数论，还有其他一些方法：打表、暴力枚举等，这些方法评论区很多大佬都写过了，这里就不写了。</p><pre><code class="go">func isPowerOfThree(n int) bool &#123;    if n &lt;= 0 &#123;        return false    &#125;    for n &gt; 1 &#123;        if n % 3 != 0 &#123;            return false        &#125; else &#123;            n /= 3        &#125;    &#125;    return true&#125;</code></pre><p>执行用时: <strong>40 ms</strong>（超过23%的Golang提交记录）</p><p>内存消耗: <strong>6.4 MB</strong>（超过40%的Golang提交记录）</p><p>时间复杂度：O(logn)，因为每次循环都会将数字除以3，所以需要循环的次数是以3为底n的对数次；</p><p>空间复杂度：O(1)，只使用了常数个数的存储空间。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> LeetCode </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> LeetCode </tag>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 模拟 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>310.最小高度树</title>
+      <link href="/2021/11/22/310-%E6%9C%80%E5%B0%8F%E9%AB%98%E5%BA%A6%E6%A0%91/"/>
+      <url>/2021/11/22/310-%E6%9C%80%E5%B0%8F%E9%AB%98%E5%BA%A6%E6%A0%91/</url>
+      
+        <content type="html"><![CDATA[<h1 id="310-最小高度树"><a href="#310-最小高度树" class="headerlink" title="310. 最小高度树"></a>310. 最小高度树</h1><p>题目地址：<a href="https://leetcode-cn.com/problems/minimum-height-trees/">310. 最小高度树</a></p><h2 id="解法：拓扑排序"><a href="#解法：拓扑排序" class="headerlink" title="解法：拓扑排序"></a>解法：拓扑排序</h2><p>这道题其实也可以使用DFS来求解（大多数人想到的第一个解法也都是DFS求出所有结点为根的树高并找到最小的那几个吧），但时间复杂度（O(n^2)）不如使用拓扑排序（O(n)）更优秀。</p><p>那我们是如何想到可以使用拓扑排序的呢？可以这样想：可以生成最小高度的树的结点一定是图中比较“靠中间”的结点，所以只需要不断删除图中度为1的结点就可以找到这些“靠中间”的结点，而这个不断删除度为1的结点的过程是不是很像拓扑排序呢？只不过拓扑排序针对的是有向图（AOE网）而本题是无向图，但思路是完全一样的。</p><p>实现起来也不难，根据题目中的输入建立图，然后对该图进行拓扑排序，返回最后一轮出队的结点即可。</p><pre><code class="go">func findMinHeightTrees(n int, edges [][]int) []int &#123;    if n == 1 &#123;        return []int&#123;0&#125;    &#125;    ans := make([]int, 0)    // 保存所有顶点的度    degree := make([]int, n)    // 邻接表(key为顶点,value是一个数组,保存与该顶点有边相连的顶点)    graph := make(map[int][]int)    // 遍历所有的边,计算所有顶点的度,并且建立邻接表    for i := 0; i &lt; len(edges); i++ &#123;        // 为每条边两边的结点增加1个度        degree[edges[i][1]]++        degree[edges[i][0]]++        // 将这个顶点连接到的边保存在map里        graph[edges[i][0]] = append(graph[edges[i][0]], edges[i][1])        graph[edges[i][1]] = append(graph[edges[i][1]], edges[i][0])    &#125;    // 预处理:把所有度为1的结点入队    q := make([]int, 0)    for i := 0; i &lt; n; i++ &#123;        if degree[i] == 1 &#123;            q = append(q, i)        &#125;    &#125;    // 拓扑排序:不断删除入度为1的结点,直到队列为空    for len(q) &gt; 0 &#123;        // 因为求的是最后一轮遍历所删除的结点,所以每一轮都需要把数组清空一下        // 这样遍历结束的时候数组中就是最后一轮的结点,也就是题目要求的结点        ans = make([]int, 0)        l := len(q)        for j := 0; j &lt; l; j++ &#123;            poped := q[0]            q = q[1:]            ans = append(ans, poped)            // 遍历邻接于该顶点的所有顶点,把它们的度都减1,遇到度为1的结点则入队            for _, node := range graph[poped] &#123;                degree[node]--                if degree[node] == 1 &#123;                    q = append(q, node)                &#125;            &#125;        &#125;    &#125;    return ans&#125;</code></pre><p>执行用时: <strong>36 ms</strong>（超过57%的Golang提交记录）</p><p>内存消耗: <strong>8.6 MB</strong>（超过11%的Golang提交记录）</p><p>时间复杂度：O(n)，拓扑排序时<code>for</code>循环的执行次数与边的数量成正比；</p><p>空间复杂度：O(n)，建立图所需要的空间与边的数量成正比。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> LeetCode </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> LeetCode </tag>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 图 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>283.移动零</title>
+      <link href="/2021/11/22/283-%E7%A7%BB%E5%8A%A8%E9%9B%B6/"/>
+      <url>/2021/11/22/283-%E7%A7%BB%E5%8A%A8%E9%9B%B6/</url>
+      
+        <content type="html"><![CDATA[<h1 id="283-移动零"><a href="#283-移动零" class="headerlink" title="283. 移动零"></a>283. 移动零</h1><p>题目地址：<a href="https://leetcode-cn.com/problems/move-zeroes/">283. 移动零</a></p><h2 id="解法1：将所有非零元素移动到数组前并在其余位置填0"><a href="#解法1：将所有非零元素移动到数组前并在其余位置填0" class="headerlink" title="解法1：将所有非零元素移动到数组前并在其余位置填0"></a>解法1：将所有非零元素移动到数组前并在其余位置填0</h2><p>题目要求空间复杂度为O(1)，所以不能使用额外的数组，但是我们可以换过来想一下：能不能复用题目中的数组呢？答案当然是可以的：</p><ul><li>使用一个指针<code>i</code>从数组头部开始扫描，使用另一个指针<code>j</code>指向数组第一个元素；</li><li>每当<code>i</code>遇到非0元素时，就将其复制到<code>j</code>所指向的位置，并把<code>j</code>向后移动一位；</li><li>当<code>i</code>遍历完成后，把<code>j</code>当前指向的位置及其之后的所有位置都填上0即可。</li></ul><pre><code class="go">func moveZeroes(nums []int)  &#123;    n := len(nums)    i, j := 0, 0    for i &lt; n &#123;        if nums[i] != 0 &#123;            nums[j] = nums[i]            j++        &#125;        i++    &#125;    for j &lt; n &#123;        nums[j] = 0        j++    &#125;&#125;</code></pre><p>执行用时: <strong>24 ms</strong>（超过10.37%的Golang提交记录）</p><p>内存消耗: <strong>6.6 MB</strong>（超过21.50%的Golang提交记录）</p><p>时间复杂度：O(n)，两个<code>for</code>循环的执行次数为数组的长度；</p><p>空间复杂度：O(1)，只使用了常数个数的存储空间。</p><h2 id="解法2：官方双指针解法"><a href="#解法2：官方双指针解法" class="headerlink" title="解法2：官方双指针解法"></a>解法2：官方双指针解法</h2><p>官方解法是双指针的另一种使用方法：</p><ul><li>设置两个指针<code>i</code>和<code>j</code>，两个指针最初都指向数组的首个元素；</li><li>将<code>j</code>从头开始扫描，遇到非0的数则将<code>i</code>和<code>j</code>指向的数相互交换，并将<code>i</code>向后移动一位；</li><li><code>j</code>扫描完整个数组后处理完成。</li></ul><pre><code class="go">func moveZeroes(nums []int)  &#123;    i, j, n := 0, 0, len(nums)    for j &lt; n &#123;        if nums[j] != 0 &#123;            nums[i], nums[j] = nums[j], nums[i]            i++        &#125;        j++    &#125;&#125;</code></pre><p>执行用时: <strong>24 ms</strong>（超过10.37%的Golang提交记录）</p><p>内存消耗: <strong>6.6 MB</strong>（超过15.43%的Golang提交记录）</p><p>时间复杂度：O(n)，<code>for</code>循环的执行次数为数组的长度；</p><p>空间复杂度：O(1)，只使用了常数个数的存储空间。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> LeetCode </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> LeetCode </tag>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 双指针 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>278.第一个错误的版本</title>
+      <link href="/2021/11/22/278-%E7%AC%AC%E4%B8%80%E4%B8%AA%E9%94%99%E8%AF%AF%E7%9A%84%E7%89%88%E6%9C%AC/"/>
+      <url>/2021/11/22/278-%E7%AC%AC%E4%B8%80%E4%B8%AA%E9%94%99%E8%AF%AF%E7%9A%84%E7%89%88%E6%9C%AC/</url>
+      
+        <content type="html"><![CDATA[<h1 id="278-第一个错误的版本"><a href="#278-第一个错误的版本" class="headerlink" title="278. 第一个错误的版本"></a>278. 第一个错误的版本</h1><p>题目地址：<a href="https://leetcode-cn.com/problems/first-bad-version/">278. 第一个错误的版本</a></p><h2 id="解法：二分查找"><a href="#解法：二分查找" class="headerlink" title="解法：二分查找"></a>解法：二分查找</h2><p>这道题虽然看起来很绕，但本质上就是个简单的二分查找变体而已。因为这题要求的是第一个错误的版本，所以在判断错误版本时要让<code>r = m</code>，并且判断条件要改成<code>l &lt; r</code>，这样最后会在<code>l == r</code>时退出循环，此时返回的<code>r</code>就是第一个错误版本。</p><p>通过这题学到一招：在二分查找中，使用公式<code>l + (r - l) / 2</code>来求<code>m</code>可以避免溢出的问题。</p><p>这里给出两种写法：</p><ol><li><strong>手写二分查找</strong></li></ol><pre><code class="go">/**  * Forward declaration of isBadVersion API. * @param   version   your guess about first bad version * @return                true if current version is bad  *                      false if current version is good * func isBadVersion(version int) bool; */func firstBadVersion(n int) int &#123;    l, r := 1, n    for l &lt; r &#123;        m := l + (r - l) / 2        if isBadVersion(m) &#123;            r = m        &#125; else &#123;            l = m + 1        &#125;    &#125;    return r&#125;</code></pre><p>执行用时: <strong>0 ms</strong>（超过100%的Golang提交记录）</p><p>内存消耗: <strong>1.9 MB</strong>（超过100%的Golang提交记录）</p><p>时间复杂度：O(logn)，二分查找的时间复杂度为O(logn)；</p><p>空间复杂度：O(1)，只使用了常数个数的存储空间。</p><ol start="2"><li><strong>使用<code>sort.Search()</code>函数</strong></li></ol><pre><code class="go">/**  * Forward declaration of isBadVersion API. * @param   version   your guess about first bad version * @return                true if current version is bad  *                      false if current version is good * func isBadVersion(version int) bool; */func firstBadVersion(n int) int &#123;    return sort.Search(n, func(i int) bool &#123;        return isBadVersion(i)    &#125;)&#125;</code></pre><p>执行用时: <strong>0 ms</strong>（超过100%的Golang提交记录）</p><p>内存消耗: <strong>1.9 MB</strong>（超过100%的Golang提交记录）</p><p>时间复杂度：O(logn)，二分查找的时间复杂度为O(logn)；</p><p>空间复杂度：O(1)，只使用了常数个数的存储空间。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> LeetCode </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> LeetCode </tag>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 二分查找 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>275.H指数II</title>
+      <link href="/2021/11/22/275-H%E6%8C%87%E6%95%B0II/"/>
+      <url>/2021/11/22/275-H%E6%8C%87%E6%95%B0II/</url>
+      
+        <content type="html"><![CDATA[<h1 id="275-H指数II"><a href="#275-H指数II" class="headerlink" title="275. H指数II"></a>275. H指数II</h1><p>题目地址：<a href="https://leetcode-cn.com/problems/h-index-ii/">275. H指数II</a></p><h2 id="解法：二分查找"><a href="#解法：二分查找" class="headerlink" title="解法：二分查找"></a>解法：二分查找</h2><p>这道题其实很简单，就是一个没什么技术含量的二分查找而已，但是这题的难点在于理解题意，即从这奇奇怪怪的题目描述里分析出这是一道考察二分查找的题目：数组是升序排列的，且查找的条件是<code>citations[mid] &gt;= len(citations) - mid</code>。</p><p>个人感觉这题一般，在考察二分的题目里质量不如658。</p><pre><code class="go">func hIndex(citations []int) int &#123;    n := len(citations)    if n == 0 &#123;        return 0    &#125;    l, r := 0, n - 1    for l &lt;= r &#123;        m := (l + r) / 2        if citations[m] &gt;= n - m &#123;            r = m - 1        &#125; else &#123;            l = m + 1        &#125;    &#125;    return n - l&#125;</code></pre><p>执行用时: <strong>16 ms</strong>（超过81%的Golang提交记录）</p><p>内存消耗: <strong>6.6 MB</strong>（超过99%的Golang提交记录）</p><p>时间复杂度：O(logn)，二分查找的时间复杂度为O(logn)；</p><p>空间复杂度：O(1)，只使用了常数个数的存储空间。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> LeetCode </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> LeetCode </tag>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 二分查找 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>231.2的幂</title>
+      <link href="/2021/11/22/231-2%E7%9A%84%E5%B9%82/"/>
+      <url>/2021/11/22/231-2%E7%9A%84%E5%B9%82/</url>
+      
+        <content type="html"><![CDATA[<h1 id="231-2的幂"><a href="#231-2的幂" class="headerlink" title="231. 2的幂"></a>231. 2的幂</h1><p>题目地址：<a href="https://leetcode-cn.com/problems/power-of-two/">231.2的幂</a></p><h2 id="解法：位运算"><a href="#解法：位运算" class="headerlink" title="解法：位运算"></a>解法：位运算</h2><p>如果一个正整数是2的幂，例如<code>8</code>（二进制表示为<code>1000</code>），那么它减去1之后的数，例如<code>7</code>（二进制表示为<code>111</code>）与它本身相与之后的结果一定是0。因为2的幂的二进制表示只有最高位为1而其他位都为0，而它减去1之后原来的最高位变为0，其他位变为1，两者相与就能得到0。</p><pre><code class="go">func isPowerOfTwo(n int) bool &#123;    if n &lt;= 0 &#123;        return false    &#125;    return (n &amp; (n - 1)) == 0&#125;</code></pre><p>执行用时: <strong>0 ms</strong>（超过100%的Golang提交记录）</p><p>内存消耗: <strong>2.1 MB</strong>（超过100%的Golang提交记录）</p><p>时间复杂度：O(1)，不需要循环，问题的规模与算法执行效率无关；</p><p>空间复杂度：O(1)，只使用了常数个数的存储空间。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> LeetCode </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> LeetCode </tag>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 位运算 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>223.矩形面积</title>
+      <link href="/2021/11/22/223-%E7%9F%A9%E5%BD%A2%E9%9D%A2%E7%A7%AF/"/>
+      <url>/2021/11/22/223-%E7%9F%A9%E5%BD%A2%E9%9D%A2%E7%A7%AF/</url>
+      
+        <content type="html"><![CDATA[<h1 id="223-矩形面积"><a href="#223-矩形面积" class="headerlink" title="223. 矩形面积"></a>223. 矩形面积</h1><p>题目地址：<a href="https://leetcode-cn.com/problems/rectangle-area/">223. 矩形面积</a></p><h2 id="解法：面积之和-重叠面积"><a href="#解法：面积之和-重叠面积" class="headerlink" title="解法：面积之和-重叠面积"></a>解法：面积之和-重叠面积</h2><p>看到这道题你可能认为需要考虑各种情况（比如两个矩形有没有重叠，大矩形包小矩形会怎样等等）来求解了，其实仔细想想就能发现这题本质上就是求两个矩形的重叠面积，因为两个矩形的实际覆盖面积就是两个矩形的面积之和减去它们的重叠面积。那么问题就转化为如何求重叠部分的面积了。这也很简单，重叠面积的宽度<code>w</code>为<code>math.Min(ax2, bx2) - math.Max(ax1, bx1)</code>，高度<code>h</code>为<code>math.Min(ay2, by2) - math.Min(ay1, by1)</code>，若其中某一个为负数则将其置为0，求出<code>w</code>和<code>h</code>之后计算出两个矩形的面积并减去<code>w * h</code>就可以了。</p><p>注意：如果想继续优化的话，可以自己实现针对int类型的<code>min</code>和<code>max</code>两个函数，这样可以比频繁地进行类型转换更快一些。</p><pre><code class="go">func computeArea(ax1 int, ay1 int, ax2 int, ay2 int, bx1 int, by1 int, bx2 int, by2 int) int &#123;    // 求重叠部分的长和宽    w := math.Max(0, math.Min(float64(ax2), float64(bx2)) - math.Max(float64(ax1), float64(bx1)))    h := math.Max(0, math.Min(float64(ay2), float64(by2)) - math.Max(float64(ay1), float64(by1)))    // 实际覆盖面积 = 两个矩形的面积之和 - 重叠部分面积    return (ay2 - ay1) * (ax2 - ax1) + (by2 - by1) * (bx2 - bx1) - (int(w) * int(h))&#125;</code></pre><p>执行用时: <strong>16 ms</strong>（超过40%的Golang提交记录）</p><p>内存消耗: <strong>6.2 MB</strong>（超过67%的Golang提交记录）</p><p>时间复杂度：O(1)，问题的规模与算法执行效率无关；</p><p>空间复杂度：O(1)，只使用了常数个数的存储空间。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> LeetCode </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> LeetCode </tag>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 数学 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>206.反转链表</title>
+      <link href="/2021/11/22/206-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/"/>
+      <url>/2021/11/22/206-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/</url>
+      
+        <content type="html"><![CDATA[<h1 id="206-反转链表"><a href="#206-反转链表" class="headerlink" title="206. 反转链表"></a>206. 反转链表</h1><p>题目地址：<a href="https://leetcode-cn.com/problems/reverse-linked-list/">206. 反转链表</a></p><h2 id="解法1：迭代（最优解）"><a href="#解法1：迭代（最优解）" class="headerlink" title="解法1：迭代（最优解）"></a>解法1：迭代（最优解）</h2><p>这道题最简单的解法当然是迭代了：设置两个指针<code>pre</code>和<code>cur</code>保存当前结点和下一个结点，每次使用一个<code>temp</code>变量保存原来的<code>cur.Next</code>，然后让<code>cur.Next</code>指向<code>pre</code>，并把<code>pre</code>更新为<code>cur</code>，最后把<code>cur</code>更新为<code>temp</code>并把<code>temp</code>向后移动一位，直到<code>cur</code>为<code>nil</code>时退出循环。</p><p>注意<code>pre</code>要初始化为<code>nil</code>，这样就不需要对链表长度为<code>0</code>或者<code>1</code>的情况做特殊判断。</p><pre><code class="go">func reverseList(head *ListNode) *ListNode &#123;    var pre, cur *ListNode = nil, head    for cur != nil &#123;        temp := cur.Next        cur.Next = pre        pre = cur        cur = temp    &#125;    return pre&#125;</code></pre><p>执行用时: <strong>0 ms</strong>（超过100%的Golang提交记录）</p><p>内存消耗: <strong>2.5 MB</strong>（超过99.91%的Golang提交记录）</p><p>时间复杂度：O(n)，<code>for</code>循环的执行次数为链表长度；</p><p>空间复杂度：O(1)，只使用了常数个数的存储空间。</p><h2 id="解法2：栈（最容易想到）"><a href="#解法2：栈（最容易想到）" class="headerlink" title="解法2：栈（最容易想到）"></a>解法2：栈（最容易想到）</h2><p>事实上我最先想到的就是这个解法。虽然这道题显然迭代是最优解，但这种使用栈的解法在其他一些不能迭代的题中也会经常用到（例如二叉树的遍历的非递归写法，就跟这种使用栈的写法很类似），因为这种题目中使用栈本质上是递归的优化。</p><p>首先把链表所有的结点都入栈，然后依次弹出所有元素并且连成链表，直到栈为空时退出循环。注意最后需要把最后一个结点的<code>Next</code>置为<code>nil</code>，否则链表就会变成环。</p><pre><code class="go">func reverseList(head *ListNode) *ListNode &#123;    // 空链表,不用反转直接返回nil    if head == nil &#123;        return nil    &#125;    // 一个结点的链表,也不用反转    if head.Next == nil &#123;        return head    &#125;    stack := make([]*ListNode, 0)    top := 0    // 把链表所有结点入栈    for p := head; p != nil; p = p.Next &#123;        stack = append(stack, p)        top++    &#125;    // 弹出第一个结点(原链表尾结点)    tail := stack[top-1]    top--    p := tail    for top != 0 &#123;        // 每次遍历弹出一个结点直到栈为空        p.Next = stack[top-1]        top--        p = p.Next    &#125;    p.Next = nil    return tail&#125;</code></pre><p>执行用时: <strong>0 ms</strong>（超过100%的Golang提交记录）</p><p>内存消耗: <strong>2.8 MB</strong>（超过24%的Golang提交记录）</p><p>时间复杂度：O(n)，<code>for</code>循环的执行次数为链表长度；</p><p>空间复杂度：O(n)，栈的最大深度为链表长度。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> LeetCode </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> LeetCode </tag>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 链表 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>191.位1的个数</title>
+      <link href="/2021/11/22/191-%E4%BD%8D1%E7%9A%84%E4%B8%AA%E6%95%B0/"/>
+      <url>/2021/11/22/191-%E4%BD%8D1%E7%9A%84%E4%B8%AA%E6%95%B0/</url>
+      
+        <content type="html"><![CDATA[<h1 id="191-位1的个数"><a href="#191-位1的个数" class="headerlink" title="191. 位1的个数"></a>191. 位1的个数</h1><p>题目地址：<a href="https://leetcode-cn.com/problems/number-of-1-bits/">191. 位1的个数</a></p><h2 id="解法：位运算"><a href="#解法：位运算" class="headerlink" title="解法：位运算"></a>解法：位运算</h2><p>读过《剑指Offer》的应该都知道这题的做法。</p><blockquote><p>如果一个整数不等于0，那么该整数的二进制表示中至少有一位是1。先假设这个数的最右边一位是1，那么减去1时，最后一位变成0而其他所有位都保持不变。也就是最后一位相当于做了取反操作，由1变成了0。</p><p>接下来假设最后一位不是1而是0的情况。如果该整数的二进制表示中最右边1位于第m位，那么减去1时，第m位由1变成0，而第m位之后的所有0都变成1，整数中第m位之前的所有位都保持不变。</p><p>…</p><p>接下来我们把一个整数和它减去1的结果做位与运算，相当于把它最右边的1变成0。</p><p>我们把上面的分析总结起来就是：把一个整数减去1，再和原整数做与运算，会把该整数最右边一个1变成0。那么一个整数的二进制表示中有多少个1，就困产不行多少次这样的操作。</p><p>——《剑指Offer》</p></blockquote><pre><code class="go">func hammingWeight(num uint32) int &#123;    ans := 0    for ; num &gt; 0; num = (num - 1) &amp; num &#123;        ans++    &#125;    return ans&#125;</code></pre><p>执行用时: <strong>0 ms</strong>（超过100%的Golang提交记录）</p><p>内存消耗: <strong>1.9 MB</strong>（超过59.73%的Golang提交记录）</p><p>时间复杂度：O(logn)，循环次数等于n的二进制位中1的个数，例如对于7（111）需要循环3次。</p><p>空间复杂度：O(1)，只使用了常数个数的存储空间。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> LeetCode </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> LeetCode </tag>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 位运算 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>189.旋转数组</title>
       <link href="/2021/11/22/189-%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84/"/>
       <url>/2021/11/22/189-%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84/</url>
@@ -479,6 +740,8 @@
             <tag> 算法 </tag>
             
             <tag> 模拟 </tag>
+            
+            <tag> 链表 </tag>
             
         </tags>
       

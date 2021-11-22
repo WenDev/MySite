@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>326.3的幂 | 江文 - Golang | Back-End Develop | Cloud Native</title>
+  <meta name="keywords" content=" LeetCode , 算法 , 模拟 ">
+  <meta name="description" content="326.3的幂 | 江文 - Golang | Back-End Develop | Cloud Native">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="326. 3的幂题目地址：326. 3的幂 解法：循环最简单的方法当然是循环，每次循环都判断一下当前的数是否可以被3整除，可以的话将其除以3，直到该数为1时跳出循环。不使用循环的数论解法一般考不到（其实也不难啦，看题解之前一般想不到但是看了题解很容易懂，就是判断这个数能不能被int范围内最大的是3的幂的数1162261467整除即可，0或负数的情况需要特殊判断）。 当然不使用循环的解法除了数论，还">
+<meta property="og:type" content="article">
+<meta property="og:title" content="326.3的幂">
+<meta property="og:url" content="http://www.wendev.site/2021/11/22/326-3%E7%9A%84%E5%B9%82/index.html">
+<meta property="og:site_name" content="江文 - Golang | Back-End Develop | Cloud Native">
+<meta property="og:description" content="326. 3的幂题目地址：326. 3的幂 解法：循环最简单的方法当然是循环，每次循环都判断一下当前的数是否可以被3整除，可以的话将其除以3，直到该数为1时跳出循环。不使用循环的数论解法一般考不到（其实也不难啦，看题解之前一般想不到但是看了题解很容易懂，就是判断这个数能不能被int范围内最大的是3的幂的数1162261467整除即可，0或负数的情况需要特殊判断）。 当然不使用循环的解法除了数论，还">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-11-22T13:33:12.000Z">
+<meta property="article:modified_time" content="2021-11-22T13:33:31.793Z">
+<meta property="article:author" content="江文">
+<meta property="article:tag" content="LeetCode">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="模拟">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/header.png">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-dark.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/header.png"/>
+</a>
+<div class="author">
+    <span>江文</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="github"
+               href="https://github.com/WenDev"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="zhihu"
+               href="https://www.zhihu.com/people/wendev"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-zhihu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="csdn"
+               href="https://blog.csdn.net/weixin_43887447"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-csdn"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="email"
+               href="mailto:wendev1024@icloud.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="neteasemusic"
+               href="https://music.163.com/#/user/home?id=1850247985"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-neteasemusic"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+                <small>(29)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                <li>
+                    <div data-rel="K8S">
+                        
+                        K8S
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="LeetCode">
+                        
+                        LeetCode
+                        <small>(19)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="教程">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        教程
+                        <small>(2)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="教程<--->Markdown">
+                                        
+                                        Markdown
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="教程<--->后端开发">
+                                        
+                                        后端开发
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="服务网格">
+                        
+                        服务网格
+                        <small>(2)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="架构">
+                        
+                        架构
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="设计模式">
+                        
+                        设计模式
+                        <small>(4)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+        <a 
+                                           class="friends">友链</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="29">
+<input type="hidden" id="yelog_site_word_count" value="41.8k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://tianhang28.cn/">水浅小庙</a></li>
+            
+            <li><a target="_blank" href="http://blog.keysking.com/">Keysking</a></li>
+            
+            <li><a target="_blank" href="http://n4tsu.top/">N4tsu</a></li>
+            
+            <li><a target="_blank" href="http://liul14n.top/">Liul14n</a></li>
+            
+            <li><a target="_blank" href="https://alicejthelast.lofter.com/">Oralear</a></li>
+            
+            <li><a target="_blank" href="http://www.monsie.site/">Monsie</a></li>
+            
+            <li><a target="_blank" href="https://www.cnblogs.com/weilinfox/">八衛門狸</a></li>
+            
+            <li><a target="_blank" href="https://echosorari.github.io">Grayi</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Istio</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>K8S</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>LeetCode</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Markdown</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Spring Boot</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>二分查找</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>二叉树</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>位运算</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>动态规划</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>单例模式</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>双指针</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>后端开发</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>哈希表</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>图</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>微服务</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>抽象工厂模式</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>教程</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>数学</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>服务网格</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>架构设计</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>模拟</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>滑动窗口</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>算法</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>设计模式</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>链表</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        <a  class="全部文章 LeetCode "
+           href="/2021/11/22/326-3%E7%9A%84%E5%B9%82/"
+           data-tag="LeetCode,算法,模拟"
+           data-author="" >
+            <span class="post-title" title="326.3的幂">326.3的幂</span>
+            <span class="post-date" title="2021-11-22 21:33:12">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/2021/11/22/310-%E6%9C%80%E5%B0%8F%E9%AB%98%E5%BA%A6%E6%A0%91/"
+           data-tag="LeetCode,算法,图"
+           data-author="" >
+            <span class="post-title" title="310.最小高度树">310.最小高度树</span>
+            <span class="post-date" title="2021-11-22 21:31:51">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/2021/11/22/283-%E7%A7%BB%E5%8A%A8%E9%9B%B6/"
+           data-tag="LeetCode,算法,双指针"
+           data-author="" >
+            <span class="post-title" title="283.移动零">283.移动零</span>
+            <span class="post-date" title="2021-11-22 21:30:51">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/2021/11/22/278-%E7%AC%AC%E4%B8%80%E4%B8%AA%E9%94%99%E8%AF%AF%E7%9A%84%E7%89%88%E6%9C%AC/"
+           data-tag="LeetCode,算法,二分查找"
+           data-author="" >
+            <span class="post-title" title="278.第一个错误的版本">278.第一个错误的版本</span>
+            <span class="post-date" title="2021-11-22 21:29:36">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/2021/11/22/275-H%E6%8C%87%E6%95%B0II/"
+           data-tag="LeetCode,算法,二分查找"
+           data-author="" >
+            <span class="post-title" title="275.H指数II">275.H指数II</span>
+            <span class="post-date" title="2021-11-22 21:28:53">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/2021/11/22/231-2%E7%9A%84%E5%B9%82/"
+           data-tag="LeetCode,算法,位运算"
+           data-author="" >
+            <span class="post-title" title="231.2的幂">231.2的幂</span>
+            <span class="post-date" title="2021-11-22 21:28:07">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/2021/11/22/223-%E7%9F%A9%E5%BD%A2%E9%9D%A2%E7%A7%AF/"
+           data-tag="LeetCode,算法,数学"
+           data-author="" >
+            <span class="post-title" title="223.矩形面积">223.矩形面积</span>
+            <span class="post-date" title="2021-11-22 21:27:20">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/2021/11/22/206-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/"
+           data-tag="LeetCode,算法,链表"
+           data-author="" >
+            <span class="post-title" title="206.反转链表">206.反转链表</span>
+            <span class="post-date" title="2021-11-22 21:26:25">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/2021/11/22/191-%E4%BD%8D1%E7%9A%84%E4%B8%AA%E6%95%B0/"
+           data-tag="LeetCode,算法,位运算"
+           data-author="" >
+            <span class="post-title" title="191.位1的个数">191.位1的个数</span>
+            <span class="post-date" title="2021-11-22 21:25:21">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/2021/11/22/189-%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84/"
+           data-tag="LeetCode,算法,模拟"
+           data-author="" >
+            <span class="post-title" title="189.旋转数组">189.旋转数组</span>
+            <span class="post-date" title="2021-11-22 21:22:31">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/2021/11/22/187-%E9%87%8D%E5%A4%8D%E7%9A%84DNA%E5%BA%8F%E5%88%97/"
+           data-tag="LeetCode,哈希表,算法,位运算,滑动窗口"
+           data-author="" >
+            <span class="post-title" title="187.重复的DNA序列">187.重复的DNA序列</span>
+            <span class="post-date" title="2021-11-22 21:21:01">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/2021/11/22/167-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8CII/"
+           data-tag="LeetCode,算法,双指针"
+           data-author="" >
+            <span class="post-title" title="167.两数之和II">167.两数之和II</span>
+            <span class="post-date" title="2021-11-22 21:19:58">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/2021/11/22/94-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86/"
+           data-tag="LeetCode,算法,二叉树"
+           data-author="" >
+            <span class="post-title" title="94.二叉树的中序遍历">94.二叉树的中序遍历</span>
+            <span class="post-date" title="2021-11-22 21:18:57">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/2021/11/22/70-%E7%88%AC%E6%A5%BC%E6%A2%AF/"
+           data-tag="LeetCode,算法,动态规划"
+           data-author="" >
+            <span class="post-title" title="70.爬楼梯">70.爬楼梯</span>
+            <span class="post-date" title="2021-11-22 21:17:24">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/2021/11/22/66-%E5%8A%A0%E4%B8%80/"
+           data-tag="LeetCode,算法,模拟"
+           data-author="" >
+            <span class="post-title" title="66.加一">66.加一</span>
+            <span class="post-date" title="2021-11-22 21:14:11">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 设计模式 "
+           href="/2021/11/22/%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/"
+           data-tag="设计模式,抽象工厂模式"
+           data-author="" >
+            <span class="post-title" title="抽象工厂模式">抽象工厂模式</span>
+            <span class="post-date" title="2021-11-22 20:55:43">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 设计模式 "
+           href="/2021/11/22/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/"
+           data-tag="设计模式,抽象工厂模式"
+           data-author="" >
+            <span class="post-title" title="工厂模式">工厂模式</span>
+            <span class="post-date" title="2021-11-22 20:55:01">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 设计模式 "
+           href="/2021/11/22/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/"
+           data-tag="设计模式,单例模式"
+           data-author="" >
+            <span class="post-title" title="单例模式">单例模式</span>
+            <span class="post-date" title="2021-11-22 20:53:43">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 设计模式 "
+           href="/2021/11/22/%E5%89%8D%E8%A8%80%EF%BC%9A%E6%88%91%E5%9B%9E%E6%9D%A5%E4%BA%86%EF%BC%8C%E6%88%91%E5%B8%A6%E7%9D%8023%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%9B%9E%E6%9D%A5%E4%BA%86/"
+           data-tag="设计模式"
+           data-author="" >
+            <span class="post-title" title="前言：我回来了，我带着23种设计模式回来了">前言：我回来了，我带着23种设计模式回来了</span>
+            <span class="post-date" title="2021-11-22 20:52:46">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 服务网格 "
+           href="/2021/11/22/%E3%80%90Istio%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%85%A5%E5%9C%9F%E3%80%911-Service-Mesh%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/"
+           data-tag="教程,微服务,Istio,服务网格"
+           data-author="" >
+            <span class="post-title" title="【Istio从入门到入土】1. Service Mesh是什么？">【Istio从入门到入土】1. Service Mesh是什么？</span>
+            <span class="post-date" title="2021-11-22 20:48:48">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 K8S "
+           href="/2021/11/22/%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%85%A8%E9%9D%A2%E7%9A%84Kubernetes%EF%BC%88K8S%EF%BC%89%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0/"
+           data-tag="K8S"
+           data-author="" >
+            <span class="post-title" title="史上最全面的Kubernetes（K8S）入门笔记">史上最全面的Kubernetes（K8S）入门笔记</span>
+            <span class="post-date" title="2021-11-22 20:47:14">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 架构 "
+           href="/2021/11/22/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%98%AF%E4%B8%87%E8%83%BD%E7%9A%84%E5%90%97%E2%80%94%E2%80%94%E6%88%91%E5%AF%B9%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%9A%84%E6%80%9D%E8%80%83/"
+           data-tag="微服务,架构设计"
+           data-author="" >
+            <span class="post-title" title="微服务是万能的吗——我对微服务架构的思考">微服务是万能的吗——我对微服务架构的思考</span>
+            <span class="post-date" title="2021-11-22 20:45:17">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 服务网格 "
+           href="/2021/11/22/%E4%BD%BF%E7%94%A8Spring-Boot-gRPC%E6%9E%84%E5%BB%BA%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%B9%B6%E9%83%A8%E7%BD%B2%E5%88%B0Istio/"
+           data-tag="微服务,Spring Boot,Istio"
+           data-author="" >
+            <span class="post-title" title="使用Spring Boot+gRPC构建微服务并部署到Istio">使用Spring Boot+gRPC构建微服务并部署到Istio</span>
+            <span class="post-date" title="2021-11-22 20:40:43">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/2021/11/22/35-%E6%90%9C%E7%B4%A2%E6%8F%92%E5%85%A5%E4%BD%8D%E7%BD%AE/"
+           data-tag="LeetCode,算法,二分查找"
+           data-author="" >
+            <span class="post-title" title="35.搜索插入位置">35.搜索插入位置</span>
+            <span class="post-date" title="2021-11-22 20:24:24">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/2021/11/22/9-%E5%9B%9E%E6%96%87%E6%95%B0/"
+           data-tag="LeetCode,算法,模拟"
+           data-author="" >
+            <span class="post-title" title="9.回文数">9.回文数</span>
+            <span class="post-date" title="2021-11-22 20:23:18">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/2021/11/22/2-%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0/"
+           data-tag="LeetCode,算法,模拟,链表"
+           data-author="" >
+            <span class="post-title" title="2.两数相加">2.两数相加</span>
+            <span class="post-date" title="2021-11-22 20:21:43">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/2021/11/22/1-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/"
+           data-tag="LeetCode,哈希表,算法"
+           data-author="" >
+            <span class="post-title" title="1.两数之和">1.两数之和</span>
+            <span class="post-date" title="2021-11-22 20:18:57">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 教程 Markdown "
+           href="/2021/11/22/%E7%BB%99%E6%83%B3%E5%AD%A6Markdown%E7%9A%84%E4%BD%A0%E7%9A%84%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84Markdown%E8%AF%AD%E6%B3%95%E6%95%99%E7%A8%8B/"
+           data-tag="教程,Markdown"
+           data-author="" >
+            <span class="post-title" title="给想学Markdown的你的一个简单的Markdown语法教程">给想学Markdown的你的一个简单的Markdown语法教程</span>
+            <span class="post-date" title="2021-11-22 20:14:35">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 教程 后端开发 "
+           href="/2021/11/22/%E4%B8%80%E6%96%87%E7%9C%8B%E6%87%82Web%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/"
+           data-tag="教程,后端开发"
+           data-author="" >
+            <span class="post-title" title="一文看懂Web后端开发">一文看懂Web后端开发</span>
+            <span class="post-date" title="2021-11-22 20:09:20">2021/11/22</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-326-3的幂" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">326.3的幂</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="LeetCode">LeetCode</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color4">LeetCode</a>
+            
+            <a class="color3">算法</a>
+            
+            <a class="color3">模拟</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2021-11-22 21:33:31'>2021-11-22 21:33</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:325</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#326-3%E7%9A%84%E5%B9%82"><span class="toc-text">326. 3的幂</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E6%B3%95%EF%BC%9A%E5%BE%AA%E7%8E%AF"><span class="toc-text">解法：循环</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-6 i,
+    .toc-level-6 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="326-3的幂"><a href="#326-3的幂" class="headerlink" title="326. 3的幂"></a>326. 3的幂</h1><p>题目地址：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/power-of-three/">326. 3的幂</a></p>
+<h2 id="解法：循环"><a href="#解法：循环" class="headerlink" title="解法：循环"></a>解法：循环</h2><p>最简单的方法当然是循环，每次循环都判断一下当前的数是否可以被3整除，可以的话将其除以3，直到该数为1时跳出循环。不使用循环的数论解法一般考不到（其实也不难啦，看题解之前一般想不到但是看了题解很容易懂，就是判断这个数能不能被<code>int</code>范围内最大的是3的幂的数<code>1162261467</code>整除即可，0或负数的情况需要特殊判断）。</p>
+<p>当然不使用循环的解法除了数论，还有其他一些方法：打表、暴力枚举等，这些方法评论区很多大佬都写过了，这里就不写了。</p>
+<pre><code class="go">func isPowerOfThree(n int) bool &#123;
+    if n &lt;= 0 &#123;
+        return false
+    &#125;
+    for n &gt; 1 &#123;
+        if n % 3 != 0 &#123;
+            return false
+        &#125; else &#123;
+            n /= 3
+        &#125;
+    &#125;
+    return true
+&#125;
+</code></pre>
+<p>执行用时: <strong>40 ms</strong>（超过23%的Golang提交记录）</p>
+<p>内存消耗: <strong>6.4 MB</strong>（超过40%的Golang提交记录）</p>
+<p>时间复杂度：O(logn)，因为每次循环都会将数字除以3，所以需要循环的次数是以3为底n的对数次；</p>
+<p>空间复杂度：O(1)，只使用了常数个数的存储空间。</p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎各位大佬指出任何有错误或不够清晰的表达。可以发可以邮件至 wendev1024@icloud.com 或添加微信 wendev1024 联系（请注明来源于我的个人网站）。 </span>
+    </div>
+</article>
+
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>326.3的幂</p>
+    <p><span class="copy-title">字数:</span><span class="post-count">325</span></p>
+    <p><span class="copy-title">本文作者:</span><a  title="江文">江文</a></p>
+    <p><span class="copy-title">发布时间:</span>2021-11-22, 21:33:12</p>
+    <p><span class="copy-title">最后更新:</span>2021-11-22, 21:33:31</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2021/11/22/326-3%E7%9A%84%E5%B9%82/" title="326.3的幂">http://www.wendev.site/2021/11/22/326-3%E7%9A%84%E5%B9%82/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">&#34;署名-非商用-相同方式共享 4.0&#34;</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry"><span class="miit">
+                <img src="/img/gov.png" title="中华人民共和国工业和信息化部">
+                <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/#/Integrated/index">鲁ICP备19064728号-1</a>
+        </span>
+    
+    ©2019-2021 江文(Martin Jiang / WenDev)
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
