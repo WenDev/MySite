@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>【Istio从入门到入土】1. Service Mesh是什么？ | 江文 - Golang | Back-End Develop | Cloud Native</title>
-  <meta name="keywords" content=" 教程 , 微服务 , Istio , 服务网格 ">
-  <meta name="description" content="【Istio从入门到入土】1. Service Mesh是什么？ | 江文 - Golang | Back-End Develop | Cloud Native">
+  <title>189.旋转数组 | 江文 - Golang | Back-End Develop | Cloud Native</title>
+  <meta name="keywords" content=" LeetCode , 算法 , 模拟 ">
+  <meta name="description" content="189.旋转数组 | 江文 - Golang | Back-End Develop | Cloud Native">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="189. 旋转数组题目地址：189. 旋转数组 解法：分段旋转这道题其实和剑指Offer的58题挺像，但是需要把旋转过程反过来：  旋转整个数组 旋转0~k位 旋转k+1~len(nums)-1位  &#x2F;&#x2F; k &#x3D; 3 &#x2F;&#x2F; 1 2 3 4 5 6 7 8 &#x2F;&#x2F; 8 7 6 5 4 3 2 1 反转整个数组 &#x2F;&#x2F; 6 7 8 5 4 3 2 1 反转字符串前k位 &#x2F;&#x2F; 6 7 8 1 2 3 4 5">
 <meta property="og:type" content="article">
@@ -619,9 +619,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-【Istio从入门到入土】1-Service-Mesh是什么？" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-189-旋转数组" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">【Istio从入门到入土】1. Service Mesh是什么？</h1>
+        <h1 class="article-title">189.旋转数组</h1>
     
     <div class="article-meta">
         
@@ -631,7 +631,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="服务网格">服务网格</a>
+            <a  data-rel="LeetCode">LeetCode</a>
             
         </span>
         
@@ -639,25 +639,23 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color3">教程</a>
+            <a class="color4">LeetCode</a>
             
-            <a class="color4">微服务</a>
+            <a class="color3">算法</a>
             
-            <a class="color1">Istio</a>
-            
-            <a class="color5">服务网格</a>
+            <a class="color3">模拟</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-11-22 20:50:22'>2021-11-22 20:48</time>
+            发布时间 : <time class="date" title='最后更新: 2021-11-22 21:22:54'>2021-11-22 21:22</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:3.7k</span>
+        <span>字数:238</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -676,7 +674,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Service-Mesh%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">Service Mesh是什么？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E5%BA%9F%E8%AF%9D"><span class="toc-text">一些废话</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Why-Service-Mesh%EF%BC%9F"><span class="toc-text">Why Service Mesh？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%A0%E7%BB%9F%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%A1%86%E6%9E%B6%E7%9A%84%E7%BC%BA%E7%82%B9"><span class="toc-text">传统微服务框架的缺点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#What-is-Service-Mesh%EF%BC%9F"><span class="toc-text">What is Service Mesh？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A5Istio%E4%B8%BA%E4%BB%A3%E8%A1%A8%E7%9A%84Service-Mesh%E7%9A%84%E4%BC%98%E7%82%B9"><span class="toc-text">以Istio为代表的Service Mesh的优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8Istio%EF%BC%9F"><span class="toc-text">为什么要用Istio？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Service-Mesh%E6%98%AF%E9%93%B6%E5%BC%B9%E5%90%97%EF%BC%9F"><span class="toc-text">Service Mesh是银弹吗？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-text">Reference</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#189-%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84"><span class="toc-text">189. 旋转数组</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E6%B3%95%EF%BC%9A%E5%88%86%E6%AE%B5%E6%97%8B%E8%BD%AC"><span class="toc-text">解法：分段旋转</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -692,78 +690,40 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Service-Mesh是什么？"><a href="#Service-Mesh是什么？" class="headerlink" title="Service Mesh是什么？"></a>Service Mesh是什么？</h1><h2 id="一些废话"><a href="#一些废话" class="headerlink" title="一些废话"></a>一些废话</h2><p>嗯，又给自己挖了个大坑。</p>
-<p>作为一个<code>Cloud Native</code>和<code>Service Mesh</code>爱好者，我一直想为<code>Service Mesh</code>社区做出自己的贡献——但是我开始学习<code>Istio</code>才刚刚一年，并且我仅仅是个大学生，还没有接触过实际上线的微服务，更别说<code>Service Mesh</code>了。我如何才能为我所喜爱的这个社区做出我自己的贡献呢？</p>
-<p>在写这篇文章的晚上，突然想到了自己去年入门<code>Istio</code>时的情景。鉴于很多刚入坑的同学对<code>Istio</code>了解不足，且<code>Istio</code>作为一个大而全的大型微服务管理框架，相比<code>Spring Cloud</code>、<code>Go Micro</code>等微服务开发框架更加难以学习，而且由于<code>Istio</code>在国内还不太火（至少没像<code>Spring Cloud</code>那样火得一塌糊涂），面向零基础同学的教程比较少，而我最近在业余时间也经常学习<code>Istio</code>，所以我打算将自己学习的过程整理成一系列教程，以便像我一样零基础的同学可以快速入门，体会到<code>Istio</code>带给我们的巨大便利。</p>
-<p>这篇文章可能比较学术，主要是讲述什么是<code>Service Mesh</code>、我们为什么需要<code>Service Mesh</code>、为什么选择了<code>Istio</code>等问题。看不懂的话很正常，千万别放弃，要知道我一开始也被这些奇奇怪怪的名词搞得晕头转向，挣扎了一个月、放弃了好几次才真正入门，但当你在这个领域内越走越远，回过头来再看看这些名词，你就会觉得非常简单了。</p>
-<h2 id="Why-Service-Mesh？"><a href="#Why-Service-Mesh？" class="headerlink" title="Why Service Mesh？"></a>Why Service Mesh？</h2><h3 id="传统微服务框架的缺点"><a href="#传统微服务框架的缺点" class="headerlink" title="传统微服务框架的缺点"></a>传统微服务框架的缺点</h3><p>提到<code>微服务(Microservices)</code>，大多数人可能第一反应是<code>Spring Cloud</code>或者是<code>Go Micro</code>，或者是一些其他的微服务框架。这些框架其实仅仅可以称为“微服务开发框架”，我们在学习微服务的时候，都会从这样的微服务开发框架开始学起。这些微服务开发框架看似能为我们解决一切问题，实则不然，如果你读过Martin Fowler和James Lewis的<a target="_blank" rel="noopener" href="https://www.martinfowler.com/articles/microservices.html">《Microservices》</a><a target="_blank" rel="noopener" href="https://www.martinfowler.com/articles/microservices.html"> </a>，你或许就已经发现它们在某些方面其实严重地违背了微服务定义。那具体来讲，这些框架有什么缺点呢？</p>
+        <h1 id="189-旋转数组"><a href="#189-旋转数组" class="headerlink" title="189. 旋转数组"></a>189. 旋转数组</h1><p>题目地址：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/rotate-array/">189. 旋转数组</a></p>
+<h2 id="解法：分段旋转"><a href="#解法：分段旋转" class="headerlink" title="解法：分段旋转"></a>解法：分段旋转</h2><p>这道题其实和剑指Offer的58题挺像，但是需要把旋转过程反过来：</p>
 <ol>
-<li><strong>服务治理逻辑与业务代码耦合</strong>。在<code>Spring Cloud</code>等框架中，服务治理逻辑存在于<code>Spring Cloud Alibaba</code>等<code>SDK</code>中，与业务代码紧密耦合；</li>
-<li><strong>服务治理逻辑对业务代码有较强的侵入性</strong>。当承载了服务治理逻辑的<code>SDK</code>发生升级且不向下兼容时，业务代码也必须跟着升级，即使业务逻辑没有发生任何的改变；并且，这些<code>SDK</code>可能相互之间还有版本兼容问题（我就遇到过）；</li>
-<li><strong>组件太多，且质量参差不齐</strong>。各种各样的组件令人眼花缭乱——例如，光是服务注册与发现就有<code>Zookeeper</code>、<code>Nacos</code>、<code>Consul</code>、<code>Eureka</code>等解决方案，并且它们的质量参差不齐，组件之间的代码很难完全复用，学习成本太高，若仅仅是为了实现服务治理就去学习这么多组件，也不是一个很好的选择；</li>
-<li><strong>绑定于同一种语言的技术栈</strong>。微服务的定义中有一条是：“微服务可用不同的语言开发，使用不同的数据存储技术，由不同的团队来管理”，而这些微服务开发框架实际上严重地违反了这一条规则——它们只能用一种语言进行开发，若要接入其它语言则需要手动实现这些框架的服务治理逻辑，加重了开发者的负担；</li>
-<li><strong>无服务调度、资源分配等功能</strong>。微服务架构非常复杂，需要有服务调度、资源分配、流量管理等功能，这些微服务开发框架并没有实现这些功能，而需要借助<code>Kubernetes</code>等平台来实现。但是实际部署时就会发现这些微服务开发框架与<code>Kubernetes</code>等平台在功能上有重合和冲突（例如，两者都实现了服务注册与发现功能），二者很难完美配合。</li>
+<li>旋转整个数组</li>
+<li>旋转<code>0~k</code>位</li>
+<li>旋转<code>k+1~len(nums)-1</code>位</li>
 </ol>
-<p>并且，在实际开发过程中，我们很容易发现：好像这些传统微服务框架除了屏蔽了一些分布式系统中通信相关的底层逻辑（包括服务注册与发现、远程过程调用、负载均衡、限流熔断等，当然有的框架可能还实现了配置管理等）之外，好像并没有做什么其它的事情。是的，这就是微服务开发框架最大的缺点——它提供的功能实在是太少了，远远不足以支撑一个庞大的微服务系统。</p>
-<h3 id="What-is-Service-Mesh？"><a href="#What-is-Service-Mesh？" class="headerlink" title="What is Service Mesh？"></a>What is Service Mesh？</h3><p>了解了传统的微服务框架的缺点之后，我们很容易就能明白为什么要使用<code>Istio</code>了——<code>Istio</code>完美地解决了传统微服务框架的缺点。由于<code>Istio</code>实际上是一种<code>服务网格（Service Mesh）</code>的实现，而解决这些缺点的实际上是<code>Service Mesh</code>的优点（<code>Istio</code>只是<code>Service Mesh</code>的一种实现，实际上<code>Service Mesh</code>的实现不止这一种，还有<code>NginxMesh</code>和我非常想要学习的<code>Linkerd</code>等），在了解<code>Istio</code>和<code>Service Mesh</code>的优点之前，我们先来看看<code>Service Mesh</code>到底是什么。</p>
-<blockquote>
-<p>由于”Service Mesh”一词的翻译有很多——例如最常见的“服务网格”，还有“服务啮合层”之类的，为了减少误解，本文统一使用”Service Mesh”。</p>
-</blockquote>
-<p><code>Service Mesh</code>一词最早由开发<code>Linkerd</code>的Buoyant公司提出，并于2016年9月29日第一次公开使用了这一术语。Buoyant的CEO——William Morgan对<code>Service Mesh</code>的定义如下：</p>
-<blockquote>
-<p>A service mesh is a dedicated infrastructure layer for handling service-to-service communication. It’s responsible for the reliable delivery of requests  through the complex topology of services that comprise a modern, cloud  native application. In practice, the service mesh is typically implemented as an array of lightweight network proxies  that are deployed alongside application code, without the application  needing to be aware.</p>
-</blockquote>
-<p>翻译成中文就是：</p>
-<blockquote>
-<p>Service Mesh是一种专门用于处理服务间通信的基础设施层，它负责在构成现代云原生应用程序的复杂服务拓扑中可靠地传输请求。在实践中，Service Mesh常常被实现为一组与应用程序部署在一起、对应用程序透明的轻量级的网络代理。</p>
-</blockquote>
-<p>从这段话中我们可以知道：</p>
-<ol>
-<li><code>Service Mesh</code>是一种基础设施；</li>
-<li><code>Service Mesh</code>与云原生（<code>Cloud Native</code>，关于Cloud Native我们之后再展开聊聊）应用一起使用；</li>
-<li><code>Service Mesh</code>的功能是传输请求（或者叫“请求分发”）；</li>
-<li><code>Service Mesh</code>与应用程序部署在一起（可以理解为同一个<code>Kubernetes</code> <code>Pod</code>里的两个容器——这是<code>Istio</code>的实现方案；或者是一个应用程序进程和一个<code>Service Mesh</code>相关的进程绑定在一起）；</li>
-<li><code>Service Mesh</code>是对应用程序透明的（即应用程序感知不到<code>Service Mesh</code>的存在，或者说对应用程序零侵入）；</li>
-<li><code>Service Mesh</code>的实现形式是轻量级的网络代理（我们通常把它称为<code>Sidecar</code>）。</li>
-</ol>
-<p>实际上，<code>Service Mesh</code>非常简单，它就是一些与服务绑定在一起的网络代理，还有一些对其进行控制和管理的逻辑。这些代理被称为<code>数据平面/数据面板(Data Plane)</code>，而对其进行管理和控制的逻辑被称为<code>控制平面/控制面板（Control Plane）</code>。数据平面会拦截不同服务之间的请求并对其进行处理（如鉴权、路由、负载均衡等）和转发，并收集一些监控数据以向控制平面汇报；控制平面对数据平面进行控制和协调，例如网络拓扑策略、配置的更新等，还会提供一些方便开发人员和运维人员使用的API。</p>
-<p>在有了<code>Service Mesh</code>之后，服务之间的调用就不会直接通过网络进行了，而是通过网络代理<code>Sidecar</code>进行。当发生服务间调用的时候，虽然从调用方服务本身看起来它是直接调用了被调用方，但是请求实际上是被<code>Sidecar</code>拦截并转发给被调用方了，也可以说是服务调用了<code>Sidecar</code>。<code>Sidecar</code>实际上封装了分布式系统中的各种复杂逻辑，并且对应用程序透明。</p>
-<p>还是不明白？那我画张图：</p>
-<p><img src="https://gitee.com/QNKCDZ0/pictures/raw/master/img/20210408012102.png"></p>
-<p>图中蓝绿色线可以理解为控制平面与数据平面的交互（如配置下发、数据上报等），而金绿色线可以理解为服务之间的网络请求。是不是一下就明白了呢？</p>
-<p>那为什么它叫<code>Service Mesh</code>呢？如果你只看图中金绿色的部分的话，很容易发现它就像一个网格一样，连接起了各个服务。只不过，实际的<code>Service Mesh</code>肯定比图上这个要复杂许多。</p>
-<p>这里再引用<a target="_blank" rel="noopener" href="https://www.servicemesher.com/istio-handbook/concepts/basic.html">Istio Handbook</a>中的一张图，个人认为这张图也非常浅显易懂。这张图中仅仅画出了<code>Service Mesh</code>本身，没有画出<code>Service Mesh</code>中的服务：</p>
-<p><img src="https://gitee.com/QNKCDZ0/pictures/raw/master/img/20210408012608.png"></p>
-<h3 id="以Istio为代表的Service-Mesh的优点"><a href="#以Istio为代表的Service-Mesh的优点" class="headerlink" title="以Istio为代表的Service Mesh的优点"></a>以Istio为代表的Service Mesh的优点</h3><p>了解了<code>Service Mesh</code>之后，结合前面提到的传统微服务框架的缺点，我们很容易看出<code>Service Mesh</code>的优点：</p>
-<ol>
-<li><strong>服务治理逻辑独立于业务代码</strong>。<code>Service Mesh</code>把绝大多数的服务治理逻辑从业务代码中剥离出来，成为了独立的进程（Sidecar），Sidecar对服务透明，实现了治理逻辑对业务代码的零侵入。实际上不只是代码零侵入，在运行时两者也没有任何的耦合；</li>
-</ol>
-<blockquote>
-<p>实际上这个说法并不严谨。在Service Mesh中，服务本身其实还是需要有很少的一点类似于协议编解码之类的服务治理逻辑的，并且有一些调用链追踪工具（尤其是方法级的调用链追踪）需要在应用程序中手动埋点。对于这两点，我们在之后的实际使用中会有更深的体会。</p>
-<p>但是，Service Mesh产生的这点侵入，相比传统微服务可是少太多了，所以在不严谨的场合下（例如你想安利你被传统微服务折磨的痛苦不堪的同学来用Service Mesh）也可以说“零侵入”。</p>
-</blockquote>
-<ol start="2">
-<li><strong>真正实现了跨技术栈开发</strong>。由于服务治理逻辑下沉到<code>Service Mesh</code>中，业务代码可以真正实现跨语言开发，不同语言实现的服务可以很方便地通过<code>Service Mesh</code>相互调用，需要的可能仅仅是一个很小的<code>SDK</code>（或者根本就不需要<code>SDK</code>）；</li>
-<li><strong>提供了统一、完整的解决方案</strong>。在同一种<code>Service Mesh</code>的实现产品中，实现各种功能所需的组件基本上是一致的，很少会遇到需要考虑组件选型的问题；</li>
-<li><strong>很方便地实现了服务治理</strong>。由于<code>Service Mesh</code>多了一层<code>Sidecar</code>，所以相比传统微服务它可以很方便地实现灰度发布、蓝绿部署、限流、熔断、故障注入等传统微服务难以实现的服务治理功能。</li>
-</ol>
-<p>实际上，它完美地解决了传统微服务中的大部分缺点。所以在我心中，<code>Service Mesh</code>是目前最棒的架构之一，也是大型微服务应用最终也是最完美的形态。当然，<code>Serverless</code>的出现可能会带来一些变革，但目前还未可知，我们可以一起期待。</p>
-<h3 id="为什么要用Istio？"><a href="#为什么要用Istio？" class="headerlink" title="为什么要用Istio？"></a>为什么要用Istio？</h3><p><code>Service Mesh</code>的优点我们已经了解了，那么为什么选择<code>Istio</code>呢？</p>
-<ol>
-<li><strong>完美兼容Kubernetes</strong>。如果你会使用容器编排工具<code>Kubernetes</code>，那么<code>Istio</code>的入门难度简直就是毛毛雨（虽然进阶和深入的难度还是挺高的，因为抽象的概念比较多），跟着官方文档走，很快就能学会如何使用<code>Istio</code>；</li>
-<li><strong>学习资源丰富</strong>。对于初学者来说，学习资源丰富是一件非常重要的事情。<code>Istio</code>的学习资源非常丰富，并且中文的学习资源也有很多，丰富的学习资源让初学者可以很快地入门；</li>
-<li><strong>方便易用，极大地简化微服务的开发、部署等工作</strong>。有了<code>Istio</code>，我们在开发微服务时就几乎不需要任何微服务框架了，我们可以开心地扔掉<code>Spring Cloud</code>等笨重的微服务开发框架，专注地实现微服务的业务逻辑，而不需要在业务代码中考虑服务治理功能，<code>Istio</code>会帮我们完成这些事；</li>
-<li><strong>服务治理能力强</strong>。根据<code>Service Mesh</code>的定义，<code>Service Mesh</code>本身是没有服务治理逻辑的，但是<code>Istio</code>就提供了强大、易用的服务治理能力。</li>
-</ol>
-<h2 id="Service-Mesh是银弹吗？"><a href="#Service-Mesh是银弹吗？" class="headerlink" title="Service Mesh是银弹吗？"></a>Service Mesh是银弹吗？</h2><p>任何一种架构方式都有其自身的缺点，没有一种架构能适合所有的业务场景，<code>Service Mesh</code>也不例外。虽然<code>Service Mesh</code>相比传统微服务有了很大的进步，被称为“第二代微服务”，但是它也存在以下不足之处：</p>
-<ol>
-<li><strong>复杂</strong>。<code>Service Mesh</code>引入了网络代理<code>Sidecar</code>，而我们知道，组成成分越多的系统就越复杂，每个组件都有出现故障的可能。在本就很复杂的微服务系统中引入<code>Sidecar</code>和其他一些控制逻辑，必然会增加系统的复杂度；并且，在引入了<code>Service Mesh</code>后，我们需要单独学习<code>Service Mesh</code>产品的使用，还需要了解<code>Service Mesh</code>产品中各种组件的功能及其与其他平台的适配与协作，这就要求我们有更强的处理复杂问题的能力；</li>
-<li><strong>延迟高、吞吐量低</strong>。经过<code>Sidecar</code>进行服务间调用必然会显著地增加延迟，也必然会降低应用的吞吐量，虽然这个延迟可能只有几毫秒到几十毫秒，但是在一些对低延迟要求特别高的场景下，这几毫秒的延迟可能就是不可接受的。</li>
-</ol>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/61901608">什么是Service Mesh</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.servicemesher.com/istio-handbook/concepts/basic.html">Istio Handbook</a>（强烈推荐对Service Mesh和Istio感兴趣的同学认真地读一读这个网站中的文章，虽然比较学术、有一定的阅读门槛，而且有一定基础（至少得用Istio部署过一个服务吧）之后才能读懂其中的很多内容，但写的实在是太棒了，每次阅读都会有新的感悟。<del>Service Mesher, 永远滴神！Jimmy Song, 永远滴神！啥时候我才能强大到可以加入Service Mesher啊，唉……</del>）</li>
-</ul>
+<pre><code class="go">// k = 3
+// 1 2 3 4 5 6 7 8
+// 8 7 6 5 4 3 2 1 反转整个数组
+// 6 7 8 5 4 3 2 1 反转字符串前k位
+// 6 7 8 1 2 3 4 5 反转k位到末位
+func rotate(nums []int, k int) &#123;
+    k %= len(nums)
+    reverse(nums)
+    reverse(nums[:k])
+    reverse(nums[k:])
+&#125;
+
+func reverse(arr []int) &#123;
+    i, j := 0, len(arr)-1
+    for i &lt; j &#123;
+        temp := arr[i]
+        arr[i] = arr[j]
+        arr[j] = temp
+        i++
+        j--
+    &#125;
+&#125;
+</code></pre>
+<p>执行用时: <strong>32 ms</strong>（超过18.83%的Golang提交记录）</p>
+<p>内存消耗: <strong>7.9 MB</strong>（超过98.79%的Golang提交记录）</p>
+<p>时间复杂度：O(n)，需要遍历两次整个数组；</p>
+<p>空间复杂度：O(1)，只使用了常数个数的存储空间。</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎各位大佬指出任何有错误或不够清晰的表达。可以发可以邮件至 wendev1024@icloud.com 或添加微信 wendev1024 联系（请注明来源于我的个人网站）。 </span>
@@ -773,12 +733,12 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>【Istio从入门到入土】1. Service Mesh是什么？</p>
-    <p><span class="copy-title">字数:</span><span class="post-count">3.7k</span></p>
+    <p><span class="copy-title">文章标题:</span>189.旋转数组</p>
+    <p><span class="copy-title">字数:</span><span class="post-count">238</span></p>
     <p><span class="copy-title">本文作者:</span><a  title="江文">江文</a></p>
-    <p><span class="copy-title">发布时间:</span>2021-11-22, 20:48:48</p>
-    <p><span class="copy-title">最后更新:</span>2021-11-22, 20:50:22</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2021/11/22/%E3%80%90Istio%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%85%A5%E5%9C%9F%E3%80%911-Service-Mesh%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/" title="【Istio从入门到入土】1. Service Mesh是什么？">http://www.wendev.site/2021/11/22/%E3%80%90Istio%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%85%A5%E5%9C%9F%E3%80%911-Service-Mesh%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/</a>
+    <p><span class="copy-title">发布时间:</span>2021-11-22, 21:22:31</p>
+    <p><span class="copy-title">最后更新:</span>2021-11-22, 21:22:54</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2021/11/22/189-%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84/" title="189.旋转数组">http://www.wendev.site/2021/11/22/189-%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">&#34;署名-非商用-相同方式共享 4.0&#34;</a> 转载请保留原文链接及作者。
     </p>

@@ -4,6 +4,155 @@
   
     
     <entry>
+      <title>189.旋转数组</title>
+      <link href="/2021/11/22/189-%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84/"/>
+      <url>/2021/11/22/189-%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84/</url>
+      
+        <content type="html"><![CDATA[<h1 id="189-旋转数组"><a href="#189-旋转数组" class="headerlink" title="189. 旋转数组"></a>189. 旋转数组</h1><p>题目地址：<a href="https://leetcode-cn.com/problems/rotate-array/">189. 旋转数组</a></p><h2 id="解法：分段旋转"><a href="#解法：分段旋转" class="headerlink" title="解法：分段旋转"></a>解法：分段旋转</h2><p>这道题其实和剑指Offer的58题挺像，但是需要把旋转过程反过来：</p><ol><li>旋转整个数组</li><li>旋转<code>0~k</code>位</li><li>旋转<code>k+1~len(nums)-1</code>位</li></ol><pre><code class="go">// k = 3// 1 2 3 4 5 6 7 8// 8 7 6 5 4 3 2 1 反转整个数组// 6 7 8 5 4 3 2 1 反转字符串前k位// 6 7 8 1 2 3 4 5 反转k位到末位func rotate(nums []int, k int) &#123;    k %= len(nums)    reverse(nums)    reverse(nums[:k])    reverse(nums[k:])&#125;func reverse(arr []int) &#123;    i, j := 0, len(arr)-1    for i &lt; j &#123;        temp := arr[i]        arr[i] = arr[j]        arr[j] = temp        i++        j--    &#125;&#125;</code></pre><p>执行用时: <strong>32 ms</strong>（超过18.83%的Golang提交记录）</p><p>内存消耗: <strong>7.9 MB</strong>（超过98.79%的Golang提交记录）</p><p>时间复杂度：O(n)，需要遍历两次整个数组；</p><p>空间复杂度：O(1)，只使用了常数个数的存储空间。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> LeetCode </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> LeetCode </tag>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 模拟 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>187.重复的DNA序列</title>
+      <link href="/2021/11/22/187-%E9%87%8D%E5%A4%8D%E7%9A%84DNA%E5%BA%8F%E5%88%97/"/>
+      <url>/2021/11/22/187-%E9%87%8D%E5%A4%8D%E7%9A%84DNA%E5%BA%8F%E5%88%97/</url>
+      
+        <content type="html"><![CDATA[<h1 id="187-重复的DNA序列"><a href="#187-重复的DNA序列" class="headerlink" title="187. 重复的DNA序列"></a>187. 重复的DNA序列</h1><p>题目地址：<a href="https://leetcode-cn.com/problems/repeated-dna-sequences/">187. 重复的DNA序列</a></p><h2 id="解法1：哈希表（最容易想到）"><a href="#解法1：哈希表（最容易想到）" class="headerlink" title="解法1：哈希表（最容易想到）"></a>解法1：哈希表（最容易想到）</h2><p>对于这道题，一个很容易想到的方法就是从字符串开头统计出所有长度为10的字串放入哈希表（key为字串，value为出现次数），向后遍历时将每个长度为10的字串都与哈希表中已有的字符串进行比较，如果该字符串在哈希表里已经出现过就将该字串加入到答案集合中，否则将该字串作为key放入哈希表并置其value为1。</p><pre><code class="go">func findRepeatedDnaSequences(s string) []string &#123;    l := 10    m := make(map[string]int, 0)    ans := make([]string, 0)    for i := 0; i &lt;= len(s)-l; i++ &#123; // 注意这里，需要用&lt;=，否则就会漏判一位导致答案错误        str := s[i : i+10]        m[str]++        if m[str] == 2 &#123;            ans = append(ans, str)        &#125;    &#125;    return ans&#125;</code></pre><p>执行用时: <strong>12 ms</strong>（超过90%的Golang提交记录）</p><p>内存消耗: <strong>9.4 MB</strong>（超过34%的Golang提交记录）</p><p>时间复杂度：O(n * L)，for循环的执行次数与n成线性相关，并且计算字符串哈希需要消耗的时间与字符串长度L成正比；</p><p>空间复杂度：O(n)，map需要占用的存储空间与字符串长度成正比。</p><h2 id="解法2：位运算-自定义哈希（效率高）"><a href="#解法2：位运算-自定义哈希（效率高）" class="headerlink" title="解法2：位运算+自定义哈希（效率高）"></a>解法2：位运算+自定义哈希（效率高）</h2><p>由于该题的字符串只有A、G、C、T四种字符组成，所以我们可以使用自定义哈希的方法来减少计算哈希的时间和存储哈希所用的空间。如果采用00、01、10、11来编码四个字符，那么使用一个int就可以存下整个长度为10的字符串，这样可以大大提高算法的效率。但是如果只做这样的优化，对时间复杂度的提升是比较小的，进一步优化的思路则是利用位运算加快计算。设使用一个20位的空间来表示长度为10的字符串的哈希值，那么每向后运算一位，就将这个整数左移2位并将高于20位的字符清零（<code>w = w &lt;&lt; 2 &amp; 1 &lt;&lt; 20 - 1</code>），再将新的字符的哈希填入这个20位的空间的低2位（<code>w |= h[c]</code>，其中<code>h[c]</code>为字符<code>c</code>的自定义哈希）。</p><pre><code class="go">// 自定义哈希表var h = map[byte]int&#123;&#39;A&#39;: 0, &#39;C&#39;: 1, &#39;G&#39;: 2, &#39;T&#39;: 3&#125;func findRepeatedDnaSequences(s string) []string &#123;    // 长度小于等于10的字符串中是肯定不会出现长度为10的重复字串的    if len(s) &lt;= 10 &#123;        return []string&#123;&#125;    &#125;    w := 0    // 准备工作: 计算出前10位的哈希,填入准备好的空间中    for _, c := range s[:9] &#123;        w = w&lt;&lt;2 | h[byte(c)]    &#125;    ans := make([]string, 0)    m := map[int]int&#123;&#125;    // 计算哈希,找出符合要求的字串    for i := 0; i &lt;= len(s)-10; i++ &#123;        w = (w&lt;&lt;2 | h[s[i+9]]) &amp; (1&lt;&lt;20 - 1)        m[w]++        if m[w] == 2 &#123;            ans = append(ans, s[i:i+10])        &#125;    &#125;    return ans&#125;</code></pre><p>执行用时: <strong>16 ms</strong>（超过73%的Golang提交记录）</p><p>内存消耗: <strong>8.9 MB</strong>（超过87%的Golang提交记录）</p><p>时间复杂度：O(n)，for循环的执行次数与n成线性相关；</p><p>空间复杂度：O(n)，map需要占用的存储空间与字符串长度成正比。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> LeetCode </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> LeetCode </tag>
+            
+            <tag> 哈希表 </tag>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 位运算 </tag>
+            
+            <tag> 滑动窗口 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>167.两数之和II</title>
+      <link href="/2021/11/22/167-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8CII/"/>
+      <url>/2021/11/22/167-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8CII/</url>
+      
+        <content type="html"><![CDATA[<h1 id="167-两数之和II"><a href="#167-两数之和II" class="headerlink" title="167. 两数之和II"></a>167. 两数之和II</h1><p>题目地址：<a href="https://leetcode-cn.com/problems/two-sum-ii-input-array-is-sorted/">167. 两数之和II</a></p><h2 id="解法：双指针"><a href="#解法：双指针" class="headerlink" title="解法：双指针"></a>解法：双指针</h2><p>这道题我们当然也可以用1的解法（暴力求解（时间换空间）或者哈希表（空间换时间））来求解，但是这两个解法没有用到“数组有序”这个条件，在数组有序的条件下，我们有更好的解法：双指针。</p><ul><li>定义两个指针<code>i</code>和<code>j</code>，初始时<code>i</code>指向数组的第一个元素，<code>j</code>指向数组的最后一个元素；</li><li>每次循环都比较<code>numbers[i] + numbers[j]</code>与<code>target</code>的大小关系：<ul><li>相等，说明找到了目标值，返回<code>[]int&#123;i + 1, j + 1&#125;</code>（题目中需要返回的是位序，即下标加1）；</li><li><code>numbers[i] + numbers[j] &gt; target</code>，说明其中一个数应该更小，把<code>j</code>向前移动一位；</li><li><code>numbers[i] + numbers[j] &lt; target</code>，说明其中一个数应该更大，把<code>i</code>向后移动一位。</li></ul></li><li>直到<code>i</code>和<code>j</code>相遇为止，不过输入范围已经明确了数组中一定存在有效答案，所以两个指针实际上不可能相遇就已经返回了。</li></ul><pre><code class="go">func twoSum(numbers []int, target int) []int &#123;    i, j := 0, len(numbers) - 1    for i &lt; j &#123;        if numbers[i] + numbers[j] == target &#123;            return []int&#123;i + 1, j + 1&#125;        &#125; else if numbers[i] + numbers[j] &lt; target &#123;            i++        &#125; else &#123;            j--        &#125;    &#125;    return []int&#123;i + 1, j + 1&#125;&#125;</code></pre><p>执行用时：4 ms, 在所有 Go 提交中击败了88.85%的用户；</p><p>内存消耗：3 MB, 在所有 Go 提交中击败了100.00%的用户；</p><p>时间复杂度：O(n)，最坏的情况下<code>for</code>循环执行次数等于数组长度；</p><p>空间复杂度：O(1)，只使用了常数个数的存储空间。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> LeetCode </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> LeetCode </tag>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 双指针 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>94.二叉树的中序遍历</title>
+      <link href="/2021/11/22/94-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86/"/>
+      <url>/2021/11/22/94-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86/</url>
+      
+        <content type="html"><![CDATA[<h1 id="94-二叉树的中序遍历"><a href="#94-二叉树的中序遍历" class="headerlink" title="94. 二叉树的中序遍历"></a>94. 二叉树的中序遍历</h1><p>题目地址：<a href="https://leetcode-cn.com/problems/binary-tree-inorder-traversal/">94. 二叉树的中序遍历</a></p><blockquote><p>这道题是非常非常基础的算法题，大家数据结构课上应该都已经学过了，递归和非递归的写法应该也都背的滚瓜烂熟了，这里就展示一下两种方法的Go语言写法和执行效率吧。</p></blockquote><h2 id="解法1：递归（最简单）"><a href="#解法1：递归（最简单）" class="headerlink" title="解法1：递归（最简单）"></a>解法1：递归（最简单）</h2><pre><code class="go">/** * Definition for a binary tree node. * type TreeNode struct &#123; *     Val int *     Left *TreeNode *     Right *TreeNode * &#125; */var ans = make([]int, 0)func inorderTraversal(root *TreeNode) []int &#123;    ans = make([]int, 0)    if root != nil &#123;        doInorderTraversal(root)    &#125;    return ans&#125;func doInorderTraversal(tree *TreeNode) &#123;    if tree != nil &#123;        doInorderTraversal(tree.Left)        ans = append(ans, tree.Val)        doInorderTraversal(tree.Right)    &#125;&#125;</code></pre><p>执行用时: <strong>0 ms</strong>（超过100%的Golang提交记录）</p><p>内存消耗: <strong>2 MB</strong>（超过67%的Golang提交记录）</p><p>时间复杂度：O(n)，递归函数<code>doInorderTraversal()</code>的执行次数等于树中结点个数；</p><p>空间复杂度：O(n)，递归工作栈的深度与树高成正比。</p><h2 id="解法2：非递归（效率高）"><a href="#解法2：非递归（效率高）" class="headerlink" title="解法2：非递归（效率高）"></a>解法2：非递归（效率高）</h2><pre><code class="go">/** * Definition for a binary tree node. * type TreeNode struct &#123; *     Val int *     Left *TreeNode *     Right *TreeNode * &#125; */func inorderTraversal(root *TreeNode) []int &#123;    if root == nil &#123;        return []int&#123;&#125;    &#125;    ans := make([]int, 0)    stack := make([]*TreeNode, 0)    p := root    for len(stack) &gt; 0 || p != nil &#123;        for p != nil &#123;            stack = append(stack, p)            p = p.Left        &#125;        if len(stack) &gt; 0 &#123;            p = stack[len(stack)-1]            stack = stack[:len(stack)-1]            ans = append(ans, p.Val)            p = p.Right        &#125;    &#125;    return ans&#125;</code></pre><p>执行用时: <strong>0 ms</strong>（超过100%的Golang提交记录）</p><p>内存消耗: <strong>2 MB</strong>（超过100%的Golang提交记录）</p><p>时间复杂度：O(n)，<code>for</code>循环的执行次数等于树中结点个数；</p><p>空间复杂度：O(n)，辅助栈使用的空间与树高成正比。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> LeetCode </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> LeetCode </tag>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 二叉树 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>70.爬楼梯</title>
+      <link href="/2021/11/22/70-%E7%88%AC%E6%A5%BC%E6%A2%AF/"/>
+      <url>/2021/11/22/70-%E7%88%AC%E6%A5%BC%E6%A2%AF/</url>
+      
+        <content type="html"><![CDATA[<h1 id="70-爬楼梯"><a href="#70-爬楼梯" class="headerlink" title="70. 爬楼梯"></a>70. 爬楼梯</h1><p>题目地址：<a href="https://leetcode-cn.com/problems/climbing-stairs/">70. 爬楼梯</a></p><h2 id="解法：记忆化搜索（动态规划-状态压缩）"><a href="#解法：记忆化搜索（动态规划-状态压缩）" class="headerlink" title="解法：记忆化搜索（动态规划+状态压缩）"></a>解法：记忆化搜索（动态规划+状态压缩）</h2><p>这道题一看就老眼熟了，实际上就是求斐波那契数列的前<code>n</code>项和，也是动态规划入门题。注意本题与509的不同：因为输入是从<code>1</code>开始，所以我们可以从3而不是2开始循环计算。</p><pre><code class="go">func climbStairs(n int) int &#123;    if n == 1 &#123;        return 1    &#125;    if n == 2 &#123;        return 2    &#125;    pre, cur := 1, 2    for i := 3; i &lt;= n; i++ &#123;        j := pre + cur        pre = cur        cur = j    &#125;    return cur&#125;</code></pre><p>执行用时: <strong>0 ms</strong>（超过100%的Golang提交记录）</p><p>内存消耗: <strong>1.9 MB</strong>（超过76.09%的Golang提交记录）</p><p>时间复杂度：O(n)，除了求1和2之外都需要遍历<code>n - 1</code>次才能计算出答案；</p><p>空间复杂度：O(1)，只使用了常数个数的存储空间。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> LeetCode </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> LeetCode </tag>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 动态规划 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>66.加一</title>
       <link href="/2021/11/22/66-%E5%8A%A0%E4%B8%80/"/>
       <url>/2021/11/22/66-%E5%8A%A0%E4%B8%80/</url>
