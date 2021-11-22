@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>66-加一</title>
+      <link href="/2021/11/22/66-%E5%8A%A0%E4%B8%80/"/>
+      <url>/2021/11/22/66-%E5%8A%A0%E4%B8%80/</url>
+      
+        <content type="html"><![CDATA[<h1 id="【LeetCode通关全记录】66-加一"><a href="#【LeetCode通关全记录】66-加一" class="headerlink" title="【LeetCode通关全记录】66. 加一"></a>【LeetCode通关全记录】66. 加一</h1><p>题目地址：<a href="https://leetcode-cn.com/problems/plus-one/">66. 加一</a></p><h2 id="解法一：对整个数组做模拟加法（最容易想到）"><a href="#解法一：对整个数组做模拟加法（最容易想到）" class="headerlink" title="解法一：对整个数组做模拟加法（最容易想到）"></a>解法一：对整个数组做模拟加法（最容易想到）</h2><p>题目中给出的数据范围显然在转换成整数之后会超过<code>uint64</code>类型的范围，所以只能用模拟加法来解决这个问题，基本解题思路和<code>2. 两数相加</code>基本一致，注意在遍历完之后还需要看看进位标记<code>carry</code>是否为1，如果是，则需要在切片前面填上一个1再返回。</p><p>这里0做了特殊判断，后来发现没有这个必要，所以把第一个<code>if</code>删了也能过。</p><pre><code class="go">func plusOne(digits []int) []int &#123;    if digits[0] == 0 &#123;        return []int&#123;1&#125;    &#125;    carry := 1    for i := len(digits) - 1; i &gt;= 0; i-- &#123;        if digits[i] + carry &gt;= 10 &#123;            digits[i] = (digits[i] + carry) % 10            carry = 1        &#125; else &#123;            digits[i] = digits[i] + carry            carry = 0        &#125;    &#125;    if carry == 1 &#123;        return append([]int&#123;1&#125;, digits...)    &#125; else &#123;        return digits    &#125;&#125;</code></pre><p>执行用时: <strong>0 ms</strong>（超过100%的Golang提交记录）</p><p>内存消耗: <strong>2 MB</strong>（超过95.81%的Golang提交记录）</p><p>时间复杂度：O(n)，在做模拟加法时对于长度为<code>n</code>的数组需要遍历<code>n</code>次；</p><p>空间复杂度：O(1)，不考虑返回值的话只使用了常数个数的存储空间。</p><h2 id="解法二：找出最长的后缀9（官方解法）"><a href="#解法二：找出最长的后缀9（官方解法）" class="headerlink" title="解法二：找出最长的后缀9（官方解法）"></a>解法二：找出最长的后缀9（官方解法）</h2><p>这个解法总体上执行效率要比解法1快一些，因为我们只需要找到数组中有多少个后缀9（即：数组的末尾有多少个9），边找边把这些9改成0，最后根据<code>p</code>的值判断接下来该执行什么操作：</p><ol><li><code>p == -1</code>，说明整个数组全是9，那么需要在开头填上一个1表示进一位；</li><li><code>p == len(digits) - 1</code>，说明整个数组没有后缀9，那么直接把最后一位加1即可；</li><li>其他的情况，说明数组中有后缀9但不全是9，那么将最后一个后缀9前面的第一个非9元素加1。</li></ol><p>我的写法比官方题解麻烦一点，不过应该更好懂。</p><pre><code class="go">func plusOne(digits []int) []int &#123;    p := len(digits) - 1    // 该for循环会在最后一个后缀9的前一位退出,如果全是9,则会在-1处退出    for p = len(digits) - 1; p &gt;= 0 &amp;&amp; digits[p] == 9; p-- &#123;        digits[p] = 0    &#125;    // 数组全是9的情况,在切片前面加一个1返回    if p == -1 &#123;        return append([]int&#123;1&#125;, digits...)    &#125;    // 没有后缀9的情况,直接把最后一位加1返回    if p == len(digits) - 1 &#123;        digits[len(digits) - 1] += 1        return digits    &#125;    // 其他情况,把p对应的数加1,因为我们已经把后缀9都改成0了,所以加1后直接返回即可    digits[p] += 1    return digits&#125;</code></pre><p>执行用时: <strong>0 ms</strong>（超过100%的Golang提交记录）</p><p>内存消耗: <strong>2 MB</strong>（超过95.81%的Golang提交记录）</p><p>时间复杂度：O(n)，遍历的次数与后缀9的个数有关；</p><p>空间复杂度：O(1)，不考虑返回值的话只使用了常数个数的存储空间。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> LeetCode </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> LeetCode </tag>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 模拟 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>抽象工厂模式</title>
       <link href="/2021/11/22/%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/"/>
       <url>/2021/11/22/%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/</url>
