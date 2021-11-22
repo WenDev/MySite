@@ -3,24 +3,26 @@
 <head>
   <meta charset="utf-8">
   <title>Golang实现前缀树Trie | 江文 - Golang | Back-End Develop | Cloud Native</title>
-  <meta name="keywords" content=" Golang , Trie ">
+  <meta name="keywords" content=" Golang , Trie , 数据结构 ">
   <meta name="description" content="Golang实现前缀树Trie | 江文 - Golang | Back-End Develop | Cloud Native">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="【Go语言实现常见数据结构】前缀树Trie什么是前缀树前缀树，又称Trie、字典树、单词查找树或键树，是多叉树的一种特殊形式。前缀树中的每一个结点都代表一个字符，根结点代表空字符串，其子结点保存的字符串是由通往该子结点路径上的所有字符组成的，并且每个子结点包含的字符都不相同。 前缀树的核心思想是空间换时间，利用字符串的公共前缀来降低查询时间的开销以达到提高效率的目的。 代码实现结点的实现我们先只考">
+<meta name="description" content="Golang实现堆排序堆的概念堆是一种将数据以完全二叉树的顺序存储在一维数组中的结构。 堆分为两种：大顶堆和小顶堆。  大顶堆&#x2F;大根堆：任意结点的值均大于等于其左右孩子，且最大的元素位于堆顶（根结点）； 小顶堆&#x2F;小根堆：任意结点的值均小于等于其左右孩子，且最小的元素位于堆顶（根结点）。  Go语言实现堆排序堆排序的过程：  建初始大顶堆：将数组中的元素构建成完全二叉树，从最后一个父结点开始往前遍历">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Golang实现前缀树Trie">
-<meta property="og:url" content="http://www.wendev.site/2021/11/22/Golang%E5%AE%9E%E7%8E%B0%E5%89%8D%E7%BC%80%E6%A0%91Trie/index.html">
+<meta property="og:title" content="Golang实现堆排序">
+<meta property="og:url" content="http://www.wendev.site/2021/11/22/Golang%E5%AE%9E%E7%8E%B0%E5%A0%86%E6%8E%92%E5%BA%8F/index.html">
 <meta property="og:site_name" content="江文 - Golang | Back-End Develop | Cloud Native">
-<meta property="og:description" content="【Go语言实现常见数据结构】前缀树Trie什么是前缀树前缀树，又称Trie、字典树、单词查找树或键树，是多叉树的一种特殊形式。前缀树中的每一个结点都代表一个字符，根结点代表空字符串，其子结点保存的字符串是由通往该子结点路径上的所有字符组成的，并且每个子结点包含的字符都不相同。 前缀树的核心思想是空间换时间，利用字符串的公共前缀来降低查询时间的开销以达到提高效率的目的。 代码实现结点的实现我们先只考">
+<meta property="og:description" content="Golang实现堆排序堆的概念堆是一种将数据以完全二叉树的顺序存储在一维数组中的结构。 堆分为两种：大顶堆和小顶堆。  大顶堆&#x2F;大根堆：任意结点的值均大于等于其左右孩子，且最大的元素位于堆顶（根结点）； 小顶堆&#x2F;小根堆：任意结点的值均小于等于其左右孩子，且最小的元素位于堆顶（根结点）。  Go语言实现堆排序堆排序的过程：  建初始大顶堆：将数组中的元素构建成完全二叉树，从最后一个父结点开始往前遍历">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gitee.com/QNKCDZ0/pictures/raw/master/img/20211116211006.png">
-<meta property="article:published_time" content="2021-11-22T13:55:31.000Z">
-<meta property="article:modified_time" content="2021-11-22T13:56:17.263Z">
+<meta property="article:published_time" content="2021-11-22T13:57:34.000Z">
+<meta property="article:modified_time" content="2021-11-22T14:00:52.789Z">
 <meta property="article:author" content="江文">
+<meta property="article:tag" content="算法">
 <meta property="article:tag" content="Golang">
-<meta property="article:tag" content="Trie">
+<meta property="article:tag" content="数据结构">
+<meta property="article:tag" content="堆">
+<meta property="article:tag" content="排序">
+<meta property="article:tag" content="堆排序">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://gitee.com/QNKCDZ0/pictures/raw/master/img/20211116211006.png">
 
 
 <link rel="icon" href="/img/header.png">
@@ -142,7 +144,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(41)</small>
+                <small>(44)</small>
             
         </div>
     </li>
@@ -271,6 +273,20 @@
         
             
                 <li>
+                    <div data-rel="算法">
+                        
+                        算法
+                        <small>(3)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
                     <div data-rel="设计模式">
                         
                         设计模式
@@ -297,8 +313,8 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="41">
-<input type="hidden" id="yelog_site_word_count" value="48.7k">
+<input type="hidden" id="yelog_site_posts_number" value="44">
+<input type="hidden" id="yelog_site_word_count" value="50.9k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -426,11 +442,31 @@
             </li>
         
             <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>堆</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>堆排序</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>希尔排序</a>
+            </li>
+        
+            <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>微服务</a>
             </li>
         
             <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>快速排序</a>
+            </li>
+        
+            <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>抽象工厂模式</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>排序</a>
             </li>
         
             <li class="article-tag-list-item">
@@ -439,6 +475,10 @@
         
             <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>数学</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>数据结构</a>
             </li>
         
             <li class="article-tag-list-item">
@@ -492,9 +532,33 @@
     
     <nav id="title-list-nav">
         
+        <a  class="全部文章 算法 "
+           href="/2021/11/22/Golang%E5%AE%9E%E7%8E%B0%E5%A0%86%E6%8E%92%E5%BA%8F/"
+           data-tag="算法,Golang,数据结构,堆,排序,堆排序"
+           data-author="" >
+            <span class="post-title" title="Golang实现堆排序">Golang实现堆排序</span>
+            <span class="post-date" title="2021-11-22 21:57:34">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 算法 "
+           href="/2021/11/22/Golang%E5%AE%9E%E7%8E%B0%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/"
+           data-tag="算法,Golang,排序,快速排序"
+           data-author="" >
+            <span class="post-title" title="Golang实现快速排序">Golang实现快速排序</span>
+            <span class="post-date" title="2021-11-22 21:57:29">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 算法 "
+           href="/2021/11/22/Golang%E5%AE%9E%E7%8E%B0%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F/"
+           data-tag="算法,Golang,排序,希尔排序"
+           data-author="" >
+            <span class="post-title" title="Golang实现希尔排序">Golang实现希尔排序</span>
+            <span class="post-date" title="2021-11-22 21:57:21">2021/11/22</span>
+        </a>
+        
         <a  class="全部文章 数据结构 "
            href="/2021/11/22/Golang%E5%AE%9E%E7%8E%B0%E5%89%8D%E7%BC%80%E6%A0%91Trie/"
-           data-tag="Golang,Trie"
+           data-tag="Golang,Trie,数据结构"
            data-author="" >
             <span class="post-title" title="Golang实现前缀树Trie">Golang实现前缀树Trie</span>
             <span class="post-date" title="2021-11-22 21:55:31">2021/11/22</span>
@@ -862,12 +926,14 @@
             
             <a class="color5">Trie</a>
             
+            <a class="color5">数据结构</a>
+            
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-11-22 21:56:17'>2021-11-22 21:55</time>
+            发布时间 : <time class="date" title='最后更新: 2021-11-22 21:58:19'>2021-11-22 21:55</time>
         
     </div>
     <div class="article-meta">
@@ -891,7 +957,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E3%80%90Go%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E3%80%91%E5%89%8D%E7%BC%80%E6%A0%91Trie"><span class="toc-text">【Go语言实现常见数据结构】前缀树Trie</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%89%8D%E7%BC%80%E6%A0%91"><span class="toc-text">什么是前缀树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-text">代码实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E7%82%B9%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-text">结点的实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%92%E5%85%A5%E6%96%B9%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-text">插入方法的实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE%E6%96%B9%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-text">查找方法的实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A4%E6%96%AD%E5%89%8D%E7%BC%80%E6%96%B9%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-text">判断前缀方法的实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%8C%E6%95%B4%E4%BB%A3%E7%A0%81"><span class="toc-text">完整代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-text">参考资料</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Golang%E5%AE%9E%E7%8E%B0%E5%89%8D%E7%BC%80%E6%A0%91Trie"><span class="toc-text">Golang实现前缀树Trie</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%89%8D%E7%BC%80%E6%A0%91"><span class="toc-text">什么是前缀树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-text">代码实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E7%82%B9%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-text">结点的实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%92%E5%85%A5%E6%96%B9%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-text">插入方法的实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE%E6%96%B9%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-text">查找方法的实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A4%E6%96%AD%E5%89%8D%E7%BC%80%E6%96%B9%E6%B3%95%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-text">判断前缀方法的实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%8C%E6%95%B4%E4%BB%A3%E7%A0%81"><span class="toc-text">完整代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-text">参考资料</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -907,7 +973,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="【Go语言实现常见数据结构】前缀树Trie"><a href="#【Go语言实现常见数据结构】前缀树Trie" class="headerlink" title="【Go语言实现常见数据结构】前缀树Trie"></a>【Go语言实现常见数据结构】前缀树Trie</h1><h2 id="什么是前缀树"><a href="#什么是前缀树" class="headerlink" title="什么是前缀树"></a>什么是前缀树</h2><p>前缀树，又称Trie、字典树、单词查找树或键树，是多叉树的一种特殊形式。前缀树中的每一个结点都代表一个字符，根结点代表空字符串，其子结点保存的字符串是由通往该子结点路径上的所有字符组成的，并且每个子结点包含的字符都不相同。</p>
+        <h1 id="Golang实现前缀树Trie"><a href="#Golang实现前缀树Trie" class="headerlink" title="Golang实现前缀树Trie"></a>Golang实现前缀树Trie</h1><h2 id="什么是前缀树"><a href="#什么是前缀树" class="headerlink" title="什么是前缀树"></a>什么是前缀树</h2><p>前缀树，又称Trie、字典树、单词查找树或键树，是多叉树的一种特殊形式。前缀树中的每一个结点都代表一个字符，根结点代表空字符串，其子结点保存的字符串是由通往该子结点路径上的所有字符组成的，并且每个子结点包含的字符都不相同。</p>
 <p>前缀树的核心思想是空间换时间，利用字符串的公共前缀来降低查询时间的开销以达到提高效率的目的。</p>
 <h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="结点的实现"><a href="#结点的实现" class="headerlink" title="结点的实现"></a>结点的实现</h3><p>我们先只考虑存储26个小写英文字母的前缀树，这是一棵26叉树，可以用一个长度为26的数组保存其所有子结点。由于我们走到某个结点的时候需要知道是不是已经达到该单词的末尾了（例如前缀树里有字符串<code>goroutines</code>但没有<code>goroutine</code>，读到<code>e</code>的时候显然就没有读到单词末尾，而读到<code>s</code>的时候则达到了单词尾），所以每个结点都需要附带一个<code>isWord</code>字段来标识是否已经达到单词尾。</p>
 <pre><code class="go">// Trie 前缀树结点
@@ -1073,7 +1139,7 @@ func TestTrie(t *testing.T) &#123;
     <p><span class="copy-title">字数:</span><span class="post-count">1.7k</span></p>
     <p><span class="copy-title">本文作者:</span><a  title="江文">江文</a></p>
     <p><span class="copy-title">发布时间:</span>2021-11-22, 21:55:31</p>
-    <p><span class="copy-title">最后更新:</span>2021-11-22, 21:56:17</p>
+    <p><span class="copy-title">最后更新:</span>2021-11-22, 21:58:19</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2021/11/22/Golang%E5%AE%9E%E7%8E%B0%E5%89%8D%E7%BC%80%E6%A0%91Trie/" title="Golang实现前缀树Trie">http://www.wendev.site/2021/11/22/Golang%E5%AE%9E%E7%8E%B0%E5%89%8D%E7%BC%80%E6%A0%91Trie/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">&#34;署名-非商用-相同方式共享 4.0&#34;</a> 转载请保留原文链接及作者。

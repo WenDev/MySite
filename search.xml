@@ -4,11 +4,108 @@
   
     
     <entry>
+      <title>Golang实现堆排序</title>
+      <link href="/2021/11/22/Golang%E5%AE%9E%E7%8E%B0%E5%A0%86%E6%8E%92%E5%BA%8F/"/>
+      <url>/2021/11/22/Golang%E5%AE%9E%E7%8E%B0%E5%A0%86%E6%8E%92%E5%BA%8F/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Golang实现堆排序"><a href="#Golang实现堆排序" class="headerlink" title="Golang实现堆排序"></a>Golang实现堆排序</h1><h2 id="堆的概念"><a href="#堆的概念" class="headerlink" title="堆的概念"></a>堆的概念</h2><p>堆是一种将数据以<strong>完全二叉树</strong>的顺序存储在<strong>一维数组</strong>中的结构。</p><p>堆分为两种：大顶堆和小顶堆。</p><ul><li>大顶堆/大根堆：任意结点的值均<strong>大于等于</strong>其左右孩子，且<strong>最大</strong>的元素位于堆顶（根结点）；</li><li>小顶堆/小根堆：任意结点的值均<strong>小于等于</strong>其左右孩子，且<strong>最小</strong>的元素位于堆顶（根结点）。</li></ul><h2 id="Go语言实现堆排序"><a href="#Go语言实现堆排序" class="headerlink" title="Go语言实现堆排序"></a>Go语言实现堆排序</h2><p>堆排序的过程：</p><ol><li>建初始大顶堆：将数组中的元素构建成完全二叉树，从最后一个父结点开始往前遍历，构造出初始大顶堆，当交换了<code>nums[0]</code>和<code>nums[1]</code>之后构建结束，此时根结点就是数组中最大的元素；</li><li>调整：移除根结点，用数组的最后一个元素代替，将堆重新调整为大顶堆：如果一个结点的值小于其左孩子或者右孩子，就将两个结点交换，然后继续调整被交换的结点的子结点（也就是原结点的孙结点），直到下标越界或父结点的值大于其左右孩子的值时调整完毕，跳出循环；</li><li>根据以上操作每次都可以拿到一个最大的元素，直到数组全部遍历完成，此时数组就是按升序排序的了。</li></ol><p>注：如果是要按降序排序则需要使用小顶堆。</p><pre><code class="go">package mainimport &quot;fmt&quot;func main() &#123;    nums := []int&#123;9, 8, 2, 3, 4, 1, 2, 0, 5, 8, 7, 5, 6&#125;    heapSort(nums)    fmt.Println(nums)&#125;func heapSort(nums []int) &#123;    // 特殊情况:数组长度为0或者1,此时不需要排序,直接返回    if nums == nil || len(nums) &lt; 2 &#123;        return    &#125;    n := len(nums)    // 构造初始大顶堆:从最后一个父结点(n / 2 - 1)开始从后往前调整，直到交换了nums[0]和nums[1]为止    // 堆是一个用数组表示的完全二叉树,其每个结点都不大于/不小于左右孩子的值    // 当前结点:nums[i],左孩子:nums[i * 2 + 1],右孩子nums[i * 2 + 2]    // 父结点:nums[i / 2 - 1]    for i := n / 2 - 1; i &gt;= 0; i-- &#123;        heapAdjust(nums, i)    &#125;    for i := n; i &gt; 1; i-- &#123;        // 初始大顶堆建好之后把根结点(最大值)拿出来,并把最后一个元素放到原来根结点的位置上        // 再把剩下的元素构造成新的大顶堆,并再次取出根结点        // 直到数组排序完成        nums[0], nums[i-1] = nums[i-1], nums[0]        heapAdjust(nums[:i-1], 0)    &#125;&#125;func heapAdjust(nums []int, index int) &#123;    i := index    // 当结点的值在数组中时才进行调整,否则直接返回    for i &lt; len(nums) &#123;        child := 0        left, right := 2 * i + 1, 2 * i + 2        if right &lt; len(nums) &#123;            // 左右孩子都存在,选出较大的子结点            if nums[left] &gt; nums[right] &#123;                child = left            &#125; else &#123;                child = right            &#125;        &#125; else if left &lt; len(nums) &#123;            // 存在左孩子但不存在右孩子,则选出左孩子            child = left        &#125;        if child &gt; 0 &amp;&amp; nums[child] &gt; nums[i] &#123;            // 对堆进行调整,交换父子结点的值,把更大的值换到父结点上去            nums[i], nums[child] = nums[child], nums[i]            // 下一轮循环再比较孙结点            i = child        &#125; else &#123;            // 父结点大于子结点的值,满足大顶堆的定义,跳出循环            break        &#125;    &#125;&#125;</code></pre><h2 id="堆排序的性质"><a href="#堆排序的性质" class="headerlink" title="堆排序的性质"></a>堆排序的性质</h2><ul><li>时间复杂度：<code>O(nlogn)</code>（最好、最坏、平均都是该值）；</li><li>空间复杂度：<code>O(1)</code>；</li><li>稳定性：不稳定，因为每次调整走的是被调整结点到叶子结点的一条路径，可能会出现排在后面的元素被交换到前面的情况。</li></ul><h2 id="拓展：Top-K问题"><a href="#拓展：Top-K问题" class="headerlink" title="拓展：Top K问题"></a>拓展：Top K问题</h2><p>Top K问题：在一堆数据里面找到前K大/小的元素。</p><h3 id="解法1：排序"><a href="#解法1：排序" class="headerlink" title="解法1：排序"></a>解法1：排序</h3><p>可以使用<code>O(nlogn)</code>的时间复杂度的排序算法对数据进行排序。这种方法在数据量比较小的时候可行，但数据量很大的时候不是最优解。</p><h3 id="解法2：快速排序"><a href="#解法2：快速排序" class="headerlink" title="解法2：快速排序"></a>解法2：快速排序</h3><p>快速排序的划分（<code>partation</code>）思想可以用于计算中位数等问题。每次经过划分，如果基准的下标等于<code>K</code>，那么其左/右边的数就是Top K；如果不等于，则递归处理左/右边的数据。</p><p>时间复杂度：O(n)</p><p>缺点：在内存有限的情况下因为无法将所有元素一次性读到内存中，因而不适用于海量数据。</p><h3 id="解法3：堆排序"><a href="#解法3：堆排序" class="headerlink" title="解法3：堆排序"></a>解法3：堆排序</h3><p>堆排序是Top K问题最经典的解法。</p><p>以找最大的K个元素为例：维护一个大小为Top K的小顶堆，首先取K个元素构建初始堆，接着把每一个元素跟堆顶元素比较：如果大于堆顶元素则去除当前的堆顶元素并将新元素插入堆中，如果小于堆顶元素则直接扔掉该元素。遍历结束之后堆中的数据就是我们要求的Top K。</p><p>如果要求的是最小的K个元素则使用大顶堆即可。</p><p>时间复杂度：遍历数组为O(n)，建堆操作为O(logK)，综合下来时间复杂度为O(nlogK)。</p><p>注：如果语言支持的话（如Java、C++等），堆可以使用优先队列来实现。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 算法 </tag>
+            
+            <tag> Golang </tag>
+            
+            <tag> 数据结构 </tag>
+            
+            <tag> 堆 </tag>
+            
+            <tag> 排序 </tag>
+            
+            <tag> 堆排序 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Golang实现快速排序</title>
+      <link href="/2021/11/22/Golang%E5%AE%9E%E7%8E%B0%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/"/>
+      <url>/2021/11/22/Golang%E5%AE%9E%E7%8E%B0%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Golang实现快速排序"><a href="#Golang实现快速排序" class="headerlink" title="Golang实现快速排序"></a>Golang实现快速排序</h1><h2 id="快速排序的思想"><a href="#快速排序的思想" class="headerlink" title="快速排序的思想"></a>快速排序的思想</h2><p>快速排序的核心思想是划分，即选定一个基准，将数组划分为两部分：基准左边的部分都小于它，而右边的部分都大于它。</p><p>详细步骤如下：</p><ol><li>选定一个基准，比如数组中的第一个数；</li><li>使用两个指针<code>low</code>和<code>high</code>指向数组的第一个位置和最后一个位置，当<code>nums[high]</code>大于基准时让<code>high</code>向左走，当<code>nums[low]</code>小于基准且<code>low &lt; high</code>时让<code>low</code>向右走，跳出循环时<code>low</code>指向的是从左向右数第一个大于基准的数，而<code>high</code>指向了从右向左数第一个小于基准的数，将这两个数交换；</li><li>当<code>low</code>和<code>high</code>相遇时退出循环，将基准与该数进行交换；</li><li>递归地对基准的左右两侧进行排序，直到数组全部排完。</li></ol><h2 id="Go语言实现快速排序"><a href="#Go语言实现快速排序" class="headerlink" title="Go语言实现快速排序"></a>Go语言实现快速排序</h2><pre><code class="go">package mainimport &quot;fmt&quot;func main() &#123;    nums := []int&#123;4, 5, 7, 1, 2, 9, 0, 8, 3, 1, 6, 2, 1, 0&#125;    quickSort(nums, 0, len(nums)-1)    fmt.Println(nums)&#125;func quickSort(nums []int, start, end int) &#123;    if start &lt; end &#123;        pivot := partition(nums, start, end)        quickSort(nums, start, pivot-1)        quickSort(nums, pivot+1, end)    &#125;&#125;func partition(nums []int, start, end int) int &#123;    low, high := start, end    // 以数组的第一个元素作为基准    pivot := nums[low]    for low &lt; high &#123;        // 找到第一个小于基准的元素        // 因为基准选的是数组的第一个元素,所以这里不会越界        for nums[high] &gt; pivot &#123;            high--        &#125;        // 找到第一个大于基准的元素        // 这里可能会越界,所以需要判断一下        for nums[low] &lt;= pivot &amp;&amp; low &lt; high &#123;            low++        &#125;        if low &gt;= high &#123;            break        &#125;        // 交换两个元素        nums[low], nums[high] = nums[high], nums[low]    &#125;    // 跳出循环的时候两个指针指向了同一个位置,把基准填到该位置    nums[start], nums[low] = nums[low], nums[start]    // 返回基准的位置    return low&#125;</code></pre><h2 id="快速排序的性质"><a href="#快速排序的性质" class="headerlink" title="快速排序的性质"></a>快速排序的性质</h2><ul><li>时间复杂度：<code>O(nlogn)</code>（平均、最好），<code>O(n^2)</code>最坏；</li><li>空间复杂度：<code>O(logn)</code>，来自递归调用栈；</li><li>稳定性：不稳定，比如<code>3, 7, 7, 1, 1</code>这个序列的第二个1就会被换到第一个1前面去。</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 算法 </tag>
+            
+            <tag> Golang </tag>
+            
+            <tag> 排序 </tag>
+            
+            <tag> 快速排序 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Golang实现希尔排序</title>
+      <link href="/2021/11/22/Golang%E5%AE%9E%E7%8E%B0%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F/"/>
+      <url>/2021/11/22/Golang%E5%AE%9E%E7%8E%B0%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Golang实现希尔排序"><a href="#Golang实现希尔排序" class="headerlink" title="Golang实现希尔排序"></a>Golang实现希尔排序</h1><h2 id="希尔排序的思想"><a href="#希尔排序的思想" class="headerlink" title="希尔排序的思想"></a>希尔排序的思想</h2><p>希尔排序属于插入类排序，是将整个序列分成几个较小的子序列分别进行插入排序。</p><p>首先取一个增量（例如2），然后使用数组长/增量计算得到步长，间隔相同步长的所有元素被视为一组，接着对每组的元素分别进行直接插入排序，然后逐渐缩小增量，直到增量为1时整个数组有序，算法结束。</p><h2 id="Go语言实现希尔排序"><a href="#Go语言实现希尔排序" class="headerlink" title="Go语言实现希尔排序"></a>Go语言实现希尔排序</h2><pre><code class="go">package mainimport &quot;fmt&quot;func main() &#123;    nums := []int&#123;4, 5, 7, 1, 2, 9, 0, 8, 3, 1, 6, 2, 1, 0&#125;    shellSort(nums)    fmt.Println(nums)&#125;func shellSort(nums []int) &#123;    n := len(nums)    // 增量,选择合适的增量有助于提高性能    inc := 2    // 步长 = 数组长 / 增量    step := n / inc    for ; step &gt; 0; step /= inc &#123;        for i := step; i &lt; n; i++ &#123;            // 从第i个元素开始,逐个对其所在的组进行直接插入排序            l := i - step            insertValue := nums[i]            for ; l &gt;= 0 &amp;&amp; insertValue &lt; nums[l]; l -= step &#123;                nums[l+step] = nums[l]            &#125;            nums[l+step] = insertValue        &#125;    &#125;&#125;</code></pre><h2 id="希尔排序的性质"><a href="#希尔排序的性质" class="headerlink" title="希尔排序的性质"></a>希尔排序的性质</h2><ul><li>时间复杂度：未知，与增量的选择有关，一般为<code>O(n^1.3) ~ O(n^2)</code></li><li>空间复杂度：<code>O(1)</code></li><li>稳定性：不稳定，虽然针对每一组的直接插入排序是稳定的，但是不同组之间的分组插入排序是不稳定的。</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 算法 </tag>
+            
+            <tag> Golang </tag>
+            
+            <tag> 排序 </tag>
+            
+            <tag> 希尔排序 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Golang实现前缀树Trie</title>
       <link href="/2021/11/22/Golang%E5%AE%9E%E7%8E%B0%E5%89%8D%E7%BC%80%E6%A0%91Trie/"/>
       <url>/2021/11/22/Golang%E5%AE%9E%E7%8E%B0%E5%89%8D%E7%BC%80%E6%A0%91Trie/</url>
       
-        <content type="html"><![CDATA[<h1 id="【Go语言实现常见数据结构】前缀树Trie"><a href="#【Go语言实现常见数据结构】前缀树Trie" class="headerlink" title="【Go语言实现常见数据结构】前缀树Trie"></a>【Go语言实现常见数据结构】前缀树Trie</h1><h2 id="什么是前缀树"><a href="#什么是前缀树" class="headerlink" title="什么是前缀树"></a>什么是前缀树</h2><p>前缀树，又称Trie、字典树、单词查找树或键树，是多叉树的一种特殊形式。前缀树中的每一个结点都代表一个字符，根结点代表空字符串，其子结点保存的字符串是由通往该子结点路径上的所有字符组成的，并且每个子结点包含的字符都不相同。</p><p>前缀树的核心思想是空间换时间，利用字符串的公共前缀来降低查询时间的开销以达到提高效率的目的。</p><h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="结点的实现"><a href="#结点的实现" class="headerlink" title="结点的实现"></a>结点的实现</h3><p>我们先只考虑存储26个小写英文字母的前缀树，这是一棵26叉树，可以用一个长度为26的数组保存其所有子结点。由于我们走到某个结点的时候需要知道是不是已经达到该单词的末尾了（例如前缀树里有字符串<code>goroutines</code>但没有<code>goroutine</code>，读到<code>e</code>的时候显然就没有读到单词末尾，而读到<code>s</code>的时候则达到了单词尾），所以每个结点都需要附带一个<code>isWord</code>字段来标识是否已经达到单词尾。</p><pre><code class="go">// Trie 前缀树结点type Trie struct &#123;    isWord   bool      // 判断一个结点是不是走到单词尾    children [26]*Trie // 子结点,长度为26的数组&#125;</code></pre><p>注意：如果要实现存储任意字符的前缀树，可以把<code>children</code>数组替换为<code>map[rune]*Trie</code>。</p><h3 id="插入方法的实现"><a href="#插入方法的实现" class="headerlink" title="插入方法的实现"></a>插入方法的实现</h3><p>再来看看如何向前缀树中插入一个单词。我们使用一个指针指向前缀树的根结点，然后遍历单词中的每一个字符，对于当前遍历到的字符求出其相对于字母<code>a</code>的偏移量（也就是这个字符在<code>children</code>数组中的位置），然后查看数组对应位置上的值是不是<code>nil</code>。如果是，则在这个位置上新建一个结点，并把指针移动到新建的结点上；如果不是，则直接把指针移动到这个已存在的子结点上。读到单词尾后，将指针指向的结点的<code>isWord</code>字段置为<code>true</code>，表示读到该位置之后单词已经结束。</p><p>代码如下：</p><pre><code class="go">// Insert 向前缀树中插入一个单词func (root *Trie) Insert(word string) &#123;    cur := root    for i, c := range word &#123;        // 计算出当前位置上字符的偏移量        loc := c - &#39;a&#39;        // 如果这个位置上没有子结点,就新建一个        if cur.children[loc] == nil &#123;            cur.children[loc] = &amp;Trie&#123;&#125;        &#125;        // 把指针移动到被插入的结点上        cur = cur.children[loc]        // 如果读到单词尾,那么把这个结点设为单词结尾        if i == len(word)-1 &#123;            cur.isWord = true        &#125;    &#125;&#125;</code></pre><p>注意：如果使用<code>map</code>而不是数组，判断子结点是否存在的时候可以使用<code>_, ok := children[c]; !ok</code>（其中<code>c</code>为当前遍历到的字符）。</p><h3 id="查找方法的实现"><a href="#查找方法的实现" class="headerlink" title="查找方法的实现"></a>查找方法的实现</h3><p>查找和插入是比较相似的，仍然是一个指针遍历的过程，区别在于如果遍历到某个结点时发现当前结点的子结点中不存在字符串当前位置上的字符，则直接返回<code>false</code>表示查找失败，并且遍历完成之后还要判断最后遍历到的结点的<code>isWord</code>字段是不是<code>true</code>。</p><pre><code class="go">// Search 查找一个前缀树里有没有某个单词func (root *Trie) Search(word string) bool &#123;    cur := root    for _, c := range word &#123;        loc := c - &#39;a&#39;        // 如果当前位置对应的子结点里没有要查找的结点,那说明这个单词不在前缀树里        if cur.children[loc] == nil &#123;            return false        &#125;        // 如果有,则把指针移动到这个结点上        cur = cur.children[loc]    &#125;    // 遍历结束之后判断一下是否读到单词尾,如果是,则返回true    // 如果没有读到单词尾,那说明这个单词还没有结束，要查找的单词没有被插入前缀树    return cur.isWord&#125;</code></pre><h3 id="判断前缀方法的实现"><a href="#判断前缀方法的实现" class="headerlink" title="判断前缀方法的实现"></a>判断前缀方法的实现</h3><p>判断前缀和查找比较相似，但由于不需要判断是否读到单词尾，所以只需要把最后的判断条件去掉而是直接返回<code>true</code>。</p><pre><code class="go">// StartWith 查找某个前缀是否存在于前缀树中func (root *Trie) StartWith(prefix string) bool &#123;    cur := root    for _, c := range prefix &#123;        loc := c - &#39;a&#39;        // 当前位置对应的子结点里没有要查找的结点,说明这个前缀不在前缀树里        if cur.children[loc] == nil &#123;            return false        &#125;        cur = cur.children[loc]    &#125;    return true&#125;</code></pre><h2 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h2><pre><code class="go">package trie// Trie 前缀树结点type Trie struct &#123;    isWord   bool      // 判断一个结点是不是走到单词尾    children [26]*Trie // 子结点,长度为26的数组&#125;// NewTrie 新建一个前缀树func NewTrie() *Trie &#123;    return &amp;Trie&#123;&#125;&#125;// Insert 向前缀树中插入一个单词func (root *Trie) Insert(word string) &#123;    cur := root    for i, c := range word &#123;        // 计算出当前位置上字符的偏移量        loc := c - &#39;a&#39;        // 如果这个位置上没有子结点,就新建一个        if cur.children[loc] == nil &#123;            cur.children[loc] = &amp;Trie&#123;&#125;        &#125;        // 把指针移动到被插入的结点上        cur = cur.children[loc]        // 如果读到单词尾,那么把这个结点设为单词结尾        if i == len(word)-1 &#123;            cur.isWord = true        &#125;    &#125;&#125;// Search 查找一个前缀树里有没有某个单词func (root *Trie) Search(word string) bool &#123;    cur := root    for _, c := range word &#123;        loc := c - &#39;a&#39;        // 如果当前位置对应的子结点里没有要查找的结点,那说明这个单词不在前缀树里        if cur.children[loc] == nil &#123;            return false        &#125;        // 如果有,则把指针移动到这个结点上        cur = cur.children[loc]    &#125;    // 遍历结束之后判断一下是否读到单词尾,如果是,则返回true    // 如果没有读到单词尾,那说明这个单词还没有结束，要查找的单词没有被插入前缀树    return cur.isWord&#125;// StartWith 查找某个前缀是否存在于前缀树中func (root *Trie) StartWith(prefix string) bool &#123;    cur := root    for _, c := range prefix &#123;        loc := c - &#39;a&#39;        // 当前位置对应的子结点里没有要查找的结点,说明这个前缀不在前缀树里        if cur.children[loc] == nil &#123;            return false        &#125;        cur = cur.children[loc]    &#125;    return true&#125;</code></pre><p>测试代码：</p><pre><code class="go">package trieimport (    &quot;fmt&quot;    &quot;testing&quot;)func TestTrie(t *testing.T) &#123;    trie := NewTrie()    trie.Insert(&quot;golang&quot;)    trie.Insert(&quot;goroutines&quot;)    fmt.Println(trie.StartWith(&quot;go&quot;))      // true    fmt.Println(trie.Search(&quot;goroutine&quot;))  // false    fmt.Println(trie.Search(&quot;golang&quot;))     // true    fmt.Println(trie.Search(&quot;goroutines&quot;)) // true&#125;</code></pre><p>测试结果：</p><img src="https://gitee.com/QNKCDZ0/pictures/raw/master/img/20211116211006.png" style="zoom:50%;" /><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul><li><a href="https://blog.csdn.net/idwtwt/article/details/88193548">前缀树Trie及代码实现（golang）</a></li><li><a href="https://blog.csdn.net/terrygmx/article/details/88921823">Golang实现Trie（前缀树）</a></li></ul>]]></content>
+        <content type="html"><![CDATA[<h1 id="Golang实现前缀树Trie"><a href="#Golang实现前缀树Trie" class="headerlink" title="Golang实现前缀树Trie"></a>Golang实现前缀树Trie</h1><h2 id="什么是前缀树"><a href="#什么是前缀树" class="headerlink" title="什么是前缀树"></a>什么是前缀树</h2><p>前缀树，又称Trie、字典树、单词查找树或键树，是多叉树的一种特殊形式。前缀树中的每一个结点都代表一个字符，根结点代表空字符串，其子结点保存的字符串是由通往该子结点路径上的所有字符组成的，并且每个子结点包含的字符都不相同。</p><p>前缀树的核心思想是空间换时间，利用字符串的公共前缀来降低查询时间的开销以达到提高效率的目的。</p><h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="结点的实现"><a href="#结点的实现" class="headerlink" title="结点的实现"></a>结点的实现</h3><p>我们先只考虑存储26个小写英文字母的前缀树，这是一棵26叉树，可以用一个长度为26的数组保存其所有子结点。由于我们走到某个结点的时候需要知道是不是已经达到该单词的末尾了（例如前缀树里有字符串<code>goroutines</code>但没有<code>goroutine</code>，读到<code>e</code>的时候显然就没有读到单词末尾，而读到<code>s</code>的时候则达到了单词尾），所以每个结点都需要附带一个<code>isWord</code>字段来标识是否已经达到单词尾。</p><pre><code class="go">// Trie 前缀树结点type Trie struct &#123;    isWord   bool      // 判断一个结点是不是走到单词尾    children [26]*Trie // 子结点,长度为26的数组&#125;</code></pre><p>注意：如果要实现存储任意字符的前缀树，可以把<code>children</code>数组替换为<code>map[rune]*Trie</code>。</p><h3 id="插入方法的实现"><a href="#插入方法的实现" class="headerlink" title="插入方法的实现"></a>插入方法的实现</h3><p>再来看看如何向前缀树中插入一个单词。我们使用一个指针指向前缀树的根结点，然后遍历单词中的每一个字符，对于当前遍历到的字符求出其相对于字母<code>a</code>的偏移量（也就是这个字符在<code>children</code>数组中的位置），然后查看数组对应位置上的值是不是<code>nil</code>。如果是，则在这个位置上新建一个结点，并把指针移动到新建的结点上；如果不是，则直接把指针移动到这个已存在的子结点上。读到单词尾后，将指针指向的结点的<code>isWord</code>字段置为<code>true</code>，表示读到该位置之后单词已经结束。</p><p>代码如下：</p><pre><code class="go">// Insert 向前缀树中插入一个单词func (root *Trie) Insert(word string) &#123;    cur := root    for i, c := range word &#123;        // 计算出当前位置上字符的偏移量        loc := c - &#39;a&#39;        // 如果这个位置上没有子结点,就新建一个        if cur.children[loc] == nil &#123;            cur.children[loc] = &amp;Trie&#123;&#125;        &#125;        // 把指针移动到被插入的结点上        cur = cur.children[loc]        // 如果读到单词尾,那么把这个结点设为单词结尾        if i == len(word)-1 &#123;            cur.isWord = true        &#125;    &#125;&#125;</code></pre><p>注意：如果使用<code>map</code>而不是数组，判断子结点是否存在的时候可以使用<code>_, ok := children[c]; !ok</code>（其中<code>c</code>为当前遍历到的字符）。</p><h3 id="查找方法的实现"><a href="#查找方法的实现" class="headerlink" title="查找方法的实现"></a>查找方法的实现</h3><p>查找和插入是比较相似的，仍然是一个指针遍历的过程，区别在于如果遍历到某个结点时发现当前结点的子结点中不存在字符串当前位置上的字符，则直接返回<code>false</code>表示查找失败，并且遍历完成之后还要判断最后遍历到的结点的<code>isWord</code>字段是不是<code>true</code>。</p><pre><code class="go">// Search 查找一个前缀树里有没有某个单词func (root *Trie) Search(word string) bool &#123;    cur := root    for _, c := range word &#123;        loc := c - &#39;a&#39;        // 如果当前位置对应的子结点里没有要查找的结点,那说明这个单词不在前缀树里        if cur.children[loc] == nil &#123;            return false        &#125;        // 如果有,则把指针移动到这个结点上        cur = cur.children[loc]    &#125;    // 遍历结束之后判断一下是否读到单词尾,如果是,则返回true    // 如果没有读到单词尾,那说明这个单词还没有结束，要查找的单词没有被插入前缀树    return cur.isWord&#125;</code></pre><h3 id="判断前缀方法的实现"><a href="#判断前缀方法的实现" class="headerlink" title="判断前缀方法的实现"></a>判断前缀方法的实现</h3><p>判断前缀和查找比较相似，但由于不需要判断是否读到单词尾，所以只需要把最后的判断条件去掉而是直接返回<code>true</code>。</p><pre><code class="go">// StartWith 查找某个前缀是否存在于前缀树中func (root *Trie) StartWith(prefix string) bool &#123;    cur := root    for _, c := range prefix &#123;        loc := c - &#39;a&#39;        // 当前位置对应的子结点里没有要查找的结点,说明这个前缀不在前缀树里        if cur.children[loc] == nil &#123;            return false        &#125;        cur = cur.children[loc]    &#125;    return true&#125;</code></pre><h2 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h2><pre><code class="go">package trie// Trie 前缀树结点type Trie struct &#123;    isWord   bool      // 判断一个结点是不是走到单词尾    children [26]*Trie // 子结点,长度为26的数组&#125;// NewTrie 新建一个前缀树func NewTrie() *Trie &#123;    return &amp;Trie&#123;&#125;&#125;// Insert 向前缀树中插入一个单词func (root *Trie) Insert(word string) &#123;    cur := root    for i, c := range word &#123;        // 计算出当前位置上字符的偏移量        loc := c - &#39;a&#39;        // 如果这个位置上没有子结点,就新建一个        if cur.children[loc] == nil &#123;            cur.children[loc] = &amp;Trie&#123;&#125;        &#125;        // 把指针移动到被插入的结点上        cur = cur.children[loc]        // 如果读到单词尾,那么把这个结点设为单词结尾        if i == len(word)-1 &#123;            cur.isWord = true        &#125;    &#125;&#125;// Search 查找一个前缀树里有没有某个单词func (root *Trie) Search(word string) bool &#123;    cur := root    for _, c := range word &#123;        loc := c - &#39;a&#39;        // 如果当前位置对应的子结点里没有要查找的结点,那说明这个单词不在前缀树里        if cur.children[loc] == nil &#123;            return false        &#125;        // 如果有,则把指针移动到这个结点上        cur = cur.children[loc]    &#125;    // 遍历结束之后判断一下是否读到单词尾,如果是,则返回true    // 如果没有读到单词尾,那说明这个单词还没有结束，要查找的单词没有被插入前缀树    return cur.isWord&#125;// StartWith 查找某个前缀是否存在于前缀树中func (root *Trie) StartWith(prefix string) bool &#123;    cur := root    for _, c := range prefix &#123;        loc := c - &#39;a&#39;        // 当前位置对应的子结点里没有要查找的结点,说明这个前缀不在前缀树里        if cur.children[loc] == nil &#123;            return false        &#125;        cur = cur.children[loc]    &#125;    return true&#125;</code></pre><p>测试代码：</p><pre><code class="go">package trieimport (    &quot;fmt&quot;    &quot;testing&quot;)func TestTrie(t *testing.T) &#123;    trie := NewTrie()    trie.Insert(&quot;golang&quot;)    trie.Insert(&quot;goroutines&quot;)    fmt.Println(trie.StartWith(&quot;go&quot;))      // true    fmt.Println(trie.Search(&quot;goroutine&quot;))  // false    fmt.Println(trie.Search(&quot;golang&quot;))     // true    fmt.Println(trie.Search(&quot;goroutines&quot;)) // true&#125;</code></pre><p>测试结果：</p><img src="https://gitee.com/QNKCDZ0/pictures/raw/master/img/20211116211006.png" style="zoom:50%;" /><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul><li><a href="https://blog.csdn.net/idwtwt/article/details/88193548">前缀树Trie及代码实现（golang）</a></li><li><a href="https://blog.csdn.net/terrygmx/article/details/88921823">Golang实现Trie（前缀树）</a></li></ul>]]></content>
       
       
       <categories>
@@ -23,6 +120,8 @@
             <tag> Golang </tag>
             
             <tag> Trie </tag>
+            
+            <tag> 数据结构 </tag>
             
         </tags>
       
