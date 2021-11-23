@@ -6,22 +6,20 @@
   <meta name="keywords" content=" 设计模式 , 抽象工厂模式 ">
   <meta name="description" content="工厂模式 | 江文 - Golang | Back-End Develop | Cloud Native">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="Golang实现堆排序堆的概念堆是一种将数据以完全二叉树的顺序存储在一维数组中的结构。 堆分为两种：大顶堆和小顶堆。  大顶堆&#x2F;大根堆：任意结点的值均大于等于其左右孩子，且最大的元素位于堆顶（根结点）； 小顶堆&#x2F;小根堆：任意结点的值均小于等于其左右孩子，且最小的元素位于堆顶（根结点）。  Go语言实现堆排序堆排序的过程：  建初始大顶堆：将数组中的元素构建成完全二叉树，从最后一个父结点开始往前遍历">
+<meta name="description" content="859. 亲密字符串题目地址：859. 亲密字符串 解法：模拟+哈希计数（使用数组表示）根据题意，如果两个字符串不满足以下条件，那么就绝对不是亲密字符串：  长度相同； 词频相同；  如果一个字符串满足以下两个条件之一，就是亲密字符串：  所有位置上的字符都相同，但存在一个字符出现多于一次，可以将这两个相同的字符互换； 有两个位置上的字符不一样，其他位置上的字符均相同，可以将这两个不同的字符互换。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Golang实现堆排序">
-<meta property="og:url" content="http://www.wendev.site/2021/11/22/Golang%E5%AE%9E%E7%8E%B0%E5%A0%86%E6%8E%92%E5%BA%8F/index.html">
+<meta property="og:title" content="859.亲密字符串">
+<meta property="og:url" content="http://www.wendev.site/2021/11/23/859-%E4%BA%B2%E5%AF%86%E5%AD%97%E7%AC%A6%E4%B8%B2/index.html">
 <meta property="og:site_name" content="江文 - Golang | Back-End Develop | Cloud Native">
-<meta property="og:description" content="Golang实现堆排序堆的概念堆是一种将数据以完全二叉树的顺序存储在一维数组中的结构。 堆分为两种：大顶堆和小顶堆。  大顶堆&#x2F;大根堆：任意结点的值均大于等于其左右孩子，且最大的元素位于堆顶（根结点）； 小顶堆&#x2F;小根堆：任意结点的值均小于等于其左右孩子，且最小的元素位于堆顶（根结点）。  Go语言实现堆排序堆排序的过程：  建初始大顶堆：将数组中的元素构建成完全二叉树，从最后一个父结点开始往前遍历">
+<meta property="og:description" content="859. 亲密字符串题目地址：859. 亲密字符串 解法：模拟+哈希计数（使用数组表示）根据题意，如果两个字符串不满足以下条件，那么就绝对不是亲密字符串：  长度相同； 词频相同；  如果一个字符串满足以下两个条件之一，就是亲密字符串：  所有位置上的字符都相同，但存在一个字符出现多于一次，可以将这两个相同的字符互换； 有两个位置上的字符不一样，其他位置上的字符均相同，可以将这两个不同的字符互换。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-11-22T13:57:34.000Z">
-<meta property="article:modified_time" content="2021-11-22T14:00:52.789Z">
+<meta property="article:published_time" content="2021-11-23T09:39:52.000Z">
+<meta property="article:modified_time" content="2021-11-23T09:52:14.770Z">
 <meta property="article:author" content="江文">
+<meta property="article:tag" content="LeetCode">
+<meta property="article:tag" content="哈希表">
 <meta property="article:tag" content="算法">
-<meta property="article:tag" content="Golang">
-<meta property="article:tag" content="数据结构">
-<meta property="article:tag" content="堆">
-<meta property="article:tag" content="排序">
-<meta property="article:tag" content="堆排序">
+<meta property="article:tag" content="模拟">
 <meta name="twitter:card" content="summary">
 
 
@@ -144,7 +142,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(44)</small>
+                <small>(45)</small>
             
         </div>
     </li>
@@ -169,7 +167,7 @@
                     <div data-rel="LeetCode">
                         
                         LeetCode
-                        <small>(30)</small>
+                        <small>(31)</small>
                         
                     </div>
                     
@@ -313,8 +311,8 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="44">
-<input type="hidden" id="yelog_site_word_count" value="50.9k">
+<input type="hidden" id="yelog_site_posts_number" value="45">
+<input type="hidden" id="yelog_site_word_count" value="51.5k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -531,6 +529,14 @@
     </div>
     
     <nav id="title-list-nav">
+        
+        <a  class="全部文章 LeetCode "
+           href="/2021/11/23/859-%E4%BA%B2%E5%AF%86%E5%AD%97%E7%AC%A6%E4%B8%B2/"
+           data-tag="LeetCode,哈希表,算法,模拟"
+           data-author="" >
+            <span class="post-title" title="859.亲密字符串">859.亲密字符串</span>
+            <span class="post-date" title="2021-11-23 17:39:52">2021/11/23</span>
+        </a>
         
         <a  class="全部文章 算法 "
            href="/2021/11/22/Golang%E5%AE%9E%E7%8E%B0%E5%A0%86%E6%8E%92%E5%BA%8F/"

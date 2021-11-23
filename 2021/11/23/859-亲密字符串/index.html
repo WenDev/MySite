@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>66.加一 | 江文 - Golang | Back-End Develop | Cloud Native</title>
-  <meta name="keywords" content=" LeetCode , 算法 , 模拟 ">
-  <meta name="description" content="66.加一 | 江文 - Golang | Back-End Develop | Cloud Native">
+  <title>859.亲密字符串 | 江文 - Golang | Back-End Develop | Cloud Native</title>
+  <meta name="keywords" content=" LeetCode , 哈希表 , 算法 , 模拟 ">
+  <meta name="description" content="859.亲密字符串 | 江文 - Golang | Back-End Develop | Cloud Native">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="859. 亲密字符串题目地址：859. 亲密字符串 解法：模拟+哈希计数（使用数组表示）根据题意，如果两个字符串不满足以下条件，那么就绝对不是亲密字符串：  长度相同； 词频相同；  如果一个字符串满足以下两个条件之一，就是亲密字符串：  所有位置上的字符都相同，但存在一个字符出现多于一次，可以将这两个相同的字符互换； 有两个位置上的字符不一样，其他位置上的字符均相同，可以将这两个不同的字符互换。">
 <meta property="og:type" content="article">
@@ -908,9 +908,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-66-加一" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-859-亲密字符串" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">66.加一</h1>
+        <h1 class="article-title">859.亲密字符串</h1>
     
     <div class="article-meta">
         
@@ -930,6 +930,8 @@
             
             <a class="color4">LeetCode</a>
             
+            <a class="color4">哈希表</a>
+            
             <a class="color3">算法</a>
             
             <a class="color3">模拟</a>
@@ -939,12 +941,12 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-11-22 21:16:11'>2021-11-22 21:14</time>
+            发布时间 : <time class="date" title='最后更新: 2021-11-23 17:52:14'>2021-11-23 17:39</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:772</span>
+        <span>字数:579</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -963,7 +965,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#66-%E5%8A%A0%E4%B8%80"><span class="toc-text">66. 加一</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E6%B3%95%E4%B8%80%EF%BC%9A%E5%AF%B9%E6%95%B4%E4%B8%AA%E6%95%B0%E7%BB%84%E5%81%9A%E6%A8%A1%E6%8B%9F%E5%8A%A0%E6%B3%95%EF%BC%88%E6%9C%80%E5%AE%B9%E6%98%93%E6%83%B3%E5%88%B0%EF%BC%89"><span class="toc-text">解法一：对整个数组做模拟加法（最容易想到）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E6%B3%95%E4%BA%8C%EF%BC%9A%E6%89%BE%E5%87%BA%E6%9C%80%E9%95%BF%E7%9A%84%E5%90%8E%E7%BC%809%EF%BC%88%E5%AE%98%E6%96%B9%E8%A7%A3%E6%B3%95%EF%BC%89"><span class="toc-text">解法二：找出最长的后缀9（官方解法）</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#859-%E4%BA%B2%E5%AF%86%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-text">859. 亲密字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E6%B3%95%EF%BC%9A%E6%A8%A1%E6%8B%9F-%E5%93%88%E5%B8%8C%E8%AE%A1%E6%95%B0%EF%BC%88%E4%BD%BF%E7%94%A8%E6%95%B0%E7%BB%84%E8%A1%A8%E7%A4%BA%EF%BC%89"><span class="toc-text">解法：模拟+哈希计数（使用数组表示）</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -979,65 +981,47 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="66-加一"><a href="#66-加一" class="headerlink" title="66. 加一"></a>66. 加一</h1><p>题目地址：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/plus-one/">66. 加一</a></p>
-<h2 id="解法一：对整个数组做模拟加法（最容易想到）"><a href="#解法一：对整个数组做模拟加法（最容易想到）" class="headerlink" title="解法一：对整个数组做模拟加法（最容易想到）"></a>解法一：对整个数组做模拟加法（最容易想到）</h2><p>题目中给出的数据范围显然在转换成整数之后会超过<code>uint64</code>类型的范围，所以只能用模拟加法来解决这个问题，基本解题思路和<code>2. 两数相加</code>基本一致，注意在遍历完之后还需要看看进位标记<code>carry</code>是否为1，如果是，则需要在切片前面填上一个1再返回。</p>
-<p>这里0做了特殊判断，后来发现没有这个必要，所以把第一个<code>if</code>删了也能过。</p>
-<pre><code class="go">func plusOne(digits []int) []int &#123;
-    if digits[0] == 0 &#123;
-        return []int&#123;1&#125;
+        <h1 id="859-亲密字符串"><a href="#859-亲密字符串" class="headerlink" title="859. 亲密字符串"></a>859. 亲密字符串</h1><p>题目地址：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/buddy-strings">859. 亲密字符串</a></p>
+<h2 id="解法：模拟-哈希计数（使用数组表示）"><a href="#解法：模拟-哈希计数（使用数组表示）" class="headerlink" title="解法：模拟+哈希计数（使用数组表示）"></a>解法：模拟+哈希计数（使用数组表示）</h2><p>根据题意，如果两个字符串不满足以下条件，那么就绝对不是亲密字符串：</p>
+<ol>
+<li>长度相同；</li>
+<li>词频相同；</li>
+</ol>
+<p>如果一个字符串满足以下两个条件之一，就是亲密字符串：</p>
+<ol>
+<li>所有位置上的字符都相同，但存在一个字符出现多于一次，可以将这两个相同的字符互换；</li>
+<li>有两个位置上的字符不一样，其他位置上的字符均相同，可以将这两个不同的字符互换。</li>
+</ol>
+<p>由于go语言的数组使用<code>==</code>比较就是比较数组中的元素是否相同，所以可以使用一个长度为26的<code>int</code>类型数组模拟哈希表来记录两个字符串的词频，同时用<code>diff</code>记录两个字符串相同位置上字符不同的情况的出现次数，如果记录完成后两个数组不相等，那么不满足“词频相同这一条件”，返回<code>false</code>，然后遍历原字符串对应的数组，如果找到某个字符的出现次数大于1并且<code>diff</code>为0，那么满足条件2；如果<code>diff</code>为2，那么满足条件1，只有这两种情况返回<code>true</code>，其他情况均返回<code>false</code>。</p>
+<pre><code class="go">func buddyStrings(s string, goal string) bool &#123;
+    if len(s) != len(goal) &#123;
+        return false
     &#125;
-    carry := 1
-    for i := len(digits) - 1; i &gt;= 0; i-- &#123;
-        if digits[i] + carry &gt;= 10 &#123;
-            digits[i] = (digits[i] + carry) % 10
-            carry = 1
-        &#125; else &#123;
-            digits[i] = digits[i] + carry
-            carry = 0
+    a, b := [26]int&#123;&#125;, [26]int&#123;&#125;
+    diff := 0
+    for i := 0; i &lt; len(s); i++ &#123;
+        if s[i] != goal[i] &#123;
+            diff++
+        &#125;
+        a[s[i]-&#39;a&#39;]++
+        b[goal[i]-&#39;a&#39;]++
+    &#125;
+    if a != b &#123;
+        return false
+    &#125;
+    ok := false
+    for _, v := range a &#123;
+        if v &gt; 1 &#123;
+            ok = true
         &#125;
     &#125;
-    if carry == 1 &#123;
-        return append([]int&#123;1&#125;, digits...)
-    &#125; else &#123;
-        return digits
-    &#125;
+    return diff == 2 || (diff == 0 &amp;&amp; ok)
 &#125;
 </code></pre>
 <p>执行用时: <strong>0 ms</strong>（超过100%的Golang提交记录）</p>
-<p>内存消耗: <strong>2 MB</strong>（超过95.81%的Golang提交记录）</p>
-<p>时间复杂度：O(n)，在做模拟加法时对于长度为<code>n</code>的数组需要遍历<code>n</code>次；</p>
-<p>空间复杂度：O(1)，不考虑返回值的话只使用了常数个数的存储空间。</p>
-<h2 id="解法二：找出最长的后缀9（官方解法）"><a href="#解法二：找出最长的后缀9（官方解法）" class="headerlink" title="解法二：找出最长的后缀9（官方解法）"></a>解法二：找出最长的后缀9（官方解法）</h2><p>这个解法总体上执行效率要比解法1快一些，因为我们只需要找到数组中有多少个后缀9（即：数组的末尾有多少个9），边找边把这些9改成0，最后根据<code>p</code>的值判断接下来该执行什么操作：</p>
-<ol>
-<li><code>p == -1</code>，说明整个数组全是9，那么需要在开头填上一个1表示进一位；</li>
-<li><code>p == len(digits) - 1</code>，说明整个数组没有后缀9，那么直接把最后一位加1即可；</li>
-<li>其他的情况，说明数组中有后缀9但不全是9，那么将最后一个后缀9前面的第一个非9元素加1。</li>
-</ol>
-<p>我的写法比官方题解麻烦一点，不过应该更好懂。</p>
-<pre><code class="go">func plusOne(digits []int) []int &#123;
-    p := len(digits) - 1
-    // 该for循环会在最后一个后缀9的前一位退出,如果全是9,则会在-1处退出
-    for p = len(digits) - 1; p &gt;= 0 &amp;&amp; digits[p] == 9; p-- &#123;
-        digits[p] = 0
-    &#125;
-    // 数组全是9的情况,在切片前面加一个1返回
-    if p == -1 &#123;
-        return append([]int&#123;1&#125;, digits...)
-    &#125;
-    // 没有后缀9的情况,直接把最后一位加1返回
-    if p == len(digits) - 1 &#123;
-        digits[len(digits) - 1] += 1
-        return digits
-    &#125;
-    // 其他情况,把p对应的数加1,因为我们已经把后缀9都改成0了,所以加1后直接返回即可
-    digits[p] += 1
-    return digits
-&#125;
-</code></pre>
-<p>执行用时: <strong>0 ms</strong>（超过100%的Golang提交记录）</p>
-<p>内存消耗: <strong>2 MB</strong>（超过95.81%的Golang提交记录）</p>
-<p>时间复杂度：O(n)，遍历的次数与后缀9的个数有关；</p>
-<p>空间复杂度：O(1)，不考虑返回值的话只使用了常数个数的存储空间。</p>
+<p>内存消耗: <strong>2.4 MB</strong>（超过58.57%的Golang提交记录）</p>
+<p>时间复杂度：O(n)，对于长度为<code>n</code>的字符串需要遍历一次，还需要遍历一次长度固定为26的数组，所以时间复杂度为O(n)；</p>
+<p>空间复杂度：O(1)，只使用了常数个数的存储空间，注意本题虽然使用了两个长度为26的数组，但是这个值固定为26，不随问题规模而变化。</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎各位大佬指出任何有错误或不够清晰的表达。可以发可以邮件至 wendev1024@icloud.com 或添加微信 wendev1024 联系（请注明来源于我的个人网站）。 </span>
@@ -1047,12 +1031,12 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>66.加一</p>
-    <p><span class="copy-title">字数:</span><span class="post-count">772</span></p>
+    <p><span class="copy-title">文章标题:</span>859.亲密字符串</p>
+    <p><span class="copy-title">字数:</span><span class="post-count">579</span></p>
     <p><span class="copy-title">本文作者:</span><a  title="江文">江文</a></p>
-    <p><span class="copy-title">发布时间:</span>2021-11-22, 21:14:11</p>
-    <p><span class="copy-title">最后更新:</span>2021-11-22, 21:16:11</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2021/11/22/66-%E5%8A%A0%E4%B8%80/" title="66.加一">http://www.wendev.site/2021/11/22/66-%E5%8A%A0%E4%B8%80/</a>
+    <p><span class="copy-title">发布时间:</span>2021-11-23, 17:39:52</p>
+    <p><span class="copy-title">最后更新:</span>2021-11-23, 17:52:14</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2021/11/23/859-%E4%BA%B2%E5%AF%86%E5%AD%97%E7%AC%A6%E4%B8%B2/" title="859.亲密字符串">http://www.wendev.site/2021/11/23/859-%E4%BA%B2%E5%AF%86%E5%AD%97%E7%AC%A6%E4%B8%B2/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">&#34;署名-非商用-相同方式共享 4.0&#34;</a> 转载请保留原文链接及作者。
     </p>
