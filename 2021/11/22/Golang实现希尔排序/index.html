@@ -6,21 +6,21 @@
   <meta name="keywords" content=" 算法 , Golang , 排序 , 希尔排序 ">
   <meta name="description" content="Golang实现希尔排序 | 江文 - Golang | Back-End Develop | Cloud Native">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="559. N叉树的最大深度题目地址：559. N叉树的最大深度 解法1：深度优先搜索（DFS）+递归最容易想到的解法当然是递归+DFS，即对所有从根结点到某一叶子结点的路径进行遍历并求出路径长，所有路径中最长的就是我们要求的最大深度。 注意递归条件：  空树的深度为0； 叶子结点的深度为1； 其余结点的深度为其子结点的深度+1。  func maxDepth(root *Node) int &amp;#1">
+<meta name="description" content="104. 二叉树的最大深度题目地址：104. 二叉树的最大深度 注意：本题是 559. N叉树的最大深度 的简化版。 解法1：深度优先搜索（DFS）对于这道题，最容易想到的解法就是递归DFS。递归条件如下：  空树的最大深度为0； 叶子结点的最大深度为1（后来经测试，本条可以省略，不会出现问题）； 其他结点的最大深度 &#x3D; max(左子树的最大深度，右子树的最大深度) + 1。  func maxD">
 <meta property="og:type" content="article">
-<meta property="og:title" content="559.N叉树的最大深度">
-<meta property="og:url" content="http://www.wendev.site/2021/11/23/559-N%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%A4%A7%E6%B7%B1%E5%BA%A6/index.html">
+<meta property="og:title" content="104.二叉树的最大深度">
+<meta property="og:url" content="http://www.wendev.site/2021/11/23/104-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%A4%A7%E6%B7%B1%E5%BA%A6/index.html">
 <meta property="og:site_name" content="江文 - Golang | Back-End Develop | Cloud Native">
-<meta property="og:description" content="559. N叉树的最大深度题目地址：559. N叉树的最大深度 解法1：深度优先搜索（DFS）+递归最容易想到的解法当然是递归+DFS，即对所有从根结点到某一叶子结点的路径进行遍历并求出路径长，所有路径中最长的就是我们要求的最大深度。 注意递归条件：  空树的深度为0； 叶子结点的深度为1； 其余结点的深度为其子结点的深度+1。  func maxDepth(root *Node) int &amp;#1">
+<meta property="og:description" content="104. 二叉树的最大深度题目地址：104. 二叉树的最大深度 注意：本题是 559. N叉树的最大深度 的简化版。 解法1：深度优先搜索（DFS）对于这道题，最容易想到的解法就是递归DFS。递归条件如下：  空树的最大深度为0； 叶子结点的最大深度为1（后来经测试，本条可以省略，不会出现问题）； 其他结点的最大深度 &#x3D; max(左子树的最大深度，右子树的最大深度) + 1。  func maxD">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-11-23T10:13:19.000Z">
-<meta property="article:modified_time" content="2021-11-23T10:15:07.002Z">
+<meta property="article:published_time" content="2021-11-23T10:23:56.000Z">
+<meta property="article:modified_time" content="2021-11-23T10:34:32.022Z">
 <meta property="article:author" content="江文">
 <meta property="article:tag" content="LeetCode">
 <meta property="article:tag" content="算法">
+<meta property="article:tag" content="二叉树">
 <meta property="article:tag" content="递归">
 <meta property="article:tag" content="DFS">
-<meta property="article:tag" content="多叉树">
 <meta property="article:tag" content="BFS">
 <meta name="twitter:card" content="summary">
 
@@ -144,7 +144,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(46)</small>
+                <small>(47)</small>
             
         </div>
     </li>
@@ -169,7 +169,7 @@
                     <div data-rel="LeetCode">
                         
                         LeetCode
-                        <small>(32)</small>
+                        <small>(33)</small>
                         
                     </div>
                     
@@ -313,8 +313,8 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="46">
-<input type="hidden" id="yelog_site_word_count" value="52.1k">
+<input type="hidden" id="yelog_site_posts_number" value="47">
+<input type="hidden" id="yelog_site_word_count" value="52.7k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -539,6 +539,14 @@
     </div>
     
     <nav id="title-list-nav">
+        
+        <a  class="全部文章 LeetCode "
+           href="/2021/11/23/104-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%A4%A7%E6%B7%B1%E5%BA%A6/"
+           data-tag="LeetCode,算法,二叉树,递归,DFS,BFS"
+           data-author="" >
+            <span class="post-title" title="104.二叉树的最大深度">104.二叉树的最大深度</span>
+            <span class="post-date" title="2021-11-23 18:23:56">2021/11/23</span>
+        </a>
         
         <a  class="全部文章 LeetCode "
            href="/2021/11/23/559-N%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%A4%A7%E6%B7%B1%E5%BA%A6/"

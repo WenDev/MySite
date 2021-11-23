@@ -4,6 +4,41 @@
   
     
     <entry>
+      <title>104.二叉树的最大深度</title>
+      <link href="/2021/11/23/104-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%A4%A7%E6%B7%B1%E5%BA%A6/"/>
+      <url>/2021/11/23/104-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%A4%A7%E6%B7%B1%E5%BA%A6/</url>
+      
+        <content type="html"><![CDATA[<h1 id="104-二叉树的最大深度"><a href="#104-二叉树的最大深度" class="headerlink" title="104. 二叉树的最大深度"></a>104. 二叉树的最大深度</h1><p>题目地址：<a href="https://leetcode-cn.com/problems/maximum-depth-of-binary-tree">104. 二叉树的最大深度</a></p><p>注意：<strong>本题是 559. N叉树的最大深度 的简化版。</strong></p><h2 id="解法1：深度优先搜索（DFS）"><a href="#解法1：深度优先搜索（DFS）" class="headerlink" title="解法1：深度优先搜索（DFS）"></a>解法1：深度优先搜索（DFS）</h2><p>对于这道题，最容易想到的解法就是递归DFS。递归条件如下：</p><ol><li>空树的最大深度为0；</li><li>叶子结点的最大深度为1（后来经测试，本条可以省略，不会出现问题）；</li><li>其他结点的最大深度 = max(左子树的最大深度，右子树的最大深度) + 1。</li></ol><pre><code class="go">func maxDepth(root *TreeNode) int &#123;    // 空树的深度为0    if root == nil &#123;        return 0    &#125;    // 叶子结点的深度为1    if root.Left == nil &amp;&amp; root.Right == nil &#123;        return 1    &#125;    // 其他结点的深度为其深度最大的子结点的深度+1    ans := 1    ld := maxDepth(root.Left)    rd := maxDepth(root.Right)    if ld &gt; ans &#123;        ans = ld    &#125;    if rd &gt; ans &#123;        ans = rd    &#125;    return ans + 1&#125;</code></pre><p>执行用时: <strong>4 ms</strong>（超过88.65%的Golang提交记录）</p><p>内存消耗: <strong>4.2 MB</strong>（超过29.74%的Golang提交记录）</p><p>时间复杂度：O(n)，二叉树中的每个结点都会被遍历一次；</p><p>空间复杂度：O(d)，来自递归工作栈，其中d为二叉树的最大深度。</p><h2 id="解法2：广度优先搜索（BFS）"><a href="#解法2：广度优先搜索（BFS）" class="headerlink" title="解法2：广度优先搜索（BFS）"></a>解法2：广度优先搜索（BFS）</h2><p>这道题可以使用类似层序遍历的BFS算法求解，但是需要做一些改变：每次把队列缓存后清空队列，再遍历已缓存的队列，将其中的结点的子结点都加入到队列中并把答案加1，队列为空时就得到了二叉树的最大深度。</p><pre><code class="go">func maxDepth(root *TreeNode) int &#123;    // 空树的深度为0    if root == nil &#123;        return 0    &#125;    // BFS    queue := []*TreeNode&#123;root&#125;    depth := 0    for len(queue) &gt; 0 &#123;        tmp := queue        queue = []*TreeNode&#123;&#125;        // 遍历每一层的结点并将其子结点入队        for _, v := range tmp &#123;            if v.Left != nil &#123;                queue = append(queue, v.Left)            &#125;            if v.Right != nil &#123;                queue = append(queue, v.Right)            &#125;        &#125;        depth++    &#125;    return depth&#125;</code></pre><p>执行用时: <strong>0 ms</strong>（超过100%的Golang提交记录）</p><p>内存消耗: <strong>4.2 MB</strong>（超过29.74%的Golang提交记录）</p><p>时间复杂度：O(n)，二叉树中的每个结点都会被遍历一次；</p><p>空间复杂度：O(n)，来自队列，在只有根结点的情况下队列的长度与树中结点个数一致。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> LeetCode </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> LeetCode </tag>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 二叉树 </tag>
+            
+            <tag> 递归 </tag>
+            
+            <tag> DFS </tag>
+            
+            <tag> BFS </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>559.N叉树的最大深度</title>
       <link href="/2021/11/23/559-N%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%A4%A7%E6%B7%B1%E5%BA%A6/"/>
       <url>/2021/11/23/559-N%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%A4%A7%E6%B7%B1%E5%BA%A6/</url>
