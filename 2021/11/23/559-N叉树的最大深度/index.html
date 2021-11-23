@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Golang实现快速排序 | 江文 - Golang | Back-End Develop | Cloud Native</title>
-  <meta name="keywords" content=" 算法 , Golang , 排序 , 快速排序 ">
-  <meta name="description" content="Golang实现快速排序 | 江文 - Golang | Back-End Develop | Cloud Native">
+  <title>559.N叉树的最大深度 | 江文 - Golang | Back-End Develop | Cloud Native</title>
+  <meta name="keywords" content=" LeetCode , 算法 , 递归 , DFS , 多叉树 , BFS ">
+  <meta name="description" content="559.N叉树的最大深度 | 江文 - Golang | Back-End Develop | Cloud Native">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="559. N叉树的最大深度题目地址：559. N叉树的最大深度 解法1：深度优先搜索（DFS）+递归最容易想到的解法当然是递归+DFS，即对所有从根结点到某一叶子结点的路径进行遍历并求出路径长，所有路径中最长的就是我们要求的最大深度。 注意递归条件：  空树的深度为0； 叶子结点的深度为1； 其余结点的深度为其子结点的深度+1。  func maxDepth(root *Node) int &amp;#1">
 <meta property="og:type" content="article">
@@ -926,9 +926,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-Golang实现快速排序" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-559-N叉树的最大深度" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Golang实现快速排序</h1>
+        <h1 class="article-title">559.N叉树的最大深度</h1>
     
     <div class="article-meta">
         
@@ -938,7 +938,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="算法">算法</a>
+            <a  data-rel="LeetCode">LeetCode</a>
             
         </span>
         
@@ -946,25 +946,29 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
+            <a class="color4">LeetCode</a>
+            
             <a class="color3">算法</a>
             
-            <a class="color2">Golang</a>
+            <a class="color3">递归</a>
             
-            <a class="color3">排序</a>
+            <a class="color4">DFS</a>
             
-            <a class="color5">快速排序</a>
+            <a class="color4">多叉树</a>
+            
+            <a class="color4">BFS</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-11-22 22:00:42'>2021-11-22 21:57</time>
+            发布时间 : <time class="date" title='最后更新: 2021-11-23 18:15:07'>2021-11-23 18:13</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:560</span>
+        <span>字数:561</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -983,7 +987,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Golang%E5%AE%9E%E7%8E%B0%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F"><span class="toc-text">Golang实现快速排序</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%E7%9A%84%E6%80%9D%E6%83%B3"><span class="toc-text">快速排序的思想</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Go%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F"><span class="toc-text">Go语言实现快速排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="toc-text">快速排序的性质</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#559-N%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%A4%A7%E6%B7%B1%E5%BA%A6"><span class="toc-text">559. N叉树的最大深度</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E6%B3%951%EF%BC%9A%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%EF%BC%88DFS%EF%BC%89-%E9%80%92%E5%BD%92"><span class="toc-text">解法1：深度优先搜索（DFS）+递归</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E6%B3%952%EF%BC%9A%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%EF%BC%88BFS%EF%BC%89"><span class="toc-text">解法2：广度优先搜索（BFS）</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -999,64 +1003,65 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Golang实现快速排序"><a href="#Golang实现快速排序" class="headerlink" title="Golang实现快速排序"></a>Golang实现快速排序</h1><h2 id="快速排序的思想"><a href="#快速排序的思想" class="headerlink" title="快速排序的思想"></a>快速排序的思想</h2><p>快速排序的核心思想是划分，即选定一个基准，将数组划分为两部分：基准左边的部分都小于它，而右边的部分都大于它。</p>
-<p>详细步骤如下：</p>
+        <h1 id="559-N叉树的最大深度"><a href="#559-N叉树的最大深度" class="headerlink" title="559. N叉树的最大深度"></a>559. N叉树的最大深度</h1><p>题目地址：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/maximum-depth-of-n-ary-tree">559. N叉树的最大深度</a></p>
+<h2 id="解法1：深度优先搜索（DFS）-递归"><a href="#解法1：深度优先搜索（DFS）-递归" class="headerlink" title="解法1：深度优先搜索（DFS）+递归"></a>解法1：深度优先搜索（DFS）+递归</h2><p>最容易想到的解法当然是递归+DFS，即对所有从根结点到某一叶子结点的路径进行遍历并求出路径长，所有路径中最长的就是我们要求的最大深度。</p>
+<p>注意递归条件：</p>
 <ol>
-<li>选定一个基准，比如数组中的第一个数；</li>
-<li>使用两个指针<code>low</code>和<code>high</code>指向数组的第一个位置和最后一个位置，当<code>nums[high]</code>大于基准时让<code>high</code>向左走，当<code>nums[low]</code>小于基准且<code>low &lt; high</code>时让<code>low</code>向右走，跳出循环时<code>low</code>指向的是从左向右数第一个大于基准的数，而<code>high</code>指向了从右向左数第一个小于基准的数，将这两个数交换；</li>
-<li>当<code>low</code>和<code>high</code>相遇时退出循环，将基准与该数进行交换；</li>
-<li>递归地对基准的左右两侧进行排序，直到数组全部排完。</li>
+<li>空树的深度为0；</li>
+<li>叶子结点的深度为1；</li>
+<li>其余结点的深度为其子结点的深度+1。</li>
 </ol>
-<h2 id="Go语言实现快速排序"><a href="#Go语言实现快速排序" class="headerlink" title="Go语言实现快速排序"></a>Go语言实现快速排序</h2><pre><code class="go">package main
-
-import &quot;fmt&quot;
-
-func main() &#123;
-    nums := []int&#123;4, 5, 7, 1, 2, 9, 0, 8, 3, 1, 6, 2, 1, 0&#125;
-    quickSort(nums, 0, len(nums)-1)
-    fmt.Println(nums)
-&#125;
-
-func quickSort(nums []int, start, end int) &#123;
-    if start &lt; end &#123;
-        pivot := partition(nums, start, end)
-        quickSort(nums, start, pivot-1)
-        quickSort(nums, pivot+1, end)
+<pre><code class="go">func maxDepth(root *Node) int &#123;
+    // 空树的深度为0
+    if root == nil &#123;
+        return 0
     &#125;
-&#125;
-
-func partition(nums []int, start, end int) int &#123;
-    low, high := start, end
-    // 以数组的第一个元素作为基准
-    pivot := nums[low]
-    for low &lt; high &#123;
-        // 找到第一个小于基准的元素
-        // 因为基准选的是数组的第一个元素,所以这里不会越界
-        for nums[high] &gt; pivot &#123;
-            high--
-        &#125;
-        // 找到第一个大于基准的元素
-        // 这里可能会越界,所以需要判断一下
-        for nums[low] &lt;= pivot &amp;&amp; low &lt; high &#123;
-            low++
-        &#125;
-        if low &gt;= high &#123;
-            break
-        &#125;
-        // 交换两个元素
-        nums[low], nums[high] = nums[high], nums[low]
+    // 叶子结点的深度为1
+    if root.Children == nil || len(root.Children) == 0 &#123;
+        return 1
     &#125;
-    // 跳出循环的时候两个指针指向了同一个位置,把基准填到该位置
-    nums[start], nums[low] = nums[low], nums[start]
-    // 返回基准的位置
-    return low
+    max := 1
+    for i := 0; i &lt; len(root.Children); i++ &#123;
+        cur := maxDepth(root.Children[i]) + 1
+        if cur &gt; max &#123;
+            max = cur
+        &#125;
+    &#125;
+    return max
 &#125;
 </code></pre>
-<h2 id="快速排序的性质"><a href="#快速排序的性质" class="headerlink" title="快速排序的性质"></a>快速排序的性质</h2><ul>
-<li>时间复杂度：<code>O(nlogn)</code>（平均、最好），<code>O(n^2)</code>最坏；</li>
-<li>空间复杂度：<code>O(logn)</code>，来自递归调用栈；</li>
-<li>稳定性：不稳定，比如<code>3, 7, 7, 1, 1</code>这个序列的第二个1就会被换到第一个1前面去。</li>
-</ul>
+<p>执行用时: <strong>4 ms</strong>（超过100%的Golang提交记录）</p>
+<p>内存消耗: <strong>3.2 MB</strong>（超过100%的Golang提交记录）</p>
+<p>时间复杂度：O(n)，每个结点都需要被遍历一次；</p>
+<p>空间复杂度：O(d)，来自递归工作栈，其中d为树的最大高度。</p>
+<h2 id="解法2：广度优先搜索（BFS）"><a href="#解法2：广度优先搜索（BFS）" class="headerlink" title="解法2：广度优先搜索（BFS）"></a>解法2：广度优先搜索（BFS）</h2><p>另一种方法是类似于层序遍历的BFS算法。每次把本层的所有结点入队，暂存队列后清空队列，遍历被暂存的队列，将其子结点加入到队列中（这样可以保证每次队列中都只有某一层的结点）并将答案加1，队列为空时便得到了树的最大深度。</p>
+<pre><code class="go">func maxDepth(root *Node) int &#123;
+    // 空树的深度为0
+    if root == nil &#123;
+        return 0
+    &#125;
+    ans := 0
+    queue := []*Node&#123;root&#125;
+    for len(queue) &gt; 0 &#123;
+        // 分层进行BFS
+        // 把队列暂存下来
+        tmp := queue
+        // 清空队列
+        queue = []*Node&#123;&#125;
+        // 把原队列中所有结点的子结点入队
+        for _, v := range tmp &#123;
+            queue = append(queue, v.Children...)
+        &#125;
+        // 层数+1
+        ans++
+    &#125;
+    return ans
+&#125;
+</code></pre>
+<p>执行用时: <strong>0 ms</strong>（超过100%的Golang提交记录）</p>
+<p>内存消耗: <strong>3.5 MB</strong>（超过10.04%的Golang提交记录）</p>
+<p>时间复杂度：O(n)，每个结点都需要被遍历一次；</p>
+<p>空间复杂度：O(n)，来自队列，在最坏情况下（多叉树的深度为2）队列长度最长，为n-1。</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎各位大佬指出任何有错误或不够清晰的表达。可以发可以邮件至 wendev1024@icloud.com 或添加微信 wendev1024 联系（请注明来源于我的个人网站）。 </span>
@@ -1066,12 +1071,12 @@ func partition(nums []int, start, end int) int &#123;
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>Golang实现快速排序</p>
-    <p><span class="copy-title">字数:</span><span class="post-count">560</span></p>
+    <p><span class="copy-title">文章标题:</span>559.N叉树的最大深度</p>
+    <p><span class="copy-title">字数:</span><span class="post-count">561</span></p>
     <p><span class="copy-title">本文作者:</span><a  title="江文">江文</a></p>
-    <p><span class="copy-title">发布时间:</span>2021-11-22, 21:57:29</p>
-    <p><span class="copy-title">最后更新:</span>2021-11-22, 22:00:42</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2021/11/22/Golang%E5%AE%9E%E7%8E%B0%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" title="Golang实现快速排序">http://www.wendev.site/2021/11/22/Golang%E5%AE%9E%E7%8E%B0%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/</a>
+    <p><span class="copy-title">发布时间:</span>2021-11-23, 18:13:19</p>
+    <p><span class="copy-title">最后更新:</span>2021-11-23, 18:15:07</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2021/11/23/559-N%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%A4%A7%E6%B7%B1%E5%BA%A6/" title="559.N叉树的最大深度">http://www.wendev.site/2021/11/23/559-N%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%A4%A7%E6%B7%B1%E5%BA%A6/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">&#34;署名-非商用-相同方式共享 4.0&#34;</a> 转载请保留原文链接及作者。
     </p>
