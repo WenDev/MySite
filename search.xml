@@ -4,6 +4,97 @@
   
     
     <entry>
+      <title>26.删除有序数组中的重复项</title>
+      <link href="/2021/11/27/26-%E5%88%A0%E9%99%A4%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9/"/>
+      <url>/2021/11/27/26-%E5%88%A0%E9%99%A4%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9/</url>
+      
+        <content type="html"><![CDATA[<h1 id="26-删除有序数组中的重复项"><a href="#26-删除有序数组中的重复项" class="headerlink" title="26. 删除有序数组中的重复项"></a>26. 删除有序数组中的重复项</h1><p>题目地址：<a href="https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/">26. 删除有序数组中的重复项</a></p><h2 id="解法：双指针"><a href="#解法：双指针" class="headerlink" title="解法：双指针"></a>解法：双指针</h2><p>数组是有序的，这说明数组中重复的元素都是相邻的，所以可以使用双指针来删除这些重复的元素。首先让两个指针都指向数组的第二个元素（下标为1），然后使用快指针遍历数组，遇到两个相邻且不重复的元素则将第二个元素复制到慢指针指向的位置并让慢指针向前一步，否则（遇到两个相邻且重复的元素）就什么也不做，直接让快指针向前走一步，直到快指针走到数组末尾，此时慢指针指向的位置就是新数组的末尾，返回这个值即可。</p><p>例如，测试用例<code>[1, 1, 2]</code>中，第1个元素<code>1</code>和第2个元素<code>1</code>是相等的，所以不需要复制，快指针直接向前走一步，而第2个元素<code>1</code>和第三个元素<code>2</code>不相等，所以把第三个元素复制到第二个位置即可，此时数组为<code>[1, 2, 2]</code>并且快指针走到数组末尾、慢指针指向第2个元素，返回慢指针指向的位置的下标1即可。</p><pre><code class="go">func removeDuplicates(nums []int) int &#123;    if len(nums) == 0 &#123;        return 0    &#125;    s, f := 1, 1    for ; f &lt; len(nums); f++ &#123;        if nums[f] != nums[f-1] &#123;            nums[s] = nums[f]            s++        &#125;    &#125;    return s&#125;</code></pre><p>执行用时: <strong>8 ms</strong>（超过83.57%的Golang提交记录）</p><p>内存消耗: <strong>4.3 MB</strong>（超过99.97%的Golang提交记录）</p><p>时间复杂度：O(n)，需要遍历数组一次；</p><p>空间复杂度：O(1)，只使用了常数个数的存储空间。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> LeetCode </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> LeetCode </tag>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 双指针 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>27.移动元素</title>
+      <link href="/2021/11/27/27-%E7%A7%BB%E5%8A%A8%E5%85%83%E7%B4%A0/"/>
+      <url>/2021/11/27/27-%E7%A7%BB%E5%8A%A8%E5%85%83%E7%B4%A0/</url>
+      
+        <content type="html"><![CDATA[<h1 id="27-移动元素"><a href="#27-移动元素" class="headerlink" title="27. 移动元素"></a>27. 移动元素</h1><p>题目地址：<a href="https://leetcode-cn.com/problems/remove-element">27. 移动元素</a></p><h2 id="解法：双指针"><a href="#解法：双指针" class="headerlink" title="解法：双指针"></a>解法：双指针</h2><p>由于题目要求原地移除所有符合要求的元素，所以可以使用快慢双指针来解决这个问题。开始之前两个指针都指向数组的第一个元素，然后使用快指针遍历整个数组，遇到与给定元素不相同的元素就复制到慢指针指向的位置，然后让慢指针向前走一步。循环结束时慢指针指向的数组下标就是删除完成后的数组长度，返回这个值即可。</p><pre><code class="go">func removeElement(nums []int, val int) int &#123;    if len(nums) == 0 &#123;        return 0    &#125;    s, f := 0, 0    for ; f &lt; len(nums); f++ &#123;        if nums[f] != val &#123;            nums[s] = nums[f]            s++        &#125;    &#125;    return s&#125;</code></pre><p>执行用时: <strong>0 ms</strong>（超过100%的Golang提交记录）</p><p>内存消耗: <strong>2.1 MB</strong>（超过100%的Golang提交记录）</p><p>时间复杂度：O(n)，需要遍历数组一次；</p><p>空间复杂度：O(1)，只使用了常数个数的存储空间。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> LeetCode </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> LeetCode </tag>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 双指针 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>700.二叉搜索树中的搜索</title>
+      <link href="/2021/11/27/700-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%AD%E7%9A%84%E6%90%9C%E7%B4%A2/"/>
+      <url>/2021/11/27/700-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%AD%E7%9A%84%E6%90%9C%E7%B4%A2/</url>
+      
+        <content type="html"><![CDATA[<h1 id="700-二叉搜索树中的搜索"><a href="#700-二叉搜索树中的搜索" class="headerlink" title="700. 二叉搜索树中的搜索"></a>700. 二叉搜索树中的搜索</h1><p>题目地址：<a href="https://leetcode-cn.com/problems/search-in-a-binary-search-tree/">700. 二叉搜索树中的搜索</a></p><h2 id="解法1：循环（效率更高）"><a href="#解法1：循环（效率更高）" class="headerlink" title="解法1：循环（效率更高）"></a>解法1：循环（效率更高）</h2><p>二叉搜索树（BST）的性质大家想必已经了解了：一个结点的所有左子节点都小于它本身，右子结点都大于它本身，那么按照这个方法一直搜索下去，直到搜索到要搜索的值或者搜索到空结点为止。</p><p>为了节省空间，我们可以用一个指针指向二叉搜索树的根结点，如果查找的目标值等于当前结点的值，则返回这个结点表示查找成功，如果目标值小于当前所指向的结点，就令指针指向它的左孩子，否则令指针指向它的右孩子，直到搜索到目标值或者指针走到空结点为止。</p><pre><code class="go">/** * Definition for a binary tree node. * type TreeNode struct &#123; *     Val int *     Left *TreeNode *     Right *TreeNode * &#125; */func searchBST(root *TreeNode, val int) *TreeNode &#123;    if root == nil &#123;        return nil    &#125;    p := root    for p != nil &#123;        if val == p.Val &#123;            return p        &#125; else if val &lt; p.Val &#123;            p = p.Left        &#125; else &#123; // val &gt; p.Val            p = p.Right        &#125;    &#125;    return nil&#125;</code></pre><p>执行用时: <strong>24 ms</strong>（超过61.94%的Golang提交记录）；</p><p>内存消耗: <strong>7.2 MB</strong>（超过40.53%的Golang提交记录）；</p><p>时间复杂度：O(n)，如果二叉搜索树是全都只有左/右子结点的单支树，那么当要查找的值不在树中时，二叉搜索树的每一个结点都需要被遍历一遍；</p><p>空间复杂度：O(1)，只使用了常数个数的存储空间。</p><h2 id="解法2：递归（代码更简单）"><a href="#解法2：递归（代码更简单）" class="headerlink" title="解法2：递归（代码更简单）"></a>解法2：递归（代码更简单）</h2><p>虽然我在做这道题的时候第一反应就是循环，但是递归确实是一种对新手来说更友好的方法，它的代码更加简单，也更易懂。本题的递归条件如下：</p><ol><li>递归边界：空树，返回nil；</li><li>如果当前结点的值等于要查找的值，返回当前结点；</li><li>如果当前结点的值大于要查找的值，递归查找左子树；</li><li>如果当前结点的值小于要查找的值，递归查找右子树；</li></ol><pre><code class="go">/** * Definition for a binary tree node. * type TreeNode struct &#123; *     Val int *     Left *TreeNode *     Right *TreeNode * &#125; */func searchBST(root *TreeNode, val int) *TreeNode &#123;    if root == nil &#123;        return nil    &#125;    if root.Val == val &#123;        return root    &#125; else if val &lt; root.Val &#123;        return searchBST(root.Left, val)    &#125; else &#123;        return searchBST(root.Right, val)    &#125;&#125;</code></pre><p>执行用时: <strong>24 ms</strong>（超过60.83%的Golang提交记录）；</p><p>内存消耗: <strong>7.2 MB</strong>（超过40.88%的Golang提交记录）；</p><p>时间复杂度：O(n)，如果二叉搜索树是全都只有左/右子结点的单支树，那么当要查找的值不在树中时，二叉搜索树的每一个结点都需要被遍历一遍；</p><p>空间复杂度：O(n)，来自递归工作栈，在上述最坏情况下栈的深度为树中结点个数。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> LeetCode </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> LeetCode </tag>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 二叉树 </tag>
+            
+            <tag> 递归 </tag>
+            
+            <tag> BST </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>104.二叉树的最大深度</title>
       <link href="/2021/11/23/104-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%A4%A7%E6%B7%B1%E5%BA%A6/"/>
       <url>/2021/11/23/104-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%A4%A7%E6%B7%B1%E5%BA%A6/</url>
