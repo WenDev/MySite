@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>594.最长和谐子序列 | 江文 - Golang | Back-End Develop | Cloud Native</title>
-  <meta name="keywords" content=" LeetCode , 哈希表 , 算法 , 滑动窗口 ">
-  <meta name="description" content="594.最长和谐子序列 | 江文 - Golang | Back-End Develop | Cloud Native">
+  <title>733.图像渲染 | 江文 - Golang | Back-End Develop | Cloud Native</title>
+  <meta name="keywords" content=" LeetCode , 算法 , DFS , BFS ">
+  <meta name="description" content="733.图像渲染 | 江文 - Golang | Back-End Develop | Cloud Native">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="136. 只出现一次的数字题目地址：136. 只出现一次的数字 解法1：位运算（最优解）异或运算具有如下的性质：  x ^ x &#x3D;&#x3D; 0； x ^ 0 &#x3D;&#x3D; x。  利用这条性质，我们可以将数组中的元素全部异或，由于异或运算的第一条性质，所有出现两次的数字都可以相互抵消，由于异或运算的第二条性质，最后剩下的那个没有被抵消的数字就是只出现一次的数字。 func singleNumber(nums [">
 <meta property="og:type" content="article">
@@ -992,9 +992,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-594-最长和谐子序列" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-733-图像渲染" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">594.最长和谐子序列</h1>
+        <h1 class="article-title">733.图像渲染</h1>
     
     <div class="article-meta">
         
@@ -1014,23 +1014,23 @@
             
             <a class="color4">LeetCode</a>
             
-            <a class="color4">哈希表</a>
-            
             <a class="color3">算法</a>
             
-            <a class="color5">滑动窗口</a>
+            <a class="color4">DFS</a>
+            
+            <a class="color4">BFS</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-11-22 21:39:15'>2021-11-22 21:38</time>
+            发布时间 : <time class="date" title='最后更新: 2021-11-30 21:27:10'>2021-11-30 21:26</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:687</span>
+        <span>字数:731</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1049,7 +1049,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#594-%E6%9C%80%E9%95%BF%E5%92%8C%E8%B0%90%E5%AD%90%E5%BA%8F%E5%88%97"><span class="toc-text">594. 最长和谐子序列</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E6%B3%95%E4%B8%80%EF%BC%9A%E5%93%88%E5%B8%8C%E8%A1%A8%EF%BC%88%E7%A9%BA%E9%97%B4%E6%8D%A2%E6%97%B6%E9%97%B4%EF%BC%8C%E6%9C%80%E5%AE%B9%E6%98%93%E6%83%B3%E5%88%B0%EF%BC%89"><span class="toc-text">解法一：哈希表（空间换时间，最容易想到）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E6%B3%95%E4%BA%8C%EF%BC%9A%E6%8E%92%E5%BA%8F-%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%EF%BC%88%E6%97%B6%E9%97%B4%E6%8D%A2%E7%A9%BA%E9%97%B4%EF%BC%89"><span class="toc-text">解法二：排序+滑动窗口（时间换空间）</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#733-%E5%9B%BE%E5%83%8F%E6%B8%B2%E6%9F%93"><span class="toc-text">733. 图像渲染</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E6%B3%951%EF%BC%9ABFS"><span class="toc-text">解法1：BFS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E6%B3%952%EF%BC%9ADFS"><span class="toc-text">解法2：DFS</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1065,54 +1065,81 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="594-最长和谐子序列"><a href="#594-最长和谐子序列" class="headerlink" title="594. 最长和谐子序列"></a>594. 最长和谐子序列</h1><p>题目地址：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-harmonious-subsequence">594. 最长和谐子序列</a></p>
-<h2 id="解法一：哈希表（空间换时间，最容易想到）"><a href="#解法一：哈希表（空间换时间，最容易想到）" class="headerlink" title="解法一：哈希表（空间换时间，最容易想到）"></a>解法一：哈希表（空间换时间，最容易想到）</h2><p>看到这道题的时候本能的反应就是哈希表。具体来说是遍历数组时将数组中的每个元素及其出现次数记录到哈希表中，然后再次遍历数组，判断该数减1的数是否在哈希表中，如果在，那么将它们的出现次数相加就能得到一个和谐子序列的长度，再将其与答案比较（答案初始化为1），如果该和谐子序列的长度比答案更长，就将答案更新为该长度。</p>
-<pre><code class="go">func findLHS(nums []int) int &#123;
-    m := make(map[int]int)
-    for _, n := range nums &#123;
-        if _, ok := m[n]; !ok &#123;
-            m[n] = 1
-        &#125; else &#123;
-            m[n] += 1
-        &#125;
+        <h1 id="733-图像渲染"><a href="#733-图像渲染" class="headerlink" title="733. 图像渲染"></a>733. 图像渲染</h1><p>题目地址：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/flood-fill/submissions/">733. 图像渲染</a></p>
+<h2 id="解法1：BFS"><a href="#解法1：BFS" class="headerlink" title="解法1：BFS"></a>解法1：BFS</h2><p>首先将起点更改颜色后入队，然后当队列不空时，每次将一个像素点出队，然后将其周围的四个像素点更改颜色并入队（注意边界条件的判断，只有在图像范围内的像素点才能入队），队列为空时算法结束。</p>
+<pre><code class="go">// r,c代表与当前像素点相邻的四个像素点与当前像素点的坐标之差
+var (
+    r = []int&#123;1, 0, 0, -1&#125;
+    c = []int&#123;0, -1, 1, 0&#125;
+)
+
+type pixel struct &#123;
+    r, c int
+&#125;
+
+func floodFill(image [][]int, sr int, sc int, newColor int) [][]int &#123;
+    curColor := image[sr][sc]
+    if curColor == newColor &#123;
+        return image
     &#125;
-    ans := 0
-    for _, n := range nums &#123;
-        if _, ok := m[n-1]; ok &#123;
-            if m[n]+m[n-1] &gt; ans &#123;
-                ans = m[n] + m[n-1]
+    // 得到图像的宽和高
+    w, h := len(image[0]), len(image)
+    queue := make([]pixel, 0)
+    // 将像素的初始位置更改颜色并加入队列
+    queue = append(queue, pixel&#123;r: sr, c: sc&#125;)
+    image[sr][sc] = newColor
+    // 开始BFS算法
+    for len(queue) &gt; 0 &#123;
+        // 每次将一个像素点出队
+        p := queue[len(queue)-1]
+        queue = queue[:len(queue)-1]
+        // 处理该像素相邻的四个像素点
+        for i := 0; i &lt; 4; i++ &#123;
+            rr, cc := p.r + r[i], p.c + c[i]
+            if rr &gt;= 0 &amp;&amp; cc &gt;= 0 &amp;&amp; rr &lt; h &amp;&amp; cc &lt; w &amp;&amp; image[rr][cc] == curColor &#123;
+                queue = append(queue, pixel&#123;r: rr, c: cc&#125;)
+                image[rr][cc] = newColor
             &#125;
         &#125;
     &#125;
-    return ans
+    return image
 &#125;
 </code></pre>
-<p>执行用时: <strong>56 ms</strong>（超过54.82%的Golang提交记录）</p>
-<p>内存消耗: <strong>7.2 MB</strong>（超过28.51%的Golang提交记录）</p>
-<p>时间复杂度：O(n)，在整个过程中需要遍历两次数组；</p>
-<p>空间复杂度：O(n)，最坏情况下数组中所有元素都不相同，此时哈希表的长度为数组长度。</p>
-<h2 id="解法二：排序-滑动窗口（时间换空间）"><a href="#解法二：排序-滑动窗口（时间换空间）" class="headerlink" title="解法二：排序+滑动窗口（时间换空间）"></a>解法二：排序+滑动窗口（时间换空间）</h2><p>其实在思考的过程中也想到可以用滑动窗口来解，但是没有想到排序这一步。</p>
-<p>首先对数组排序，然后使用一个指针<code>start</code>标识滑窗的起点，另一个指针<code>i</code>标识终点。当两个指针没有相遇时，如果滑窗的终点减去滑窗的起点的值大于1，就将滑窗的起点应向前移动，这个移动过程会在指针相遇或者滑窗起点与滑窗终点的差值小于等于1时结束。如果差值等于1，那么我们就找到了一个和谐子序列。记录最大值的方法与哈希表解法相同。</p>
-<pre><code class="go">func findLHS(nums []int) int &#123;
-    sort.Ints(nums)
-    ans, start := 0, 0
-    for i := 0; i &lt; len(nums); i++ &#123;
-        for start &lt; i &amp;&amp; nums[i]-nums[start] &gt; 1 &#123;
-            start++
-        &#125;
-        if nums[i]-nums[start] == 1 &#123;
-            if i-start+1 &gt; ans &#123;
-                ans = i - start + 1
+<p>执行用时：4 ms, 在所有 Go 提交中击败了96.64%的用户</p>
+<p>内存消耗：4.2 MB, 在所有 Go 提交中击败了31.90%的用户</p>
+<p>时间复杂度：O(m * n)，二维数组中的每一个位置（像素）都会被访问一次；</p>
+<p>空间复杂度：O(m * n)，来自队列。</p>
+<h2 id="解法2：DFS"><a href="#解法2：DFS" class="headerlink" title="解法2：DFS"></a>解法2：DFS</h2><p>本题同样可以使用DFS来解。首先使用变量curColor保存当前位置的颜色，然后进行DFS操作。每搜索到一个像素时，如果其颜色与curColor相同，就将其更新为newColor，然后再对其相邻的四个方格递归地进行渲染操作。</p>
+<pre><code class="go">// r,c代表与当前像素点相邻的四个像素点与当前像素点的坐标之差
+var (
+    r = []int&#123;1, 0, 0, -1&#125;
+    c = []int&#123;0, -1, 1, 0&#125;
+)
+
+func floodFill(image [][]int, sr int, sc int, newColor int) [][]int &#123;
+    curColor := image[sr][sc]
+    if curColor != newColor &#123;
+        dfs(image, sr, sc, curColor, newColor)
+    &#125;
+    return image
+&#125;
+
+func dfs(image [][]int, rr, cc, curColor, newColor int) &#123;
+    if image[rr][cc] == curColor &#123;
+        image[rr][cc] = newColor
+        for i := 0; i &lt; 4; i++ &#123;
+            rrr, ccc := rr+r[i], cc+c[i]
+            if rrr &gt;= 0 &amp;&amp; rrr &lt; len(image) &amp;&amp; ccc &gt;= 0 &amp;&amp; ccc &lt; len(image[0]) &#123;
+                dfs(image, rrr, ccc, curColor, newColor)
             &#125;
         &#125;
     &#125;
-    return ans
 &#125;
 </code></pre>
-<p>执行用时: <strong>64 ms</strong>（超过32.94%的Golang提交记录）</p>
-<p>内存消耗: <strong>6.6 MB</strong>（超过87.68%的Golang提交记录）</p>
-<p>时间复杂度：O(nlogn)，排序的时间复杂度为O(nlogn)，滑窗的时间复杂度为O(n)，算法整体的时间复杂度为O(nlogn)；</p>
-<p>空间复杂度：O(logn)，排序的空间复杂度为O(logn)。</p>
+<p>执行用时：12 ms, 在所有 Go 提交中击败了5.22%的用户；</p>
+<p>内存消耗：4.1 MB, 在所有 Go 提交中击败了75.54%的用户；</p>
+<p>时间复杂度：O(m * n)，二维数组的每个位置（像素）都会被访问一次；</p>
+<p>空间复杂度：O(m * n)，来自递归工作栈。</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎各位大佬指出任何有错误或不够清晰的表达。可以发可以邮件至 wendev1024@icloud.com 或添加微信 wendev1024 联系（请注明来源于我的个人网站）。 </span>
@@ -1122,12 +1149,12 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>594.最长和谐子序列</p>
-    <p><span class="copy-title">字数:</span><span class="post-count">687</span></p>
+    <p><span class="copy-title">文章标题:</span>733.图像渲染</p>
+    <p><span class="copy-title">字数:</span><span class="post-count">731</span></p>
     <p><span class="copy-title">本文作者:</span><a  title="江文">江文</a></p>
-    <p><span class="copy-title">发布时间:</span>2021-11-22, 21:38:48</p>
-    <p><span class="copy-title">最后更新:</span>2021-11-22, 21:39:15</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2021/11/22/594-%E6%9C%80%E9%95%BF%E5%92%8C%E8%B0%90%E5%AD%90%E5%BA%8F%E5%88%97/" title="594.最长和谐子序列">http://www.wendev.site/2021/11/22/594-%E6%9C%80%E9%95%BF%E5%92%8C%E8%B0%90%E5%AD%90%E5%BA%8F%E5%88%97/</a>
+    <p><span class="copy-title">发布时间:</span>2021-11-30, 21:26:30</p>
+    <p><span class="copy-title">最后更新:</span>2021-11-30, 21:27:10</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2021/11/30/733-%E5%9B%BE%E5%83%8F%E6%B8%B2%E6%9F%93/" title="733.图像渲染">http://www.wendev.site/2021/11/30/733-%E5%9B%BE%E5%83%8F%E6%B8%B2%E6%9F%93/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">&#34;署名-非商用-相同方式共享 4.0&#34;</a> 转载请保留原文链接及作者。
     </p>

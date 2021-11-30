@@ -4,6 +4,66 @@
   
     
     <entry>
+      <title>733.图像渲染</title>
+      <link href="/2021/11/30/733-%E5%9B%BE%E5%83%8F%E6%B8%B2%E6%9F%93/"/>
+      <url>/2021/11/30/733-%E5%9B%BE%E5%83%8F%E6%B8%B2%E6%9F%93/</url>
+      
+        <content type="html"><![CDATA[<h1 id="733-图像渲染"><a href="#733-图像渲染" class="headerlink" title="733. 图像渲染"></a>733. 图像渲染</h1><p>题目地址：<a href="https://leetcode-cn.com/problems/flood-fill/submissions/">733. 图像渲染</a></p><h2 id="解法1：BFS"><a href="#解法1：BFS" class="headerlink" title="解法1：BFS"></a>解法1：BFS</h2><p>首先将起点更改颜色后入队，然后当队列不空时，每次将一个像素点出队，然后将其周围的四个像素点更改颜色并入队（注意边界条件的判断，只有在图像范围内的像素点才能入队），队列为空时算法结束。</p><pre><code class="go">// r,c代表与当前像素点相邻的四个像素点与当前像素点的坐标之差var (    r = []int&#123;1, 0, 0, -1&#125;    c = []int&#123;0, -1, 1, 0&#125;)type pixel struct &#123;    r, c int&#125;func floodFill(image [][]int, sr int, sc int, newColor int) [][]int &#123;    curColor := image[sr][sc]    if curColor == newColor &#123;        return image    &#125;    // 得到图像的宽和高    w, h := len(image[0]), len(image)    queue := make([]pixel, 0)    // 将像素的初始位置更改颜色并加入队列    queue = append(queue, pixel&#123;r: sr, c: sc&#125;)    image[sr][sc] = newColor    // 开始BFS算法    for len(queue) &gt; 0 &#123;        // 每次将一个像素点出队        p := queue[len(queue)-1]        queue = queue[:len(queue)-1]        // 处理该像素相邻的四个像素点        for i := 0; i &lt; 4; i++ &#123;            rr, cc := p.r + r[i], p.c + c[i]            if rr &gt;= 0 &amp;&amp; cc &gt;= 0 &amp;&amp; rr &lt; h &amp;&amp; cc &lt; w &amp;&amp; image[rr][cc] == curColor &#123;                queue = append(queue, pixel&#123;r: rr, c: cc&#125;)                image[rr][cc] = newColor            &#125;        &#125;    &#125;    return image&#125;</code></pre><p>执行用时：4 ms, 在所有 Go 提交中击败了96.64%的用户</p><p>内存消耗：4.2 MB, 在所有 Go 提交中击败了31.90%的用户</p><p>时间复杂度：O(m * n)，二维数组中的每一个位置（像素）都会被访问一次；</p><p>空间复杂度：O(m * n)，来自队列。</p><h2 id="解法2：DFS"><a href="#解法2：DFS" class="headerlink" title="解法2：DFS"></a>解法2：DFS</h2><p>本题同样可以使用DFS来解。首先使用变量curColor保存当前位置的颜色，然后进行DFS操作。每搜索到一个像素时，如果其颜色与curColor相同，就将其更新为newColor，然后再对其相邻的四个方格递归地进行渲染操作。</p><pre><code class="go">// r,c代表与当前像素点相邻的四个像素点与当前像素点的坐标之差var (    r = []int&#123;1, 0, 0, -1&#125;    c = []int&#123;0, -1, 1, 0&#125;)func floodFill(image [][]int, sr int, sc int, newColor int) [][]int &#123;    curColor := image[sr][sc]    if curColor != newColor &#123;        dfs(image, sr, sc, curColor, newColor)    &#125;    return image&#125;func dfs(image [][]int, rr, cc, curColor, newColor int) &#123;    if image[rr][cc] == curColor &#123;        image[rr][cc] = newColor        for i := 0; i &lt; 4; i++ &#123;            rrr, ccc := rr+r[i], cc+c[i]            if rrr &gt;= 0 &amp;&amp; rrr &lt; len(image) &amp;&amp; ccc &gt;= 0 &amp;&amp; ccc &lt; len(image[0]) &#123;                dfs(image, rrr, ccc, curColor, newColor)            &#125;        &#125;    &#125;&#125;</code></pre><p>执行用时：12 ms, 在所有 Go 提交中击败了5.22%的用户；</p><p>内存消耗：4.1 MB, 在所有 Go 提交中击败了75.54%的用户；</p><p>时间复杂度：O(m * n)，二维数组的每个位置（像素）都会被访问一次；</p><p>空间复杂度：O(m * n)，来自递归工作栈。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> LeetCode </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> LeetCode </tag>
+            
+            <tag> 算法 </tag>
+            
+            <tag> DFS </tag>
+            
+            <tag> BFS </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>88.合并两个有序数组</title>
+      <link href="/2021/11/30/88-%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84/"/>
+      <url>/2021/11/30/88-%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84/</url>
+      
+        <content type="html"><![CDATA[<h1 id="88-合并两个有序数组"><a href="#88-合并两个有序数组" class="headerlink" title="88. 合并两个有序数组"></a>88. 合并两个有序数组</h1><p>题目地址：<a href="https://leetcode-cn.com/problems/merge-sorted-array/">88. 合并两个有序数组</a></p><h2 id="解法：双指针"><a href="#解法：双指针" class="headerlink" title="解法：双指针"></a>解法：双指针</h2><p>由于本题需要将合并的结果存储在nums1中，为了防止nums1中原有的元素被覆盖掉，所以需要从后向前反向遍历，即使用两个指针p1和p2分别指向nums1的尾部和nums2的尾部，使用一个指针p指向下一个需要写入的单元。当p1和p2都没有越界时，将两个指针指向的内存单元中的较大者复制到p指向的内存单元中，并让p和对应的指针前进一步；当其中一个指针越界时，直接将另外一个指针指向的数组的内容拷贝到p所指向的内存单元中即可。</p><pre><code class="go">func merge(nums1 []int, m int, nums2 []int, n int) &#123;    p1, p2, p := m-1, n-1, m+n-1    for p1 &gt;= 0 || p2 &gt;= 0 &#123;        if p1 == -1 &#123;            // p1走到头            nums1[p] = nums2[p2]            p2--        &#125; else if p2 == -1 &#123;            // p2走到头            nums1[p] = nums1[p1]            p1--        &#125; else if nums1[p1] &gt; nums2[p2] &#123;            nums1[p] = nums1[p1]            p1--        &#125; else &#123;            nums1[p] = nums2[p2]            p2--        &#125;        p--    &#125;&#125;</code></pre><p>执行用时：0 ms, 在所有 Go 提交中击败了100.00%的用户；</p><p>内存消耗：2.3 MB, 在所有 Go 提交中击败了100.00%的用户；</p><p>时间复杂度：O(m+n)，需要遍历m、n两个数组各一次；</p><p>空间复杂度：O(1)，只使用了常数个数的存储空间。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> LeetCode </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> LeetCode </tag>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 双指针 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>136.只出现一次的数字</title>
       <link href="/2021/11/30/136-%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E6%95%B0%E5%AD%97/"/>
       <url>/2021/11/30/136-%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E6%95%B0%E5%AD%97/</url>
