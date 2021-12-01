@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Golang实现快速排序 | 江文 - Golang | Back-End Develop | Cloud Native</title>
-  <meta name="keywords" content=" 算法 , Golang , 排序 , 快速排序 ">
-  <meta name="description" content="Golang实现快速排序 | 江文 - Golang | Back-End Develop | Cloud Native">
+  <title>350.两个数组的交集 | 江文 - Golang | Back-End Develop | Cloud Native</title>
+  <meta name="keywords" content=" LeetCode , 哈希表 , 算法 , 双指针 , 排序 ">
+  <meta name="description" content="350.两个数组的交集 | 江文 - Golang | Back-End Develop | Cloud Native">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="733. 图像渲染题目地址：733. 图像渲染 解法1：BFS首先将起点更改颜色后入队，然后当队列不空时，每次将一个像素点出队，然后将其周围的四个像素点更改颜色并入队（注意边界条件的判断，只有在图像范围内的像素点才能入队），队列为空时算法结束。 &#x2F;&#x2F; r,c代表与当前像素点相邻的四个像素点与当前像素点的坐标之差 var (     r &#x3D; []int&amp;#123;1, 0, 0, -1&amp;#125;">
 <meta property="og:type" content="article">
@@ -1008,9 +1008,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-Golang实现快速排序" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-350-两个数组的交集" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Golang实现快速排序</h1>
+        <h1 class="article-title">350.两个数组的交集</h1>
     
     <div class="article-meta">
         
@@ -1020,7 +1020,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="算法">算法</a>
+            <a  data-rel="LeetCode">LeetCode</a>
             
         </span>
         
@@ -1028,25 +1028,27 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
+            <a class="color4">LeetCode</a>
+            
+            <a class="color4">哈希表</a>
+            
             <a class="color3">算法</a>
             
-            <a class="color2">Golang</a>
+            <a class="color4">双指针</a>
             
             <a class="color3">排序</a>
-            
-            <a class="color5">快速排序</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-11-22 22:00:42'>2021-11-22 21:57</time>
+            发布时间 : <time class="date" title='最后更新: 2021-12-01 17:06:27'>2021-12-01 17:05</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:560</span>
+        <span>字数:939</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1065,7 +1067,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Golang%E5%AE%9E%E7%8E%B0%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F"><span class="toc-text">Golang实现快速排序</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%E7%9A%84%E6%80%9D%E6%83%B3"><span class="toc-text">快速排序的思想</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Go%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F"><span class="toc-text">Go语言实现快速排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="toc-text">快速排序的性质</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#350-%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%BB%84%E7%9A%84%E4%BA%A4%E9%9B%86"><span class="toc-text">350. 两个数组的交集</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E6%B3%951%EF%BC%9A%E5%93%88%E5%B8%8C%E8%A1%A8%EF%BC%88%E6%9C%80%E7%AE%80%E5%8D%95%EF%BC%89"><span class="toc-text">解法1：哈希表（最简单）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E6%B3%952%EF%BC%9A%E5%8E%9F%E5%9C%B0%E6%8E%92%E5%BA%8F-%E5%8F%8C%E6%8C%87%E9%92%88%EF%BC%88%E6%95%88%E7%8E%87%E6%9B%B4%E9%AB%98%EF%BC%89"><span class="toc-text">解法2：原地排序+双指针（效率更高）</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1081,64 +1083,98 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Golang实现快速排序"><a href="#Golang实现快速排序" class="headerlink" title="Golang实现快速排序"></a>Golang实现快速排序</h1><h2 id="快速排序的思想"><a href="#快速排序的思想" class="headerlink" title="快速排序的思想"></a>快速排序的思想</h2><p>快速排序的核心思想是划分，即选定一个基准，将数组划分为两部分：基准左边的部分都小于它，而右边的部分都大于它。</p>
-<p>详细步骤如下：</p>
-<ol>
-<li>选定一个基准，比如数组中的第一个数；</li>
-<li>使用两个指针<code>low</code>和<code>high</code>指向数组的第一个位置和最后一个位置，当<code>nums[high]</code>大于基准时让<code>high</code>向左走，当<code>nums[low]</code>小于基准且<code>low &lt; high</code>时让<code>low</code>向右走，跳出循环时<code>low</code>指向的是从左向右数第一个大于基准的数，而<code>high</code>指向了从右向左数第一个小于基准的数，将这两个数交换；</li>
-<li>当<code>low</code>和<code>high</code>相遇时退出循环，将基准与该数进行交换；</li>
-<li>递归地对基准的左右两侧进行排序，直到数组全部排完。</li>
-</ol>
-<h2 id="Go语言实现快速排序"><a href="#Go语言实现快速排序" class="headerlink" title="Go语言实现快速排序"></a>Go语言实现快速排序</h2><pre><code class="go">package main
-
-import &quot;fmt&quot;
-
-func main() &#123;
-    nums := []int&#123;4, 5, 7, 1, 2, 9, 0, 8, 3, 1, 6, 2, 1, 0&#125;
-    quickSort(nums, 0, len(nums)-1)
-    fmt.Println(nums)
-&#125;
-
-func quickSort(nums []int, start, end int) &#123;
-    if start &lt; end &#123;
-        pivot := partition(nums, start, end)
-        quickSort(nums, start, pivot-1)
-        quickSort(nums, pivot+1, end)
+        <h1 id="350-两个数组的交集"><a href="#350-两个数组的交集" class="headerlink" title="350. 两个数组的交集"></a>350. 两个数组的交集</h1><p>题目地址：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/intersection-of-two-arrays-ii">350. 两个数组的交集</a></p>
+<h2 id="解法1：哈希表（最简单）"><a href="#解法1：哈希表（最简单）" class="headerlink" title="解法1：哈希表（最简单）"></a>解法1：哈希表（最简单）</h2><p>遇到这类需要求元素个数的问题一般都可以使用哈希表来解决。分别遍历两个数组，使用两个哈希表来记录某一数据元素在某个数组中的出现次数，然后遍历哈希表，如果某个key在两个哈希表中都出现过，那么说明该数据元素在交集中，将数据元素以出现次数较少的次数放入结果集合中（例如数据元素2在数组1中出现了3次，在数组2中出现了4次，那么需要在结果集合中放入3个2）。</p>
+<pre><code class="go">func intersect(nums1 []int, nums2 []int) []int &#123;
+    // 哈希表
+    m1, m2 := make(map[int]int), make(map[int]int)
+    for _, v := range nums1 &#123;
+        if _, ok := m1[v]; !ok &#123;
+            m1[v] = 1
+        &#125; else &#123;
+            m1[v]++
+        &#125;
     &#125;
-&#125;
-
-func partition(nums []int, start, end int) int &#123;
-    low, high := start, end
-    // 以数组的第一个元素作为基准
-    pivot := nums[low]
-    for low &lt; high &#123;
-        // 找到第一个小于基准的元素
-        // 因为基准选的是数组的第一个元素,所以这里不会越界
-        for nums[high] &gt; pivot &#123;
-            high--
+    for _, v := range nums2 &#123;
+        if _, ok := m2[v]; !ok &#123;
+            m2[v] = 1
+        &#125; else &#123;
+            m2[v]++
         &#125;
-        // 找到第一个大于基准的元素
-        // 这里可能会越界,所以需要判断一下
-        for nums[low] &lt;= pivot &amp;&amp; low &lt; high &#123;
-            low++
-        &#125;
-        if low &gt;= high &#123;
-            break
-        &#125;
-        // 交换两个元素
-        nums[low], nums[high] = nums[high], nums[low]
     &#125;
-    // 跳出循环的时候两个指针指向了同一个位置,把基准填到该位置
-    nums[start], nums[low] = nums[low], nums[start]
-    // 返回基准的位置
-    return low
+    ans := make([]int, 0)
+    for k, v1 := range m1 &#123;
+        if v2, ok := m2[k]; ok &#123;
+            less := v1
+            if v2 &lt; less &#123;
+                less = v2
+            &#125;
+            for i := 0; i &lt; less; i++ &#123;
+                ans = append(ans, k)
+            &#125;
+        &#125;
+    &#125;
+    return ans
 &#125;
 </code></pre>
-<h2 id="快速排序的性质"><a href="#快速排序的性质" class="headerlink" title="快速排序的性质"></a>快速排序的性质</h2><ul>
-<li>时间复杂度：<code>O(nlogn)</code>（平均、最好），<code>O(n^2)</code>最坏；</li>
-<li>空间复杂度：<code>O(logn)</code>，来自递归调用栈；</li>
-<li>稳定性：不稳定，比如<code>3, 7, 7, 1, 1</code>这个序列的第二个1就会被换到第一个1前面去。</li>
-</ul>
+<p>执行用时：4 ms, 在所有 Go 提交中击败了76.50%的用户；</p>
+<p>内存消耗：3.5 MB, 在所有 Go 提交中击败了5.55%的用户；</p>
+<p>时间复杂度：O(m+n)，需要遍历两个数组各一次；</p>
+<p>空间复杂度：O(m+n)，哈希表占用的内存空间与两个数组中的数据元素种类有关。</p>
+<p>优化思路：这种解法可以只对较短的数组建立哈希表，将空间复杂度优化到O(min(m, n))，这时在遍历较长数组时，每次遇到一个在哈希表中出现过的元素，就把这个元素加入到返回值中，再把哈希表中对应元素的出现次数减1。这种方法的代码如下：</p>
+<pre><code class="go">func intersect(nums1 []int, nums2 []int) []int &#123;
+    if len(nums1) &gt; len(nums2) &#123;
+        return doIntersect(nums2, nums1)
+    &#125;
+    return doIntersect(nums1, nums2)
+&#125;
+
+func doIntersect(short, long []int) []int &#123;
+    m := make(map[int]int)
+    for _, v := range short &#123;
+        if _, ok := m[v]; !ok &#123;
+            m[v] = 1
+        &#125; else &#123;
+            m[v]++
+        &#125;
+    &#125;
+    ans := make([]int, 0)
+    for _, v := range long &#123;
+        if m[v] &gt; 0 &#123;
+            ans = append(ans, v)
+            m[v]--
+        &#125;
+    &#125;
+    return ans
+&#125;
+</code></pre>
+<h2 id="解法2：原地排序-双指针（效率更高）"><a href="#解法2：原地排序-双指针（效率更高）" class="headerlink" title="解法2：原地排序+双指针（效率更高）"></a>解法2：原地排序+双指针（效率更高）</h2><p>如果需要将空间复杂度优化到O(1)，可以使用空间复杂度为O(1)的原地排序算法将两个数组排好序之后使用双指针进行计数。使用<code>p1</code>和<code>p2</code>分别指向<code>nums1</code>和<code>nums2</code>的头部，当两个指针指向的元素相同时将这个元素加入答案中，并且让两个指针都向前一步；当<code>p1</code>指向的数据元素小于<code>p2</code>指向的数据元素时，说明p1应指向更大的元素，让p1向前走一步，反之让p2向前走一步，直到两个指针越界为止。</p>
+<pre><code class="go">import &quot;sort&quot;
+
+func intersect(nums1 []int, nums2 []int) []int &#123;
+    // 排序+双指针
+    sort.Ints(nums1)
+    sort.Ints(nums2)
+    p1, p2 := 0, 0
+    ans := make([]int, 0)
+    for p1 &lt; len(nums1) &amp;&amp; p2 &lt; len(nums2) &#123;
+        if nums1[p1] == nums2[p2] &#123;
+            ans = append(ans, nums1[p1])
+            p1++
+            p2++
+        &#125; else if nums1[p1] &lt; nums2[p2] &#123;
+            p1++
+        &#125; else &#123; // nums1[p1] &gt; nums2[p2]
+            p2++
+        &#125;
+    &#125;
+    return ans
+&#125;
+</code></pre>
+<p>执行用时：4 ms, 在所有 Go 提交中击败了76.50%的用户；</p>
+<p>内存消耗：2.8 MB, 在所有 Go 提交中击败了97.95%的用户；</p>
+<p>时间复杂度：O(m+n)，需要遍历两个数组各一次；</p>
+<p>空间复杂度：O(logn)，来自排序算法，若使用原地排序算法，则空间复杂度为O(1)，这里忽略了返回值所占用的空间。</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎各位大佬指出任何有错误或不够清晰的表达。可以发可以邮件至 wendev1024@icloud.com 或添加微信 wendev1024 联系（请注明来源于我的个人网站）。 </span>
@@ -1148,12 +1184,12 @@ func partition(nums []int, start, end int) int &#123;
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>Golang实现快速排序</p>
-    <p><span class="copy-title">字数:</span><span class="post-count">560</span></p>
+    <p><span class="copy-title">文章标题:</span>350.两个数组的交集</p>
+    <p><span class="copy-title">字数:</span><span class="post-count">939</span></p>
     <p><span class="copy-title">本文作者:</span><a  title="江文">江文</a></p>
-    <p><span class="copy-title">发布时间:</span>2021-11-22, 21:57:29</p>
-    <p><span class="copy-title">最后更新:</span>2021-11-22, 22:00:42</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2021/11/22/Golang%E5%AE%9E%E7%8E%B0%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" title="Golang实现快速排序">http://www.wendev.site/2021/11/22/Golang%E5%AE%9E%E7%8E%B0%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/</a>
+    <p><span class="copy-title">发布时间:</span>2021-12-01, 17:05:30</p>
+    <p><span class="copy-title">最后更新:</span>2021-12-01, 17:06:27</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2021/12/01/350-%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%BB%84%E7%9A%84%E4%BA%A4%E9%9B%86/" title="350.两个数组的交集">http://www.wendev.site/2021/12/01/350-%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%BB%84%E7%9A%84%E4%BA%A4%E9%9B%86/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">&#34;署名-非商用-相同方式共享 4.0&#34;</a> 转载请保留原文链接及作者。
     </p>

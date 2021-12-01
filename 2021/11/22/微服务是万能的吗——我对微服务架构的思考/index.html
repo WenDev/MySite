@@ -6,19 +6,20 @@
   <meta name="keywords" content=" 微服务 , 架构设计 ">
   <meta name="description" content="微服务是万能的吗——我对微服务架构的思考 | 江文 - Golang | Back-End Develop | Cloud Native">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="1446. 连续字符题目地址：1446. 连续字符 解法：双指针这道题是一道很简单的双指针模拟题，但是它也是其他一些问题（例如排序之后进行连续相同元素数量的计数操作）的基础。使用一个指针i从字符串的第2个字符开始遍历字符串，另一个指针start指向相同字符的起点位置，这时，相同字符的个数即为i - start + 1。如果在遍历中发现s[i] !&#x3D; s[i-1]即当前遍历到的元素和上一个元素不相同">
+<meta name="description" content="733. 图像渲染题目地址：733. 图像渲染 解法1：BFS首先将起点更改颜色后入队，然后当队列不空时，每次将一个像素点出队，然后将其周围的四个像素点更改颜色并入队（注意边界条件的判断，只有在图像范围内的像素点才能入队），队列为空时算法结束。 &#x2F;&#x2F; r,c代表与当前像素点相邻的四个像素点与当前像素点的坐标之差 var (     r &#x3D; []int&amp;#123;1, 0, 0, -1&amp;#125;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="1446.连续字符">
-<meta property="og:url" content="http://www.wendev.site/2021/12/01/1446-%E8%BF%9E%E7%BB%AD%E5%AD%97%E7%AC%A6/index.html">
+<meta property="og:title" content="733.图像渲染">
+<meta property="og:url" content="http://www.wendev.site/2021/11/30/733-%E5%9B%BE%E5%83%8F%E6%B8%B2%E6%9F%93/index.html">
 <meta property="og:site_name" content="江文 - Golang | Back-End Develop | Cloud Native">
-<meta property="og:description" content="1446. 连续字符题目地址：1446. 连续字符 解法：双指针这道题是一道很简单的双指针模拟题，但是它也是其他一些问题（例如排序之后进行连续相同元素数量的计数操作）的基础。使用一个指针i从字符串的第2个字符开始遍历字符串，另一个指针start指向相同字符的起点位置，这时，相同字符的个数即为i - start + 1。如果在遍历中发现s[i] !&#x3D; s[i-1]即当前遍历到的元素和上一个元素不相同">
+<meta property="og:description" content="733. 图像渲染题目地址：733. 图像渲染 解法1：BFS首先将起点更改颜色后入队，然后当队列不空时，每次将一个像素点出队，然后将其周围的四个像素点更改颜色并入队（注意边界条件的判断，只有在图像范围内的像素点才能入队），队列为空时算法结束。 &#x2F;&#x2F; r,c代表与当前像素点相邻的四个像素点与当前像素点的坐标之差 var (     r &#x3D; []int&amp;#123;1, 0, 0, -1&amp;#125;">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-12-01T07:55:15.000Z">
-<meta property="article:modified_time" content="2021-12-01T07:59:06.135Z">
+<meta property="article:published_time" content="2021-11-30T13:26:30.000Z">
+<meta property="article:modified_time" content="2021-11-30T13:27:10.637Z">
 <meta property="article:author" content="江文">
 <meta property="article:tag" content="LeetCode">
 <meta property="article:tag" content="算法">
-<meta property="article:tag" content="双指针">
+<meta property="article:tag" content="DFS">
+<meta property="article:tag" content="BFS">
 <meta name="twitter:card" content="summary">
 
 
@@ -141,7 +142,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(55)</small>
+                <small>(56)</small>
             
         </div>
     </li>
@@ -166,7 +167,7 @@
                     <div data-rel="LeetCode">
                         
                         LeetCode
-                        <small>(41)</small>
+                        <small>(42)</small>
                         
                     </div>
                     
@@ -310,8 +311,8 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="55">
-<input type="hidden" id="yelog_site_word_count" value="56.3k">
+<input type="hidden" id="yelog_site_posts_number" value="56">
+<input type="hidden" id="yelog_site_word_count" value="57.3k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -540,6 +541,14 @@
     </div>
     
     <nav id="title-list-nav">
+        
+        <a  class="全部文章 LeetCode "
+           href="/2021/12/01/350-%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%BB%84%E7%9A%84%E4%BA%A4%E9%9B%86/"
+           data-tag="LeetCode,哈希表,算法,双指针,排序"
+           data-author="" >
+            <span class="post-title" title="350.两个数组的交集">350.两个数组的交集</span>
+            <span class="post-date" title="2021-12-01 17:05:30">2021/12/01</span>
+        </a>
         
         <a  class="全部文章 LeetCode "
            href="/2021/12/01/1446-%E8%BF%9E%E7%BB%AD%E5%AD%97%E7%AC%A6/"
