@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>121.买卖股票的最佳时机</title>
+      <link href="/2021/12/01/121-%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA/"/>
+      <url>/2021/12/01/121-%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA/</url>
+      
+        <content type="html"><![CDATA[<h1 id="121-买卖股票的最佳时机"><a href="#121-买卖股票的最佳时机" class="headerlink" title="121. 买卖股票的最佳时机"></a>121. 买卖股票的最佳时机</h1><p>题目地址：<a href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock">121. 买卖股票的最佳时机</a></p><h2 id="解法：动态规划"><a href="#解法：动态规划" class="headerlink" title="解法：动态规划"></a>解法：动态规划</h2><p>本题也可以使用暴力算法枚举所有购买方法的最大利润，但本题的动态规划解法并不难。</p><p>状态转移方程：第i天的最大利润 = max(第i天的价格 - 前i天的最小价格，前i-1天的最大利润)，在实现上只需要使用两个变量记录前i天的最大利润和前i天的最小价格，然后按照状态转移方程进行递推即可。</p><pre><code class="go">func maxProfit(prices []int) int &#123;    // 第i天的最大收益 = max(第i天的价格 - 前i天的最小价格, 前i-1天的最大收益)    maxIncome := 0    minPrice := prices[0]    for i := 1; i &lt; len(prices); i++ &#123;        if prices[i] - minPrice &gt; maxIncome &#123;            maxIncome = prices[i] - minPrice        &#125;         if prices[i] &lt; minPrice &#123;            minPrice = prices[i]        &#125;    &#125;    return maxIncome&#125;</code></pre><p>执行用时：152 ms, 在所有 Go 提交中击败了11.56%的用户；</p><p>内存消耗：8.1 MB, 在所有 Go 提交中击败了56.62%的用户；</p><p>时间复杂度：O(n)，需要遍历price数组一次；</p><p>空间复杂度：O(1)，只使用了常数个数的存储空间。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> LeetCode </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> LeetCode </tag>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 动态规划 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>350.两个数组的交集</title>
       <link href="/2021/12/01/350-%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%BB%84%E7%9A%84%E4%BA%A4%E9%9B%86/"/>
       <url>/2021/12/01/350-%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%BB%84%E7%9A%84%E4%BA%A4%E9%9B%86/</url>

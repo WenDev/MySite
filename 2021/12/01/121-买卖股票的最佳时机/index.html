@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>187.重复的DNA序列 | 江文 - Golang | Back-End Develop | Cloud Native</title>
-  <meta name="keywords" content=" LeetCode , 哈希表 , 算法 , 位运算 , 滑动窗口 ">
-  <meta name="description" content="187.重复的DNA序列 | 江文 - Golang | Back-End Develop | Cloud Native">
+  <title>121.买卖股票的最佳时机 | 江文 - Golang | Back-End Develop | Cloud Native</title>
+  <meta name="keywords" content=" LeetCode , 算法 , 动态规划 ">
+  <meta name="description" content="121.买卖股票的最佳时机 | 江文 - Golang | Back-End Develop | Cloud Native">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="121. 买卖股票的最佳时机题目地址：121. 买卖股票的最佳时机 解法：动态规划本题也可以使用暴力算法枚举所有购买方法的最大利润，但本题的动态规划解法并不难。 状态转移方程：第i天的最大利润 &#x3D; max(第i天的价格 - 前i天的最小价格，前i-1天的最大利润)，在实现上只需要使用两个变量记录前i天的最大利润和前i天的最小价格，然后按照状态转移方程进行递推即可。 func maxProfit(p">
 <meta property="og:type" content="article">
@@ -1015,9 +1015,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-187-重复的DNA序列" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-121-买卖股票的最佳时机" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">187.重复的DNA序列</h1>
+        <h1 class="article-title">121.买卖股票的最佳时机</h1>
     
     <div class="article-meta">
         
@@ -1037,25 +1037,21 @@
             
             <a class="color4">LeetCode</a>
             
-            <a class="color4">哈希表</a>
-            
             <a class="color3">算法</a>
             
-            <a class="color4">位运算</a>
-            
-            <a class="color5">滑动窗口</a>
+            <a class="color5">动态规划</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-11-22 21:22:58'>2021-11-22 21:21</time>
+            发布时间 : <time class="date" title='最后更新: 2021-12-01 21:37:39'>2021-12-01 21:37</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:857</span>
+        <span>字数:309</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1074,7 +1070,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#187-%E9%87%8D%E5%A4%8D%E7%9A%84DNA%E5%BA%8F%E5%88%97"><span class="toc-text">187. 重复的DNA序列</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E6%B3%951%EF%BC%9A%E5%93%88%E5%B8%8C%E8%A1%A8%EF%BC%88%E6%9C%80%E5%AE%B9%E6%98%93%E6%83%B3%E5%88%B0%EF%BC%89"><span class="toc-text">解法1：哈希表（最容易想到）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E6%B3%952%EF%BC%9A%E4%BD%8D%E8%BF%90%E7%AE%97-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%93%88%E5%B8%8C%EF%BC%88%E6%95%88%E7%8E%87%E9%AB%98%EF%BC%89"><span class="toc-text">解法2：位运算+自定义哈希（效率高）</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#121-%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA"><span class="toc-text">121. 买卖股票的最佳时机</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E6%B3%95%EF%BC%9A%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92"><span class="toc-text">解法：动态规划</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1090,56 +1086,28 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="187-重复的DNA序列"><a href="#187-重复的DNA序列" class="headerlink" title="187. 重复的DNA序列"></a>187. 重复的DNA序列</h1><p>题目地址：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/repeated-dna-sequences/">187. 重复的DNA序列</a></p>
-<h2 id="解法1：哈希表（最容易想到）"><a href="#解法1：哈希表（最容易想到）" class="headerlink" title="解法1：哈希表（最容易想到）"></a>解法1：哈希表（最容易想到）</h2><p>对于这道题，一个很容易想到的方法就是从字符串开头统计出所有长度为10的字串放入哈希表（key为字串，value为出现次数），向后遍历时将每个长度为10的字串都与哈希表中已有的字符串进行比较，如果该字符串在哈希表里已经出现过就将该字串加入到答案集合中，否则将该字串作为key放入哈希表并置其value为1。</p>
-<pre><code class="go">func findRepeatedDnaSequences(s string) []string &#123;
-    l := 10
-    m := make(map[string]int, 0)
-    ans := make([]string, 0)
-    for i := 0; i &lt;= len(s)-l; i++ &#123; // 注意这里，需要用&lt;=，否则就会漏判一位导致答案错误
-        str := s[i : i+10]
-        m[str]++
-        if m[str] == 2 &#123;
-            ans = append(ans, str)
+        <h1 id="121-买卖股票的最佳时机"><a href="#121-买卖股票的最佳时机" class="headerlink" title="121. 买卖股票的最佳时机"></a>121. 买卖股票的最佳时机</h1><p>题目地址：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock">121. 买卖股票的最佳时机</a></p>
+<h2 id="解法：动态规划"><a href="#解法：动态规划" class="headerlink" title="解法：动态规划"></a>解法：动态规划</h2><p>本题也可以使用暴力算法枚举所有购买方法的最大利润，但本题的动态规划解法并不难。</p>
+<p>状态转移方程：第i天的最大利润 = max(第i天的价格 - 前i天的最小价格，前i-1天的最大利润)，在实现上只需要使用两个变量记录前i天的最大利润和前i天的最小价格，然后按照状态转移方程进行递推即可。</p>
+<pre><code class="go">func maxProfit(prices []int) int &#123;
+    // 第i天的最大收益 = max(第i天的价格 - 前i天的最小价格, 前i-1天的最大收益)
+    maxIncome := 0
+    minPrice := prices[0]
+    for i := 1; i &lt; len(prices); i++ &#123;
+        if prices[i] - minPrice &gt; maxIncome &#123;
+            maxIncome = prices[i] - minPrice
+        &#125; 
+        if prices[i] &lt; minPrice &#123;
+            minPrice = prices[i]
         &#125;
     &#125;
-    return ans
+    return maxIncome
 &#125;
 </code></pre>
-<p>执行用时: <strong>12 ms</strong>（超过90%的Golang提交记录）</p>
-<p>内存消耗: <strong>9.4 MB</strong>（超过34%的Golang提交记录）</p>
-<p>时间复杂度：O(n * L)，for循环的执行次数与n成线性相关，并且计算字符串哈希需要消耗的时间与字符串长度L成正比；</p>
-<p>空间复杂度：O(n)，map需要占用的存储空间与字符串长度成正比。</p>
-<h2 id="解法2：位运算-自定义哈希（效率高）"><a href="#解法2：位运算-自定义哈希（效率高）" class="headerlink" title="解法2：位运算+自定义哈希（效率高）"></a>解法2：位运算+自定义哈希（效率高）</h2><p>由于该题的字符串只有A、G、C、T四种字符组成，所以我们可以使用自定义哈希的方法来减少计算哈希的时间和存储哈希所用的空间。如果采用00、01、10、11来编码四个字符，那么使用一个int就可以存下整个长度为10的字符串，这样可以大大提高算法的效率。但是如果只做这样的优化，对时间复杂度的提升是比较小的，进一步优化的思路则是利用位运算加快计算。设使用一个20位的空间来表示长度为10的字符串的哈希值，那么每向后运算一位，就将这个整数左移2位并将高于20位的字符清零（<code>w = w &lt;&lt; 2 &amp; 1 &lt;&lt; 20 - 1</code>），再将新的字符的哈希填入这个20位的空间的低2位（<code>w |= h[c]</code>，其中<code>h[c]</code>为字符<code>c</code>的自定义哈希）。</p>
-<pre><code class="go">// 自定义哈希表
-var h = map[byte]int&#123;&#39;A&#39;: 0, &#39;C&#39;: 1, &#39;G&#39;: 2, &#39;T&#39;: 3&#125;
-func findRepeatedDnaSequences(s string) []string &#123;
-    // 长度小于等于10的字符串中是肯定不会出现长度为10的重复字串的
-    if len(s) &lt;= 10 &#123;
-        return []string&#123;&#125;
-    &#125;
-    w := 0
-    // 准备工作: 计算出前10位的哈希,填入准备好的空间中
-    for _, c := range s[:9] &#123;
-        w = w&lt;&lt;2 | h[byte(c)]
-    &#125;
-    ans := make([]string, 0)
-    m := map[int]int&#123;&#125;
-    // 计算哈希,找出符合要求的字串
-    for i := 0; i &lt;= len(s)-10; i++ &#123;
-        w = (w&lt;&lt;2 | h[s[i+9]]) &amp; (1&lt;&lt;20 - 1)
-        m[w]++
-        if m[w] == 2 &#123;
-            ans = append(ans, s[i:i+10])
-        &#125;
-    &#125;
-    return ans
-&#125;
-</code></pre>
-<p>执行用时: <strong>16 ms</strong>（超过73%的Golang提交记录）</p>
-<p>内存消耗: <strong>8.9 MB</strong>（超过87%的Golang提交记录）</p>
-<p>时间复杂度：O(n)，for循环的执行次数与n成线性相关；</p>
-<p>空间复杂度：O(n)，map需要占用的存储空间与字符串长度成正比。</p>
+<p>执行用时：152 ms, 在所有 Go 提交中击败了11.56%的用户；</p>
+<p>内存消耗：8.1 MB, 在所有 Go 提交中击败了56.62%的用户；</p>
+<p>时间复杂度：O(n)，需要遍历price数组一次；</p>
+<p>空间复杂度：O(1)，只使用了常数个数的存储空间。</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎各位大佬指出任何有错误或不够清晰的表达。可以发可以邮件至 wendev1024@icloud.com 或添加微信 wendev1024 联系（请注明来源于我的个人网站）。 </span>
@@ -1149,12 +1117,12 @@ func findRepeatedDnaSequences(s string) []string &#123;
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>187.重复的DNA序列</p>
-    <p><span class="copy-title">字数:</span><span class="post-count">857</span></p>
+    <p><span class="copy-title">文章标题:</span>121.买卖股票的最佳时机</p>
+    <p><span class="copy-title">字数:</span><span class="post-count">309</span></p>
     <p><span class="copy-title">本文作者:</span><a  title="江文">江文</a></p>
-    <p><span class="copy-title">发布时间:</span>2021-11-22, 21:21:01</p>
-    <p><span class="copy-title">最后更新:</span>2021-11-22, 21:22:58</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2021/11/22/187-%E9%87%8D%E5%A4%8D%E7%9A%84DNA%E5%BA%8F%E5%88%97/" title="187.重复的DNA序列">http://www.wendev.site/2021/11/22/187-%E9%87%8D%E5%A4%8D%E7%9A%84DNA%E5%BA%8F%E5%88%97/</a>
+    <p><span class="copy-title">发布时间:</span>2021-12-01, 21:37:06</p>
+    <p><span class="copy-title">最后更新:</span>2021-12-01, 21:37:39</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2021/12/01/121-%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA/" title="121.买卖股票的最佳时机">http://www.wendev.site/2021/12/01/121-%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">&#34;署名-非商用-相同方式共享 4.0&#34;</a> 转载请保留原文链接及作者。
     </p>
