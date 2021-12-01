@@ -6,20 +6,19 @@
   <meta name="keywords" content=" 设计模式 , 单例模式 ">
   <meta name="description" content="单例模式 | 江文 - Golang | Back-End Develop | Cloud Native">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="136. 只出现一次的数字题目地址：136. 只出现一次的数字 解法1：位运算（最优解）异或运算具有如下的性质：  x ^ x &#x3D;&#x3D; 0； x ^ 0 &#x3D;&#x3D; x。  利用这条性质，我们可以将数组中的元素全部异或，由于异或运算的第一条性质，所有出现两次的数字都可以相互抵消，由于异或运算的第二条性质，最后剩下的那个没有被抵消的数字就是只出现一次的数字。 func singleNumber(nums [">
+<meta name="description" content="1446. 连续字符题目地址：1446. 连续字符 解法：双指针这道题是一道很简单的双指针模拟题，但是它也是其他一些问题（例如排序之后进行连续相同元素数量的计数操作）的基础。使用一个指针i从字符串的第2个字符开始遍历字符串，另一个指针start指向相同字符的起点位置，这时，相同字符的个数即为i - start + 1。如果在遍历中发现s[i] !&#x3D; s[i-1]即当前遍历到的元素和上一个元素不相同">
 <meta property="og:type" content="article">
-<meta property="og:title" content="136.只出现一次的数字">
-<meta property="og:url" content="http://www.wendev.site/2021/11/30/136-%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E6%95%B0%E5%AD%97/index.html">
+<meta property="og:title" content="1446.连续字符">
+<meta property="og:url" content="http://www.wendev.site/2021/12/01/1446-%E8%BF%9E%E7%BB%AD%E5%AD%97%E7%AC%A6/index.html">
 <meta property="og:site_name" content="江文 - Golang | Back-End Develop | Cloud Native">
-<meta property="og:description" content="136. 只出现一次的数字题目地址：136. 只出现一次的数字 解法1：位运算（最优解）异或运算具有如下的性质：  x ^ x &#x3D;&#x3D; 0； x ^ 0 &#x3D;&#x3D; x。  利用这条性质，我们可以将数组中的元素全部异或，由于异或运算的第一条性质，所有出现两次的数字都可以相互抵消，由于异或运算的第二条性质，最后剩下的那个没有被抵消的数字就是只出现一次的数字。 func singleNumber(nums [">
+<meta property="og:description" content="1446. 连续字符题目地址：1446. 连续字符 解法：双指针这道题是一道很简单的双指针模拟题，但是它也是其他一些问题（例如排序之后进行连续相同元素数量的计数操作）的基础。使用一个指针i从字符串的第2个字符开始遍历字符串，另一个指针start指向相同字符的起点位置，这时，相同字符的个数即为i - start + 1。如果在遍历中发现s[i] !&#x3D; s[i-1]即当前遍历到的元素和上一个元素不相同">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-11-30T10:17:45.000Z">
-<meta property="article:modified_time" content="2021-11-30T10:18:17.431Z">
+<meta property="article:published_time" content="2021-12-01T07:55:15.000Z">
+<meta property="article:modified_time" content="2021-12-01T07:59:06.135Z">
 <meta property="article:author" content="江文">
 <meta property="article:tag" content="LeetCode">
-<meta property="article:tag" content="哈希表">
 <meta property="article:tag" content="算法">
-<meta property="article:tag" content="位运算">
+<meta property="article:tag" content="双指针">
 <meta name="twitter:card" content="summary">
 
 
@@ -142,7 +141,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(54)</small>
+                <small>(55)</small>
             
         </div>
     </li>
@@ -167,7 +166,7 @@
                     <div data-rel="LeetCode">
                         
                         LeetCode
-                        <small>(40)</small>
+                        <small>(41)</small>
                         
                     </div>
                     
@@ -311,8 +310,8 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="54">
-<input type="hidden" id="yelog_site_word_count" value="56k">
+<input type="hidden" id="yelog_site_posts_number" value="55">
+<input type="hidden" id="yelog_site_word_count" value="56.3k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -541,6 +540,14 @@
     </div>
     
     <nav id="title-list-nav">
+        
+        <a  class="全部文章 LeetCode "
+           href="/2021/12/01/1446-%E8%BF%9E%E7%BB%AD%E5%AD%97%E7%AC%A6/"
+           data-tag="LeetCode,算法,双指针"
+           data-author="" >
+            <span class="post-title" title="1446.连续字符">1446.连续字符</span>
+            <span class="post-date" title="2021-12-01 15:55:15">2021/12/01</span>
+        </a>
         
         <a  class="全部文章 LeetCode "
            href="/2021/11/30/733-%E5%9B%BE%E5%83%8F%E6%B8%B2%E6%9F%93/"

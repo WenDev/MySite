@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>1446.连续字符</title>
+      <link href="/2021/12/01/1446-%E8%BF%9E%E7%BB%AD%E5%AD%97%E7%AC%A6/"/>
+      <url>/2021/12/01/1446-%E8%BF%9E%E7%BB%AD%E5%AD%97%E7%AC%A6/</url>
+      
+        <content type="html"><![CDATA[<h1 id="1446-连续字符"><a href="#1446-连续字符" class="headerlink" title="1446. 连续字符"></a>1446. 连续字符</h1><p>题目地址：<a href="https://leetcode-cn.com/problems/consecutive-characters">1446. 连续字符</a></p><h2 id="解法：双指针"><a href="#解法：双指针" class="headerlink" title="解法：双指针"></a>解法：双指针</h2><p>这道题是一道很简单的双指针模拟题，但是它也是其他一些问题（例如排序之后进行连续相同元素数量的计数操作）的基础。使用一个指针<code>i</code>从字符串的第2个字符开始遍历字符串，另一个指针<code>start</code>指向相同字符的起点位置，这时，相同字符的个数即为<code>i - start + 1</code>。如果在遍历中发现<code>s[i] != s[i-1]</code>即当前遍历到的元素和上一个元素不相同，这时将<code>start</code>指向<code>i</code>表示开始计算一个新元素的连续长度。 使用另一个变量<code>max</code>保存最大相同字符的个数，遍历时如果发现当前相同元素的个数大于<code>max</code>，则更新<code>max</code>。</p><pre><code class="go">func maxPower(s string) int &#123;    start := 0    max := 1    for i := 1; i &lt; len(s); i++ &#123;        if s[i] != s[i-1] &#123;            start = i        &#125;        if i - start + 1 &gt; max &#123;            max = i - start + 1        &#125;    &#125;    return max&#125;</code></pre><p>执行用时：4 ms, 在所有 Go 提交中击败了10.00%的用户；</p><p>内存消耗：2.3 MB, 在所有 Go 提交中击败了100.00%的用户；</p><p>时间复杂度：O(n)，需要遍历字符串一次；</p><p>空间复杂度：O(1)，只使用了常数个数的存储空间。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> LeetCode </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> LeetCode </tag>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 双指针 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>733.图像渲染</title>
       <link href="/2021/11/30/733-%E5%9B%BE%E5%83%8F%E6%B8%B2%E6%9F%93/"/>
       <url>/2021/11/30/733-%E5%9B%BE%E5%83%8F%E6%B8%B2%E6%9F%93/</url>
