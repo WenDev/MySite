@@ -4,6 +4,66 @@
   
     
     <entry>
+      <title>566.重塑矩阵</title>
+      <link href="/2021/12/02/566-%E9%87%8D%E5%A1%91%E7%9F%A9%E9%98%B5/"/>
+      <url>/2021/12/02/566-%E9%87%8D%E5%A1%91%E7%9F%A9%E9%98%B5/</url>
+      
+        <content type="html"><![CDATA[<h1 id="566-重塑矩阵"><a href="#566-重塑矩阵" class="headerlink" title="566. 重塑矩阵"></a>566. 重塑矩阵</h1><p>题目地址：<a href="https://leetcode-cn.com/problems/reshape-the-matrix">566. 重塑矩阵</a></p><h2 id="解法：数学（二维数组的一维展开形式）"><a href="#解法：数学（二维数组的一维展开形式）" class="headerlink" title="解法：数学（二维数组的一维展开形式）"></a>解法：数学（二维数组的一维展开形式）</h2><p>首先需要判断重塑操作能否进行。如果原始矩阵的行数<code>rr</code>乘原始矩阵的列数<code>cc</code>和新矩阵的行数<code>r</code>乘新矩阵的列数<code>c</code>不相同，说明重塑无法进行，直接输出原矩阵；否则创建一个<code>r</code>行<code>c</code>列的二维切片。</p><p>在数据结构中我们学到过，一个二维数组以行优先的方式存储在一个一维数组中时，一维数组的每个元素<code>arr[i]</code>在二维数组中的位置为<code>mat[i/cc][i%cc]</code>，其中<code>cc</code>为原二维数组的列数。因此我们可以“模拟”这个把原矩阵映射到一维数组再映射到新矩阵的过程。对于一维数组中的某个下标<code>i</code>，其在原矩阵中对应的位置为<code>mat[i/cc][i%cc]</code>，在新矩阵中的位置为<code>ans[i/c][i%c]</code>。</p><pre><code class="go">func matrixReshape(mat [][]int, r int, c int) [][]int &#123;    rr, cc := len(mat), len(mat[0])    if rr*cc != r*c &#123;        // 重塑前后的矩阵大小不相同，输出原始矩阵        return mat    &#125;    // 创建r行c列的重塑后矩阵    ans := make([][]int, r)    for i := 0; i &lt; r; i++ &#123;        ans[i] = make([]int, c)    &#125;    // 填充重塑后矩阵    for i := 0; i &lt; r*c; i++ &#123;        ans[i/c][i%c] = mat[i/cc][i%cc]    &#125;    return ans&#125;</code></pre><p>执行用时：4 ms, 在所有 Go 提交中击败了100.00%的用户；</p><p>内存消耗：6.2 MB, 在所有 Go 提交中击败了58.25%的用户；</p><p>时间复杂度：O(r*c)，在重塑成功的情况下会遍历矩阵的每一个位置；</p><p>空间复杂度：O(1)，不考虑返回值的话只使用了常数个数的存储空间。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> LeetCode </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> LeetCode </tag>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 模拟 </tag>
+            
+            <tag> 数学 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>118.杨辉三角</title>
+      <link href="/2021/12/02/118-%E6%9D%A8%E8%BE%89%E4%B8%89%E8%A7%92/"/>
+      <url>/2021/12/02/118-%E6%9D%A8%E8%BE%89%E4%B8%89%E8%A7%92/</url>
+      
+        <content type="html"><![CDATA[<h1 id="118-杨辉三角"><a href="#118-杨辉三角" class="headerlink" title="118. 杨辉三角"></a>118. 杨辉三角</h1><p>题目地址：<a href="https://leetcode-cn.com/problems/pascals-triangle">118. 杨辉三角</a></p><h2 id="解法：模拟"><a href="#解法：模拟" class="headerlink" title="解法：模拟"></a>解法：模拟</h2><p>按照题目的说明使用二维切片模拟即可。注意第<code>i</code>行的长度为<code>i+1</code>，第<code>ans[i][j]</code>个元素的值为<code>ans[i-1][j-1] + ans[i-1][j]</code>。</p><pre><code class="go">func generate(numRows int) [][]int &#123;    ans := make([][]int, numRows)    for i := 0; i &lt; numRows; i++ &#123;        ans[i] = make([]int, i+1)        ans[i][0] = 1        ans[i][i] = 1        for j := 1; j &lt; i; j++ &#123;            ans[i][j] = ans[i-1][j-1] + ans[i-1][j]        &#125;    &#125;    return ans&#125;</code></pre><p>执行用时：0 ms, 在所有 Go 提交中击败了100.00%的用户；</p><p>内存消耗：2 MB, 在所有 Go 提交中击败了86.54%的用户；</p><p>时间复杂度：O(n^2)，循环的次数与行数的平方成正比；</p><p>空间复杂度：O(1)，除了返回值之外只使用了常数个数的存储空间。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> LeetCode </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> LeetCode </tag>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 模拟 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>506.相对名次</title>
       <link href="/2021/12/02/506-%E7%9B%B8%E5%AF%B9%E5%90%8D%E6%AC%A1/"/>
       <url>/2021/12/02/506-%E7%9B%B8%E5%AF%B9%E5%90%8D%E6%AC%A1/</url>

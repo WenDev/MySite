@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>2.两数相加 | 江文 - Golang | Back-End Develop | Cloud Native</title>
-  <meta name="keywords" content=" LeetCode , 算法 , 模拟 , 链表 ">
-  <meta name="description" content="2.两数相加 | 江文 - Golang | Back-End Develop | Cloud Native">
+  <title>118.杨辉三角 | 江文 - Golang | Back-End Develop | Cloud Native</title>
+  <meta name="keywords" content=" LeetCode , 算法 , 模拟 ">
+  <meta name="description" content="118.杨辉三角 | 江文 - Golang | Back-End Develop | Cloud Native">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="121. 买卖股票的最佳时机题目地址：121. 买卖股票的最佳时机 解法：动态规划本题也可以使用暴力算法枚举所有购买方法的最大利润，但本题的动态规划解法并不难。 状态转移方程：第i天的最大利润 &#x3D; max(第i天的价格 - 前i天的最小价格，前i-1天的最大利润)，在实现上只需要使用两个变量记录前i天的最大利润和前i天的最小价格，然后按照状态转移方程进行递推即可。 func maxProfit(p">
 <meta property="og:type" content="article">
@@ -1039,9 +1039,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-2-两数相加" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-118-杨辉三角" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">2.两数相加</h1>
+        <h1 class="article-title">118.杨辉三角</h1>
     
     <div class="article-meta">
         
@@ -1065,19 +1065,17 @@
             
             <a class="color3">模拟</a>
             
-            <a class="color3">链表</a>
-            
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-11-22 21:26:49'>2021-11-22 20:21</time>
+            发布时间 : <time class="date" title='最后更新: 2021-12-02 19:03:21'>2021-12-02 19:02</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:794</span>
+        <span>字数:212</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1096,7 +1094,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0"><span class="toc-text">2. 两数相加</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E6%B3%95%EF%BC%9A%E6%A8%A1%E6%8B%9F%E5%8A%A0%E6%B3%95"><span class="toc-text">解法：模拟加法</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#118-%E6%9D%A8%E8%BE%89%E4%B8%89%E8%A7%92"><span class="toc-text">118. 杨辉三角</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E6%B3%95%EF%BC%9A%E6%A8%A1%E6%8B%9F"><span class="toc-text">解法：模拟</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1112,88 +1110,25 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="2-两数相加"><a href="#2-两数相加" class="headerlink" title="2. 两数相加"></a>2. 两数相加</h1><p>题目地址：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/add-two-numbers/">2. 两数相加</a></p>
-<h2 id="解法：模拟加法"><a href="#解法：模拟加法" class="headerlink" title="解法：模拟加法"></a>解法：模拟加法</h2><p>很容易就能看出这题给出的链表长度已经远远超出了go语言中最大整数数值类型<code>uint64</code>所能表示的范围，所以需要对两个链表做模拟加法运算才能得出正确答案。</p>
-<p>在两个链表都没有遍历完时，这个过程就是一个很简单的模拟大数加法而已；其中一个链表遍历完之后，对另一个链表继续使用模拟加法进行计算，当然我们可能还会遇到两个链表都遍历完之后仍有进位没有消除的情况，这时再挂一个1到链表上表示进位即可。这里使用的是带有头结点的链表，所以最后返回答案时需要摘除头结点（即返回<code>head.Next</code>）。</p>
-<pre><code class="go">/**
- * Definition for singly-linked list.
- * type ListNode struct &#123;
- *     Val int
- *     Next *ListNode
- * &#125;
- */
-func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode &#123;
-    p1, p2 := l1, l2
-    // 头结点,没啥用,只是为了方便创建链表,创建完之后head.Next才是我们要的答案
-    head := &amp;ListNode&#123;Val: 0, Next: nil&#125;
-    p := head
-    c := 0
-    for p1 != nil &amp;&amp; p2 != nil &#123;
-        v := p1.Val + p2.Val
-        // 判断上一位有无进位,如果有,则给这一位的数加1并且清除进位标志
-        if c == 1 &#123;
-            v += 1
-            c = 0
-        &#125;
-        // 判断该位置上的两个数相加结果有没有超过10,超过则进位
-        if v &gt;= 10 &#123;
-            c = 1
-        &#125;
-        // 新建一个链表结点,把这个数存进去,并把结点挂在链表上
-        node := &amp;ListNode&#123;Val: v % 10, Next: nil&#125;
-        p.Next = node
-        // 三个指针往后走一个结点
-        p = p.Next
-        p1 = p1.Next
-        p2 = p2.Next
-    &#125;
-    if p1 != nil &#123;
-        for p3 := p1; p3 != nil; p3 = p3.Next &#123;
-            v := p3.Val
-            // 判断上一位有无进位,如果有,则给这一位的数加1并且清除进位标志
-            if c == 1 &#123;
-                v += 1
-                c = 0
-            &#125;
-            // 判断该位置上的两个数相加结果有没有超过10,超过则进位
-            if v &gt;= 10 &#123;
-                c = 1
-            &#125;
-            node := &amp;ListNode&#123;Val: v % 10, Next: nil&#125;
-            p.Next = node
-            p = p.Next
-        &#125;
-    &#125; else if p2 != nil &#123;
-        for p4 := p2; p4 != nil; p4 = p4.Next &#123;
-            v := p4.Val
-            // 判断上一位有无进位,如果有,则给这一位的数加1并且清除进位标志
-            if c == 1 &#123;
-                v += 1
-                c = 0
-            &#125;
-            // 判断该位置上的两个数相加结果有没有超过10,超过则进位
-            if v &gt;= 10 &#123;
-                c = 1
-            &#125;
-            node := &amp;ListNode&#123;Val: v % 10, Next: nil&#125;
-            p.Next = node
-            p = p.Next
+        <h1 id="118-杨辉三角"><a href="#118-杨辉三角" class="headerlink" title="118. 杨辉三角"></a>118. 杨辉三角</h1><p>题目地址：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/pascals-triangle">118. 杨辉三角</a></p>
+<h2 id="解法：模拟"><a href="#解法：模拟" class="headerlink" title="解法：模拟"></a>解法：模拟</h2><p>按照题目的说明使用二维切片模拟即可。注意第<code>i</code>行的长度为<code>i+1</code>，第<code>ans[i][j]</code>个元素的值为<code>ans[i-1][j-1] + ans[i-1][j]</code>。</p>
+<pre><code class="go">func generate(numRows int) [][]int &#123;
+    ans := make([][]int, numRows)
+    for i := 0; i &lt; numRows; i++ &#123;
+        ans[i] = make([]int, i+1)
+        ans[i][0] = 1
+        ans[i][i] = 1
+        for j := 1; j &lt; i; j++ &#123;
+            ans[i][j] = ans[i-1][j-1] + ans[i-1][j]
         &#125;
     &#125;
-    // 看看两个链表遍历完之后还有没有进位,有的话就再挂一个1上去
-    if c == 1 &#123;
-        node := &amp;ListNode&#123;Val: 1, Next: nil&#125;
-        p.Next = node
-        p = p.Next
-        c = 0
-    &#125;
-    return head.Next
+    return ans
 &#125;
 </code></pre>
-<p>执行用时: <strong>16 ms</strong>（超过57%的Golang提交记录）</p>
-<p>内存消耗: <strong>4.6 MB</strong>（超过91%的Golang提交记录）</p>
-<p>时间复杂度：O(max(m, n))，循环的次数取决于两个链表中较长的一个；</p>
-<p>空间复杂度：O(1)，除了返回的链表之外只使用了常数个数的存储空间。</p>
+<p>执行用时：0 ms, 在所有 Go 提交中击败了100.00%的用户；</p>
+<p>内存消耗：2 MB, 在所有 Go 提交中击败了86.54%的用户；</p>
+<p>时间复杂度：O(n^2)，循环的次数与行数的平方成正比；</p>
+<p>空间复杂度：O(1)，除了返回值之外只使用了常数个数的存储空间。</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎各位大佬指出任何有错误或不够清晰的表达。可以发可以邮件至 wendev1024@icloud.com 或添加微信 wendev1024 联系（请注明来源于我的个人网站）。 </span>
@@ -1203,12 +1138,12 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode &#123;
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>2.两数相加</p>
-    <p><span class="copy-title">字数:</span><span class="post-count">794</span></p>
+    <p><span class="copy-title">文章标题:</span>118.杨辉三角</p>
+    <p><span class="copy-title">字数:</span><span class="post-count">212</span></p>
     <p><span class="copy-title">本文作者:</span><a  title="江文">江文</a></p>
-    <p><span class="copy-title">发布时间:</span>2021-11-22, 20:21:43</p>
-    <p><span class="copy-title">最后更新:</span>2021-11-22, 21:26:49</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2021/11/22/2-%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0/" title="2.两数相加">http://www.wendev.site/2021/11/22/2-%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0/</a>
+    <p><span class="copy-title">发布时间:</span>2021-12-02, 19:02:45</p>
+    <p><span class="copy-title">最后更新:</span>2021-12-02, 19:03:21</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2021/12/02/118-%E6%9D%A8%E8%BE%89%E4%B8%89%E8%A7%92/" title="118.杨辉三角">http://www.wendev.site/2021/12/02/118-%E6%9D%A8%E8%BE%89%E4%B8%89%E8%A7%92/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">&#34;署名-非商用-相同方式共享 4.0&#34;</a> 转载请保留原文链接及作者。
     </p>
