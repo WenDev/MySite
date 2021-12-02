@@ -4,6 +4,37 @@
   
     
     <entry>
+      <title>506.相对名次</title>
+      <link href="/2021/12/02/506-%E7%9B%B8%E5%AF%B9%E5%90%8D%E6%AC%A1/"/>
+      <url>/2021/12/02/506-%E7%9B%B8%E5%AF%B9%E5%90%8D%E6%AC%A1/</url>
+      
+        <content type="html"><![CDATA[<h1 id="506-相对名次"><a href="#506-相对名次" class="headerlink" title="506. 相对名次"></a>506. 相对名次</h1><p>题目地址：<a href="https://leetcode-cn.com/problems/relative-ranks">506. 相对名次</a></p><h2 id="解法：排序-哈希表"><a href="#解法：排序-哈希表" class="headerlink" title="解法：排序+哈希表"></a>解法：排序+哈希表</h2><p>本题的核心思想比较简单，由于分数互不相同，所以只需要一次倒序排序就可以获得所有运动员的相对名次。但是由于排序之后数据元素的下标会发生变化，所以我们还需要用哈希表存储数组中元素原来的下标，并且在计算答案时要根据哈希表中存储的元素的原有下标将其对应的名次放入答案数组的相应位置。</p><p>本题的关键在于实现倒序排序，在Golang中可以使用<code>sort.Sort()</code>函数配合<code>sort.Reverse()</code>函数来完成。</p><pre><code class="go">import (    &quot;sort&quot;    &quot;fmt&quot;)func findRelativeRanks(score []int) []string &#123;    m := make(map[int]int)    for i, s := range score &#123;        m[s] = i    &#125;    sort.Sort(sort.Reverse(sort.IntSlice(score)))    ans := make([]string, len(score))    for i, r := range score &#123;        if i == 0 &#123;            ans[m[r]] = &quot;Gold Medal&quot;        &#125; else if i == 1 &#123;            ans[m[r]] = &quot;Silver Medal&quot;        &#125; else if i == 2 &#123;            ans[m[r]] = &quot;Bronze Medal&quot;        &#125; else &#123;            ans[m[r]] = fmt.Sprintf(&quot;%d&quot;, i+1)        &#125;    &#125;    return ans&#125;</code></pre><p>执行用时：16 ms, 在所有 Go 提交中击败了24.75%的用户；</p><p>内存消耗：6.8 MB, 在所有 Go 提交中击败了5.94%的用户；</p><p>时间复杂度：O(nlogn)，来自排序算法；</p><p>空间复杂度：O(n)，哈希表的长度为数组的长度。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> LeetCode </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> LeetCode </tag>
+            
+            <tag> 哈希表 </tag>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 排序 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>121.买卖股票的最佳时机</title>
       <link href="/2021/12/01/121-%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA/"/>
       <url>/2021/12/01/121-%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA/</url>

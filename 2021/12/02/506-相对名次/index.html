@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>1446.连续字符 | 江文 - Golang | Back-End Develop | Cloud Native</title>
-  <meta name="keywords" content=" LeetCode , 算法 , 双指针 ">
-  <meta name="description" content="1446.连续字符 | 江文 - Golang | Back-End Develop | Cloud Native">
+  <title>506.相对名次 | 江文 - Golang | Back-End Develop | Cloud Native</title>
+  <meta name="keywords" content=" LeetCode , 哈希表 , 算法 , 排序 ">
+  <meta name="description" content="506.相对名次 | 江文 - Golang | Back-End Develop | Cloud Native">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="121. 买卖股票的最佳时机题目地址：121. 买卖股票的最佳时机 解法：动态规划本题也可以使用暴力算法枚举所有购买方法的最大利润，但本题的动态规划解法并不难。 状态转移方程：第i天的最大利润 &#x3D; max(第i天的价格 - 前i天的最小价格，前i-1天的最大利润)，在实现上只需要使用两个变量记录前i天的最大利润和前i天的最小价格，然后按照状态转移方程进行递推即可。 func maxProfit(p">
 <meta property="og:type" content="article">
@@ -1023,9 +1023,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-1446-连续字符" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-506-相对名次" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">1446.连续字符</h1>
+        <h1 class="article-title">506.相对名次</h1>
     
     <div class="article-meta">
         
@@ -1045,21 +1045,23 @@
             
             <a class="color4">LeetCode</a>
             
+            <a class="color4">哈希表</a>
+            
             <a class="color3">算法</a>
             
-            <a class="color4">双指针</a>
+            <a class="color3">排序</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-12-01 15:59:06'>2021-12-01 15:55</time>
+            发布时间 : <time class="date" title='最后更新: 2021-12-02 16:51:26'>2021-12-02 16:50</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:343</span>
+        <span>字数:360</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1078,7 +1080,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1446-%E8%BF%9E%E7%BB%AD%E5%AD%97%E7%AC%A6"><span class="toc-text">1446. 连续字符</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E6%B3%95%EF%BC%9A%E5%8F%8C%E6%8C%87%E9%92%88"><span class="toc-text">解法：双指针</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#506-%E7%9B%B8%E5%AF%B9%E5%90%8D%E6%AC%A1"><span class="toc-text">506. 相对名次</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E6%B3%95%EF%BC%9A%E6%8E%92%E5%BA%8F-%E5%93%88%E5%B8%8C%E8%A1%A8"><span class="toc-text">解法：排序+哈希表</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1094,26 +1096,39 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="1446-连续字符"><a href="#1446-连续字符" class="headerlink" title="1446. 连续字符"></a>1446. 连续字符</h1><p>题目地址：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/consecutive-characters">1446. 连续字符</a></p>
-<h2 id="解法：双指针"><a href="#解法：双指针" class="headerlink" title="解法：双指针"></a>解法：双指针</h2><p>这道题是一道很简单的双指针模拟题，但是它也是其他一些问题（例如排序之后进行连续相同元素数量的计数操作）的基础。使用一个指针<code>i</code>从字符串的第2个字符开始遍历字符串，另一个指针<code>start</code>指向相同字符的起点位置，这时，相同字符的个数即为<code>i - start + 1</code>。如果在遍历中发现<code>s[i] != s[i-1]</code>即当前遍历到的元素和上一个元素不相同，这时将<code>start</code>指向<code>i</code>表示开始计算一个新元素的连续长度。 使用另一个变量<code>max</code>保存最大相同字符的个数，遍历时如果发现当前相同元素的个数大于<code>max</code>，则更新<code>max</code>。</p>
-<pre><code class="go">func maxPower(s string) int &#123;
-    start := 0
-    max := 1
-    for i := 1; i &lt; len(s); i++ &#123;
-        if s[i] != s[i-1] &#123;
-            start = i
-        &#125;
-        if i - start + 1 &gt; max &#123;
-            max = i - start + 1
+        <h1 id="506-相对名次"><a href="#506-相对名次" class="headerlink" title="506. 相对名次"></a>506. 相对名次</h1><p>题目地址：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/relative-ranks">506. 相对名次</a></p>
+<h2 id="解法：排序-哈希表"><a href="#解法：排序-哈希表" class="headerlink" title="解法：排序+哈希表"></a>解法：排序+哈希表</h2><p>本题的核心思想比较简单，由于分数互不相同，所以只需要一次倒序排序就可以获得所有运动员的相对名次。但是由于排序之后数据元素的下标会发生变化，所以我们还需要用哈希表存储数组中元素原来的下标，并且在计算答案时要根据哈希表中存储的元素的原有下标将其对应的名次放入答案数组的相应位置。</p>
+<p>本题的关键在于实现倒序排序，在Golang中可以使用<code>sort.Sort()</code>函数配合<code>sort.Reverse()</code>函数来完成。</p>
+<pre><code class="go">import (
+    &quot;sort&quot;
+    &quot;fmt&quot;
+)
+
+func findRelativeRanks(score []int) []string &#123;
+    m := make(map[int]int)
+    for i, s := range score &#123;
+        m[s] = i
+    &#125;
+    sort.Sort(sort.Reverse(sort.IntSlice(score)))
+    ans := make([]string, len(score))
+    for i, r := range score &#123;
+        if i == 0 &#123;
+            ans[m[r]] = &quot;Gold Medal&quot;
+        &#125; else if i == 1 &#123;
+            ans[m[r]] = &quot;Silver Medal&quot;
+        &#125; else if i == 2 &#123;
+            ans[m[r]] = &quot;Bronze Medal&quot;
+        &#125; else &#123;
+            ans[m[r]] = fmt.Sprintf(&quot;%d&quot;, i+1)
         &#125;
     &#125;
-    return max
+    return ans
 &#125;
 </code></pre>
-<p>执行用时：4 ms, 在所有 Go 提交中击败了10.00%的用户；</p>
-<p>内存消耗：2.3 MB, 在所有 Go 提交中击败了100.00%的用户；</p>
-<p>时间复杂度：O(n)，需要遍历字符串一次；</p>
-<p>空间复杂度：O(1)，只使用了常数个数的存储空间。</p>
+<p>执行用时：16 ms, 在所有 Go 提交中击败了24.75%的用户；</p>
+<p>内存消耗：6.8 MB, 在所有 Go 提交中击败了5.94%的用户；</p>
+<p>时间复杂度：O(nlogn)，来自排序算法；</p>
+<p>空间复杂度：O(n)，哈希表的长度为数组的长度。</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎各位大佬指出任何有错误或不够清晰的表达。可以发可以邮件至 wendev1024@icloud.com 或添加微信 wendev1024 联系（请注明来源于我的个人网站）。 </span>
@@ -1123,12 +1138,12 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>1446.连续字符</p>
-    <p><span class="copy-title">字数:</span><span class="post-count">343</span></p>
+    <p><span class="copy-title">文章标题:</span>506.相对名次</p>
+    <p><span class="copy-title">字数:</span><span class="post-count">360</span></p>
     <p><span class="copy-title">本文作者:</span><a  title="江文">江文</a></p>
-    <p><span class="copy-title">发布时间:</span>2021-12-01, 15:55:15</p>
-    <p><span class="copy-title">最后更新:</span>2021-12-01, 15:59:06</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2021/12/01/1446-%E8%BF%9E%E7%BB%AD%E5%AD%97%E7%AC%A6/" title="1446.连续字符">http://www.wendev.site/2021/12/01/1446-%E8%BF%9E%E7%BB%AD%E5%AD%97%E7%AC%A6/</a>
+    <p><span class="copy-title">发布时间:</span>2021-12-02, 16:50:49</p>
+    <p><span class="copy-title">最后更新:</span>2021-12-02, 16:51:26</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2021/12/02/506-%E7%9B%B8%E5%AF%B9%E5%90%8D%E6%AC%A1/" title="506.相对名次">http://www.wendev.site/2021/12/02/506-%E7%9B%B8%E5%AF%B9%E5%90%8D%E6%AC%A1/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">&#34;署名-非商用-相同方式共享 4.0&#34;</a> 转载请保留原文链接及作者。
     </p>
