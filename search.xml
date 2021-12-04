@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>383.赎金信</title>
+      <link href="/2021/12/04/383-%E8%B5%8E%E9%87%91%E4%BF%A1/"/>
+      <url>/2021/12/04/383-%E8%B5%8E%E9%87%91%E4%BF%A1/</url>
+      
+        <content type="html"><![CDATA[<h1 id="383-赎金信"><a href="#383-赎金信" class="headerlink" title="383. 赎金信"></a>383. 赎金信</h1><p>题目地址：<a href="https://leetcode-cn.com/problems/ransom-note/submissions/">383. 赎金信</a></p><h2 id="解法：字符计数（哈希表）"><a href="#解法：字符计数（哈希表）" class="headerlink" title="解法：字符计数（哈希表）"></a>解法：字符计数（哈希表）</h2><p>本题可以看做求<code>ransomNote</code>中的字符是否为<code>magazine</code>中字符的子集，可以使用哈希表记录字符个数的方法来求解：首先遍历<code>magazine</code>，求出其中所有字符及其出现次数，然后遍历<code>ransomNote</code>，如果当前遍历到的字符不在哈希表中则返回<code>false</code>，否则将其出现次数减一表示这个字符已经被用过了，若遍历能成功结束，说明<code>ransomNote</code>中的字符是<code>magazine</code>中字符的子集，返回<code>true</code>。</p><p>在做此类字符被限定为纯大写字母或小写字母的字符计数题时，可以使用一个长度为26的整数数组模拟哈希表，数组下标表示该字符相对于字母<code>a</code>的偏移量，数组元素表示该字符的出现次数。</p><pre><code class="go">func canConstruct(ransomNote string, magazine string) bool &#123;    cnt := [26]int&#123;&#125;    for _, c := range magazine &#123;        cnt[c-&#39;a&#39;]++    &#125;    for _, c := range ransomNote &#123;        if cnt[c-&#39;a&#39;] == 0 &#123;            return false        &#125; else &#123;            cnt[c-&#39;a&#39;]--        &#125;    &#125;    return true&#125;</code></pre><p>执行用时：4 ms, 在所有 Go 提交中击败了82.42%的用户；</p><p>内存消耗：3.8 MB, 在所有 Go 提交中击败了81.45%的用户；</p><p>时间复杂度：O(m+n)，需要遍历两个字符串各一次；</p><p>空间复杂度：O(1)，只使用了常数个数的存储空间。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> LeetCode </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> LeetCode </tag>
+            
+            <tag> 哈希表 </tag>
+            
+            <tag> 算法 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>566.重塑矩阵</title>
       <link href="/2021/12/02/566-%E9%87%8D%E5%A1%91%E7%9F%A9%E9%98%B5/"/>
       <url>/2021/12/02/566-%E9%87%8D%E5%A1%91%E7%9F%A9%E9%98%B5/</url>
