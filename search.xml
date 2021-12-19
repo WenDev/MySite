@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>997.找到小镇的法官</title>
+      <link href="/2021/12/19/997-%E6%89%BE%E5%88%B0%E5%B0%8F%E9%95%87%E7%9A%84%E6%B3%95%E5%AE%98/"/>
+      <url>/2021/12/19/997-%E6%89%BE%E5%88%B0%E5%B0%8F%E9%95%87%E7%9A%84%E6%B3%95%E5%AE%98/</url>
+      
+        <content type="html"><![CDATA[<h1 id="997-找到小镇的法官"><a href="#997-找到小镇的法官" class="headerlink" title="997. 找到小镇的法官"></a>997. 找到小镇的法官</h1><p>题目地址：<a href="https://leetcode-cn.com/problems/find-the-town-judge/">997. 找到小镇的法官</a></p><h2 id="解法：有向图"><a href="#解法：有向图" class="headerlink" title="解法：有向图"></a>解法：有向图</h2><p>本题可以转化为有向图的问题，即小镇中每一个人都是图中的一个结点，<code>a</code>信任<code>b</code>表示存在一条从<code>a</code>指向<code>b</code>的有向边，那么问题就可以转化为：在图中是否存在一个结点，其入度为<code>n-1</code>，出度为<code>0</code>。</p><p>本题可以用邻接矩阵来做，但是考虑到只需要统计入度出度，所以可以用两个长度为<code>n</code>的数组代替邻接矩阵分别统计入度和出度。首先遍历<code>trust</code>二维切片，将<code>t[0]</code>的出度和<code>t[1]</code>的入度加1；然后从<code>1</code>到<code>n</code>遍历入度出度表，若找到符合要求的结点则返回它的下标，否则循环结束后返回<code>-1</code>。</p><pre><code class="go">func findJudge(n int, trust [][]int) int &#123;    id := make([]int, n+1) // 入度表    od := make([]int, n+1) // 出度表    for _, t := range trust &#123;        // 表示有一条从t[0]指向t[1]的边        od[t[0]]++        id[t[1]]++    &#125;    for i := 1; i &lt;= n; i++ &#123;        if od[i] == 0 &amp;&amp; id[i] == n-1 &#123;            return i        &#125;    &#125;    return -1&#125;</code></pre><p>执行用时：148 ms, 在所有 Go 提交中击败了7.01%的用户；</p><p>内存消耗：7.7 MB, 在所有 Go 提交中击败了42.04%的用户；</p><p>时间复杂度：O(m + n)，其中m为trust的长度；</p><p>空间复杂度：O(n)，入度表和出度表的长度与图中结点个数相同。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> LeetCode </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> LeetCode </tag>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 图 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>748.最短补全词</title>
       <link href="/2021/12/12/748-%E6%9C%80%E7%9F%AD%E8%A1%A5%E5%85%A8%E8%AF%8D/"/>
       <url>/2021/12/12/748-%E6%9C%80%E7%9F%AD%E8%A1%A5%E5%85%A8%E8%AF%8D/</url>
