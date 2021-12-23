@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>118.杨辉三角 | 江文 - Golang | Back-End Develop | Cloud Native</title>
-  <meta name="keywords" content=" LeetCode , 算法 , 模拟 ">
-  <meta name="description" content="118.杨辉三角 | 江文 - Golang | Back-End Develop | Cloud Native">
+  <title>15.三数之和 | 江文 - Golang | Back-End Develop | Cloud Native</title>
+  <meta name="keywords" content=" LeetCode , 算法 , 双指针 , 排序 ">
+  <meta name="description" content="15.三数之和 | 江文 - Golang | Back-End Develop | Cloud Native">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="15. 三数之和题目地址：15. 三数之和 解法：排序+双指针这道题最简单的解法当然是暴力：三个嵌套的for循环，但是估计多半会TLE，而且一直暴力也不是很好的选择，所以可以使用一种更高效的解法：排序+双指针。 首先对输入的数组进行排序，然后从头开始遍历数组中的每一个负数。设当前遍历到的负数的下标为i，那么使用两个指针l和r分别指向nums[i+1]和nums[len(nums)-1]。接着进行判">
 <meta property="og:type" content="article">
@@ -1092,9 +1092,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-118-杨辉三角" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-15-三数之和" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">118.杨辉三角</h1>
+        <h1 class="article-title">15.三数之和</h1>
     
     <div class="article-meta">
         
@@ -1116,19 +1116,21 @@
             
             <a class="color3">算法</a>
             
-            <a class="color3">模拟</a>
+            <a class="color4">双指针</a>
+            
+            <a class="color3">排序</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-12-02 19:03:21'>2021-12-02 19:02</time>
+            发布时间 : <time class="date" title='最后更新: 2021-12-23 17:27:20'>2021-12-23 17:26</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:212</span>
+        <span>字数:679</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1147,7 +1149,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#118-%E6%9D%A8%E8%BE%89%E4%B8%89%E8%A7%92"><span class="toc-text">118. 杨辉三角</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E6%B3%95%EF%BC%9A%E6%A8%A1%E6%8B%9F"><span class="toc-text">解法：模拟</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#15-%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C"><span class="toc-text">15. 三数之和</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E6%B3%95%EF%BC%9A%E6%8E%92%E5%BA%8F-%E5%8F%8C%E6%8C%87%E9%92%88"><span class="toc-text">解法：排序+双指针</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1163,25 +1165,66 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="118-杨辉三角"><a href="#118-杨辉三角" class="headerlink" title="118. 杨辉三角"></a>118. 杨辉三角</h1><p>题目地址：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/pascals-triangle">118. 杨辉三角</a></p>
-<h2 id="解法：模拟"><a href="#解法：模拟" class="headerlink" title="解法：模拟"></a>解法：模拟</h2><p>按照题目的说明使用二维切片模拟即可。注意第<code>i</code>行的长度为<code>i+1</code>，第<code>ans[i][j]</code>个元素的值为<code>ans[i-1][j-1] + ans[i-1][j]</code>。</p>
-<pre><code class="go">func generate(numRows int) [][]int &#123;
-    ans := make([][]int, numRows)
-    for i := 0; i &lt; numRows; i++ &#123;
-        ans[i] = make([]int, i+1)
-        ans[i][0] = 1
-        ans[i][i] = 1
-        for j := 1; j &lt; i; j++ &#123;
-            ans[i][j] = ans[i-1][j-1] + ans[i-1][j]
+        <h1 id="15-三数之和"><a href="#15-三数之和" class="headerlink" title="15. 三数之和"></a>15. 三数之和</h1><p>题目地址：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/3sum">15. 三数之和</a></p>
+<h2 id="解法：排序-双指针"><a href="#解法：排序-双指针" class="headerlink" title="解法：排序+双指针"></a>解法：排序+双指针</h2><p>这道题最简单的解法当然是暴力：三个嵌套的for循环，但是估计多半会TLE，而且一直暴力也不是很好的选择，所以可以使用一种更高效的解法：排序+双指针。</p>
+<p>首先对输入的数组进行排序，然后从头开始遍历数组中的每一个负数。设当前遍历到的负数的下标为<code>i</code>，那么使用两个指针<code>l</code>和<code>r</code>分别指向<code>nums[i+1]</code>和<code>nums[len(nums)-1]</code>。接着进行判断：</p>
+<ol>
+<li>如果<code>nums[i] + nums[l] + nums[r] == 0</code>，说明找到了一组解，放入结果集合中，并将<code>l</code>右移一位，<code>r</code>左移一位；</li>
+<li>如果和大于0，将<code>r</code>左移一位；</li>
+<li>如果和小于0，将<code>l</code>右移一位；</li>
+<li>直到<code>l &gt;= r</code>时退出循环，把<code>i</code>右移一位，继续判断下一组数。</li>
+</ol>
+<p>这道题的难点在于去重的情况的判断，有两个地方需要去重：</p>
+<ol>
+<li>当<code>i</code>不是<code>0</code>时，需要判断<code>nums[i]</code>和<code>nums[i+1]</code>是否相等，如果相等，那么跳过这个数；</li>
+<li>当找到了一组解之后，在移动<code>l</code>和<code>r</code>之前，需要判断<code>nums[l]</code>是否等于<code>numsa[l+1]</code>、<code>nums[r]</code>是否等于<code>nums[r-1]</code>，如果是，则跳过相应的数。</li>
+</ol>
+<p>这时我们也能明白为什么只需要考虑数组中的负数了：若<code>nums[i] &gt; 0</code>，由于数组是经过排序的，那么<code>nums[l]</code>和<code>nums[r]</code>必然都大于0，相加之后也必然大于0。</p>
+<pre><code class="go">func threeSum(nums []int) [][]int &#123;
+    if nums == nil || len(nums) &lt; 3 &#123;
+        return [][]int&#123;&#125;
+    &#125;
+    sort.Ints(nums)
+    ans := [][]int&#123;&#125;
+    for i := 0; i &lt; len(nums); i++ &#123;
+        if nums[i] &gt; 0 &#123;
+            // 正数，说明后面的数都是正数了不会出现和等于0的情况，跳出循环
+            break
+        &#125;
+        if i &gt; 0 &amp;&amp; nums[i-1] == nums[i] &#123;
+            // 去一下重
+            continue
+        &#125;
+        l, r := i+1, len(nums)-1
+        for l &lt; r &#123;
+            sum := nums[i] + nums[l] + nums[r]
+            if sum == 0 &#123;
+                ans = append(ans, []int&#123;nums[i], nums[l], nums[r]&#125;)
+                // 去重。。。
+                for l &lt; r &amp;&amp; nums[l] == nums[l+1] &#123;
+                    l++
+                &#125;
+                // 继续去重。。。
+                for l &lt; r &amp;&amp; nums[r] == nums[r-1] &#123;
+                    r--
+                &#125;
+                // 判断下一对数
+                l++
+                r--
+            &#125; else if sum &gt; 0 &#123;
+                r--
+            &#125; else &#123; // sum &lt; 0
+                l++
+            &#125;
         &#125;
     &#125;
     return ans
 &#125;
 </code></pre>
-<p>执行用时：0 ms, 在所有 Go 提交中击败了100.00%的用户；</p>
-<p>内存消耗：2 MB, 在所有 Go 提交中击败了86.54%的用户；</p>
-<p>时间复杂度：O(n^2)，循环的次数与行数的平方成正比；</p>
-<p>空间复杂度：O(1)，除了返回值之外只使用了常数个数的存储空间。</p>
+<p>执行用时：20 ms, 在所有 Go 提交中击败了99.93%的用户；</p>
+<p>内存消耗：7.4 MB, 在所有 Go 提交中击败了90.06%的用户；</p>
+<p>时间复杂度：O(n ^2)，有两层嵌套的<code>for</code>循环；</p>
+<p>空间复杂度：O(logn)，来自排序算法，注意我们不需要考虑返回值所占的空间。</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎各位大佬指出任何有错误或不够清晰的表达。可以发可以邮件至 wendev1024@icloud.com 或添加微信 wendev1024 联系（请注明来源于我的个人网站）。 </span>
@@ -1191,12 +1234,12 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>118.杨辉三角</p>
-    <p><span class="copy-title">字数:</span><span class="post-count">212</span></p>
+    <p><span class="copy-title">文章标题:</span>15.三数之和</p>
+    <p><span class="copy-title">字数:</span><span class="post-count">679</span></p>
     <p><span class="copy-title">本文作者:</span><a  title="江文">江文</a></p>
-    <p><span class="copy-title">发布时间:</span>2021-12-02, 19:02:45</p>
-    <p><span class="copy-title">最后更新:</span>2021-12-02, 19:03:21</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2021/12/02/118-%E6%9D%A8%E8%BE%89%E4%B8%89%E8%A7%92/" title="118.杨辉三角">http://www.wendev.site/2021/12/02/118-%E6%9D%A8%E8%BE%89%E4%B8%89%E8%A7%92/</a>
+    <p><span class="copy-title">发布时间:</span>2021-12-23, 17:26:47</p>
+    <p><span class="copy-title">最后更新:</span>2021-12-23, 17:27:20</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2021/12/23/15-%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C/" title="15.三数之和">http://www.wendev.site/2021/12/23/15-%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">&#34;署名-非商用-相同方式共享 4.0&#34;</a> 转载请保留原文链接及作者。
     </p>

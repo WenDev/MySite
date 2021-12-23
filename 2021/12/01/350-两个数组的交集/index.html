@@ -6,19 +6,20 @@
   <meta name="keywords" content=" LeetCode , 算法 , 哈希表 , 双指针 , 排序 ">
   <meta name="description" content="350.两个数组的交集 | 江文 - Golang | Back-End Develop | Cloud Native">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="997. 找到小镇的法官题目地址：997. 找到小镇的法官 解法：有向图本题可以转化为有向图的问题，即小镇中每一个人都是图中的一个结点，a信任b表示存在一条从a指向b的有向边，那么问题就可以转化为：在图中是否存在一个结点，其入度为n-1，出度为0。 本题可以用邻接矩阵来做，但是考虑到只需要统计入度出度，所以可以用两个长度为n的数组代替邻接矩阵分别统计入度和出度。首先遍历trust二维切片，将t[0">
+<meta name="description" content="15. 三数之和题目地址：15. 三数之和 解法：排序+双指针这道题最简单的解法当然是暴力：三个嵌套的for循环，但是估计多半会TLE，而且一直暴力也不是很好的选择，所以可以使用一种更高效的解法：排序+双指针。 首先对输入的数组进行排序，然后从头开始遍历数组中的每一个负数。设当前遍历到的负数的下标为i，那么使用两个指针l和r分别指向nums[i+1]和nums[len(nums)-1]。接着进行判">
 <meta property="og:type" content="article">
-<meta property="og:title" content="997.找到小镇的法官">
-<meta property="og:url" content="http://www.wendev.site/2021/12/19/997-%E6%89%BE%E5%88%B0%E5%B0%8F%E9%95%87%E7%9A%84%E6%B3%95%E5%AE%98/index.html">
+<meta property="og:title" content="15.三数之和">
+<meta property="og:url" content="http://www.wendev.site/2021/12/23/15-%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C/index.html">
 <meta property="og:site_name" content="江文 - Golang | Back-End Develop | Cloud Native">
-<meta property="og:description" content="997. 找到小镇的法官题目地址：997. 找到小镇的法官 解法：有向图本题可以转化为有向图的问题，即小镇中每一个人都是图中的一个结点，a信任b表示存在一条从a指向b的有向边，那么问题就可以转化为：在图中是否存在一个结点，其入度为n-1，出度为0。 本题可以用邻接矩阵来做，但是考虑到只需要统计入度出度，所以可以用两个长度为n的数组代替邻接矩阵分别统计入度和出度。首先遍历trust二维切片，将t[0">
+<meta property="og:description" content="15. 三数之和题目地址：15. 三数之和 解法：排序+双指针这道题最简单的解法当然是暴力：三个嵌套的for循环，但是估计多半会TLE，而且一直暴力也不是很好的选择，所以可以使用一种更高效的解法：排序+双指针。 首先对输入的数组进行排序，然后从头开始遍历数组中的每一个负数。设当前遍历到的负数的下标为i，那么使用两个指针l和r分别指向nums[i+1]和nums[len(nums)-1]。接着进行判">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-12-19T04:09:18.000Z">
-<meta property="article:modified_time" content="2021-12-19T04:09:45.303Z">
+<meta property="article:published_time" content="2021-12-23T09:26:47.000Z">
+<meta property="article:modified_time" content="2021-12-23T09:27:20.681Z">
 <meta property="article:author" content="江文">
 <meta property="article:tag" content="LeetCode">
 <meta property="article:tag" content="算法">
-<meta property="article:tag" content="图">
+<meta property="article:tag" content="双指针">
+<meta property="article:tag" content="排序">
 <meta name="twitter:card" content="summary">
 
 
@@ -141,7 +142,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(65)</small>
+                <small>(66)</small>
             
         </div>
     </li>
@@ -166,7 +167,7 @@
                     <div data-rel="LeetCode">
                         
                         LeetCode
-                        <small>(51)</small>
+                        <small>(52)</small>
                         
                     </div>
                     
@@ -310,8 +311,8 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="65">
-<input type="hidden" id="yelog_site_word_count" value="60.9k">
+<input type="hidden" id="yelog_site_posts_number" value="66">
+<input type="hidden" id="yelog_site_word_count" value="61.5k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -544,6 +545,14 @@
     </div>
     
     <nav id="title-list-nav">
+        
+        <a  class="全部文章 LeetCode "
+           href="/2021/12/23/15-%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C/"
+           data-tag="LeetCode,算法,双指针,排序"
+           data-author="" >
+            <span class="post-title" title="15.三数之和">15.三数之和</span>
+            <span class="post-date" title="2021-12-23 17:26:47">2021/12/23</span>
+        </a>
         
         <a  class="全部文章 LeetCode "
            href="/2021/12/19/997-%E6%89%BE%E5%88%B0%E5%B0%8F%E9%95%87%E7%9A%84%E6%B3%95%E5%AE%98/"
