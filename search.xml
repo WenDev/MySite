@@ -53,9 +53,9 @@
             
             <tag> 算法 </tag>
             
-            <tag> 排序 </tag>
-            
             <tag> 双指针 </tag>
+            
+            <tag> 排序 </tag>
             
         </tags>
       
@@ -357,9 +357,9 @@
             
             <tag> 哈希表 </tag>
             
-            <tag> 排序 </tag>
-            
             <tag> 双指针 </tag>
+            
+            <tag> 排序 </tag>
             
         </tags>
       
@@ -1733,11 +1733,11 @@
       
         <tags>
             
+            <tag> 教程 </tag>
+            
             <tag> 微服务 </tag>
             
             <tag> 服务网格 </tag>
-            
-            <tag> 教程 </tag>
             
             <tag> Istio </tag>
             
