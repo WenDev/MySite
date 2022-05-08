@@ -1,0 +1,1456 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>【Divino的诞生】需求&amp;架构图 | 江文 - Golang | Back-End Develop | Cloud Native</title>
+  <meta name="keywords" content=" 毕业设计 , Divino , 需求文档 ">
+  <meta name="description" content="【Divino的诞生】需求&amp;架构图 | 江文 - Golang | Back-End Develop | Cloud Native">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="【Divino 的诞生】简介 &amp; 架构图 注意：本文持续更新中，当前版本：0.0.4，更新于 2022.05.09  前言：毕设为什么要做一个监控系统？作为一名云原生与基础架构爱好者，开发一些开源的基础架构组件是我一直以来都非常想做的事情，而 Divino 就是我一直想做的一个开源监控系统，正好不知道毕业设计应该做什么，忽然灵机一动：反正今年也要做 Divino，不如就拿它来当毕业设计如何">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Divino的诞生】需求&amp;架构图">
+<meta property="og:url" content="http://www.wendev.site/dbd4c7c7db54.html">
+<meta property="og:site_name" content="江文 - Golang | Back-End Develop | Cloud Native">
+<meta property="og:description" content="【Divino 的诞生】简介 &amp; 架构图 注意：本文持续更新中，当前版本：0.0.4，更新于 2022.05.09  前言：毕设为什么要做一个监控系统？作为一名云原生与基础架构爱好者，开发一些开源的基础架构组件是我一直以来都非常想做的事情，而 Divino 就是我一直想做的一个开源监控系统，正好不知道毕业设计应该做什么，忽然灵机一动：反正今年也要做 Divino，不如就拿它来当毕业设计如何">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/QNKCDZ0/pictures/raw/master/img/20220509060157.png">
+<meta property="article:published_time" content="2022-05-08T21:54:57.000Z">
+<meta property="article:modified_time" content="2022-05-08T22:07:09.865Z">
+<meta property="article:author" content="江文">
+<meta property="article:tag" content="毕业设计">
+<meta property="article:tag" content="Divino">
+<meta property="article:tag" content="需求文档">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/QNKCDZ0/pictures/raw/master/img/20220509060157.png">
+
+
+<link rel="icon" href="/header.png">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-dark.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/header.png"/>
+</a>
+<div class="author">
+    <span>江文</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="github"
+               href="https://github.com/WenDev"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="zhihu"
+               href="https://www.zhihu.com/people/wendev"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-zhihu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="csdn"
+               href="https://blog.csdn.net/weixin_43887447"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-csdn"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="email"
+               href="mailto:wendev1024@icloud.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="neteasemusic"
+               href="https://music.163.com/#/user/home?id=1850247985"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-neteasemusic"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+                <small>(67)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                <li>
+                    <div data-rel="服务网格">
+                        
+                        服务网格
+                        <small>(2)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="架构">
+                        
+                        架构
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="教程">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        教程
+                        <small>(2)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="教程<--->后端开发">
+                                        
+                                        后端开发
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="教程<--->Markdown">
+                                        
+                                        Markdown
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="设计模式">
+                        
+                        设计模式
+                        <small>(4)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="数据结构">
+                        
+                        数据结构
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="算法">
+                        
+                        算法
+                        <small>(3)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="Divino">
+                        
+                        Divino
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="K8S">
+                        
+                        K8S
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="LeetCode">
+                        
+                        LeetCode
+                        <small>(52)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+        <a 
+                                           class="friends">友链</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="67">
+<input type="hidden" id="yelog_site_word_count" value="63.8k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://tianhang28.cn/">水浅小庙</a></li>
+            
+            <li><a target="_blank" href="http://blog.keysking.com/">Keysking</a></li>
+            
+            <li><a target="_blank" href="http://n4tsu.top/">N4tsu</a></li>
+            
+            <li><a target="_blank" href="http://liul14n.top/">Liul14n</a></li>
+            
+            <li><a target="_blank" href="https://alicejthelast.lofter.com/">Oralear</a></li>
+            
+            <li><a target="_blank" href="http://www.monsie.site/">Monsie</a></li>
+            
+            <li><a target="_blank" href="https://www.cnblogs.com/weilinfox/">八衛門狸</a></li>
+            
+            <li><a target="_blank" href="https://echosorari.github.io">Grayi</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>毕业设计</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>抽象工厂模式</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>单例模式</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>递归</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>动态规划</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>堆</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>堆排序</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>多叉树</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>二叉树</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>二分查找</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>服务网格</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>哈希表</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>后端开发</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>滑动窗口</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>记忆化搜索</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>架构设计</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>教程</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>快速排序</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>链表</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>模拟</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>脑筋急转弯</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>排序</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>设计模式</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>数据结构</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>数学</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>双指针</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>算法</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>图</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>微服务</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>位运算</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>希尔排序</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>需求文档</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>字符串</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>BFS</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>BST</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>DFS</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Divino</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Golang</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Istio</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>K8S</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>LeetCode</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Markdown</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Spring Boot</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Trie</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        <a  class="全部文章 Divino "
+           href="/dbd4c7c7db54.html"
+           data-tag="毕业设计,Divino,需求文档"
+           data-author="" >
+            <span class="post-title" title="【Divino的诞生】需求&amp;架构图">【Divino的诞生】需求&amp;架构图</span>
+            <span class="post-date" title="2022-05-09 05:54:57">2022/05/09</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/8a26586cf2c8.html"
+           data-tag="LeetCode,算法,双指针,排序"
+           data-author="" >
+            <span class="post-title" title="15.三数之和">15.三数之和</span>
+            <span class="post-date" title="2021-12-23 17:26:47">2021/12/23</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/b74457d2be77.html"
+           data-tag="LeetCode,算法,图"
+           data-author="" >
+            <span class="post-title" title="997.找到小镇的法官">997.找到小镇的法官</span>
+            <span class="post-date" title="2021-12-19 12:09:18">2021/12/19</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/8996fc3f0af2.html"
+           data-tag="LeetCode,算法,哈希表,模拟,字符串"
+           data-author="" >
+            <span class="post-title" title="748.最短补全词">748.最短补全词</span>
+            <span class="post-date" title="2021-12-12 17:31:10">2021/12/12</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/4673bf02276d.html"
+           data-tag="LeetCode,算法,双指针,链表"
+           data-author="" >
+            <span class="post-title" title="83.删除排序链表中的重复元素">83.删除排序链表中的重复元素</span>
+            <span class="post-date" title="2021-12-06 21:59:23">2021/12/06</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/85fcf15adb48.html"
+           data-tag="LeetCode,算法,字符串"
+           data-author="" >
+            <span class="post-title" title="1816.截断句子">1816.截断句子</span>
+            <span class="post-date" title="2021-12-06 21:45:49">2021/12/06</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/2b85f93279ae.html"
+           data-tag="LeetCode,算法,哈希表"
+           data-author="" >
+            <span class="post-title" title="383.赎金信">383.赎金信</span>
+            <span class="post-date" title="2021-12-04 17:39:30">2021/12/04</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/42724fb94ff8.html"
+           data-tag="LeetCode,算法,模拟,数学"
+           data-author="" >
+            <span class="post-title" title="566.重塑矩阵">566.重塑矩阵</span>
+            <span class="post-date" title="2021-12-02 19:21:13">2021/12/02</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/c9cd4321f217.html"
+           data-tag="LeetCode,算法,模拟"
+           data-author="" >
+            <span class="post-title" title="118.杨辉三角">118.杨辉三角</span>
+            <span class="post-date" title="2021-12-02 19:02:45">2021/12/02</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/e97e610b8623.html"
+           data-tag="LeetCode,算法,哈希表,排序"
+           data-author="" >
+            <span class="post-title" title="506.相对名次">506.相对名次</span>
+            <span class="post-date" title="2021-12-02 16:50:49">2021/12/02</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/a079af848077.html"
+           data-tag="LeetCode,算法,动态规划"
+           data-author="" >
+            <span class="post-title" title="121.买卖股票的最佳时机">121.买卖股票的最佳时机</span>
+            <span class="post-date" title="2021-12-01 21:37:06">2021/12/01</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/0e3571f428fb.html"
+           data-tag="LeetCode,算法,哈希表,双指针,排序"
+           data-author="" >
+            <span class="post-title" title="350.两个数组的交集">350.两个数组的交集</span>
+            <span class="post-date" title="2021-12-01 17:05:30">2021/12/01</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/1530a0f993b6.html"
+           data-tag="LeetCode,算法,双指针"
+           data-author="" >
+            <span class="post-title" title="1446.连续字符">1446.连续字符</span>
+            <span class="post-date" title="2021-12-01 15:55:15">2021/12/01</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/5069d670a104.html"
+           data-tag="LeetCode,算法,BFS,DFS"
+           data-author="" >
+            <span class="post-title" title="733.图像渲染">733.图像渲染</span>
+            <span class="post-date" title="2021-11-30 21:26:30">2021/11/30</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/9bfa82cbd73d.html"
+           data-tag="LeetCode,算法,双指针"
+           data-author="" >
+            <span class="post-title" title="88.合并两个有序数组">88.合并两个有序数组</span>
+            <span class="post-date" title="2021-11-30 21:10:50">2021/11/30</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/3b360c5c0877.html"
+           data-tag="LeetCode,算法,哈希表,位运算"
+           data-author="" >
+            <span class="post-title" title="136.只出现一次的数字">136.只出现一次的数字</span>
+            <span class="post-date" title="2021-11-30 18:17:45">2021/11/30</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/3baec19a704a.html"
+           data-tag="LeetCode,算法,位运算"
+           data-author="" >
+            <span class="post-title" title="268.丢失的数字">268.丢失的数字</span>
+            <span class="post-date" title="2021-11-30 18:05:04">2021/11/30</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/42d158a79566.html"
+           data-tag="LeetCode,算法,双指针"
+           data-author="" >
+            <span class="post-title" title="26.删除有序数组中的重复项">26.删除有序数组中的重复项</span>
+            <span class="post-date" title="2021-11-27 17:30:02">2021/11/27</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/76b871a265f5.html"
+           data-tag="LeetCode,算法,双指针"
+           data-author="" >
+            <span class="post-title" title="27.移动元素">27.移动元素</span>
+            <span class="post-date" title="2021-11-27 16:50:22">2021/11/27</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/254266dc8135.html"
+           data-tag="LeetCode,算法,二叉树,递归,BST"
+           data-author="" >
+            <span class="post-title" title="700.二叉搜索树中的搜索">700.二叉搜索树中的搜索</span>
+            <span class="post-date" title="2021-11-27 16:32:23">2021/11/27</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/ad62769eb7ba.html"
+           data-tag="LeetCode,算法,二叉树,BFS,DFS,递归"
+           data-author="" >
+            <span class="post-title" title="104.二叉树的最大深度">104.二叉树的最大深度</span>
+            <span class="post-date" title="2021-11-23 18:23:56">2021/11/23</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/7b0a474c61ea.html"
+           data-tag="LeetCode,算法,BFS,DFS,递归,多叉树"
+           data-author="" >
+            <span class="post-title" title="559.N叉树的最大深度">559.N叉树的最大深度</span>
+            <span class="post-date" title="2021-11-23 18:13:19">2021/11/23</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/3fec8ebec970.html"
+           data-tag="LeetCode,算法,哈希表,模拟"
+           data-author="" >
+            <span class="post-title" title="859.亲密字符串">859.亲密字符串</span>
+            <span class="post-date" title="2021-11-23 17:39:52">2021/11/23</span>
+        </a>
+        
+        <a  class="全部文章 算法 "
+           href="/60a49a146627.html"
+           data-tag="算法,排序,Golang,数据结构,堆,堆排序"
+           data-author="" >
+            <span class="post-title" title="Golang实现堆排序">Golang实现堆排序</span>
+            <span class="post-date" title="2021-11-22 21:57:34">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 算法 "
+           href="/e6e0f948c879.html"
+           data-tag="算法,排序,Golang,快速排序"
+           data-author="" >
+            <span class="post-title" title="Golang实现快速排序">Golang实现快速排序</span>
+            <span class="post-date" title="2021-11-22 21:57:29">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 算法 "
+           href="/c4c96626095a.html"
+           data-tag="算法,排序,Golang,希尔排序"
+           data-author="" >
+            <span class="post-title" title="Golang实现希尔排序">Golang实现希尔排序</span>
+            <span class="post-date" title="2021-11-22 21:57:21">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 数据结构 "
+           href="/9f30bd7951d9.html"
+           data-tag="Golang,数据结构,Trie"
+           data-author="" >
+            <span class="post-title" title="Golang实现前缀树Trie">Golang实现前缀树Trie</span>
+            <span class="post-date" title="2021-11-22 21:55:31">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/f816efc9b687.html"
+           data-tag="LeetCode,算法,哈希表,图"
+           data-author="" >
+            <span class="post-title" title="1436.旅行终点站">1436.旅行终点站</span>
+            <span class="post-date" title="2021-11-22 21:44:46">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/08ea56eb2764.html"
+           data-tag="LeetCode,算法,动态规划,记忆化搜索"
+           data-author="" >
+            <span class="post-title" title="1137.第N个泰波那契数">1137.第N个泰波那契数</span>
+            <span class="post-date" title="2021-11-22 21:43:51">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/62cfa7f92b39.html"
+           data-tag="LeetCode,算法,双指针"
+           data-author="" >
+            <span class="post-title" title="977.有序数组的平方">977.有序数组的平方</span>
+            <span class="post-date" title="2021-11-22 21:42:55">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/909330db6826.html"
+           data-tag="LeetCode,算法,动态规划"
+           data-author="" >
+            <span class="post-title" title="746.使用最小花费爬楼梯">746.使用最小花费爬楼梯</span>
+            <span class="post-date" title="2021-11-22 21:41:43">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/66b409f7715b.html"
+           data-tag="LeetCode,算法,二分查找"
+           data-author="" >
+            <span class="post-title" title="704.二分查找">704.二分查找</span>
+            <span class="post-date" title="2021-11-22 21:40:41">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/7c1aa36c9566.html"
+           data-tag="LeetCode,算法,双指针,二分查找"
+           data-author="" >
+            <span class="post-title" title="658.找到K个最接近的元素">658.找到K个最接近的元素</span>
+            <span class="post-date" title="2021-11-22 21:39:43">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/8af1c8f8811b.html"
+           data-tag="LeetCode,算法,哈希表,滑动窗口"
+           data-author="" >
+            <span class="post-title" title="594.最长和谐子序列">594.最长和谐子序列</span>
+            <span class="post-date" title="2021-11-22 21:38:48">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/24bf1ee5e997.html"
+           data-tag="LeetCode,算法,动态规划,记忆化搜索"
+           data-author="" >
+            <span class="post-title" title="509.斐波那契数">509.斐波那契数</span>
+            <span class="post-date" title="2021-11-22 21:37:41">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/8997a90ba2e9.html"
+           data-tag="LeetCode,算法,脑筋急转弯"
+           data-author="" >
+            <span class="post-title" title="453.最小操作次数使数组元素相等">453.最小操作次数使数组元素相等</span>
+            <span class="post-date" title="2021-11-22 21:36:53">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/7df5dfd54d42.html"
+           data-tag="LeetCode,算法,数学,二分查找"
+           data-author="" >
+            <span class="post-title" title="441.排列硬币">441.排列硬币</span>
+            <span class="post-date" title="2021-11-22 21:35:53">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/450e5ead6144.html"
+           data-tag="LeetCode,算法,DFS,递归,链表"
+           data-author="" >
+            <span class="post-title" title="430.扁平化多级双向链表">430.扁平化多级双向链表</span>
+            <span class="post-date" title="2021-11-22 21:35:02">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/f5a51f2991d3.html"
+           data-tag="LeetCode,算法,模拟"
+           data-author="" >
+            <span class="post-title" title="326.3的幂">326.3的幂</span>
+            <span class="post-date" title="2021-11-22 21:33:12">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/3ac5971f68b8.html"
+           data-tag="LeetCode,算法,图"
+           data-author="" >
+            <span class="post-title" title="310.最小高度树">310.最小高度树</span>
+            <span class="post-date" title="2021-11-22 21:31:51">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/dbe873a36ab4.html"
+           data-tag="LeetCode,算法,双指针"
+           data-author="" >
+            <span class="post-title" title="283.移动零">283.移动零</span>
+            <span class="post-date" title="2021-11-22 21:30:51">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/166e8c6e9099.html"
+           data-tag="LeetCode,算法,二分查找"
+           data-author="" >
+            <span class="post-title" title="278.第一个错误的版本">278.第一个错误的版本</span>
+            <span class="post-date" title="2021-11-22 21:29:36">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/e5c5f9a48d14.html"
+           data-tag="LeetCode,算法,二分查找"
+           data-author="" >
+            <span class="post-title" title="275.H指数II">275.H指数II</span>
+            <span class="post-date" title="2021-11-22 21:28:53">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/1dda3620fbfd.html"
+           data-tag="LeetCode,算法,位运算"
+           data-author="" >
+            <span class="post-title" title="231.2的幂">231.2的幂</span>
+            <span class="post-date" title="2021-11-22 21:28:07">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/a1a149b8decf.html"
+           data-tag="LeetCode,算法,数学"
+           data-author="" >
+            <span class="post-title" title="223.矩形面积">223.矩形面积</span>
+            <span class="post-date" title="2021-11-22 21:27:20">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/a8755e5c2521.html"
+           data-tag="LeetCode,算法,链表"
+           data-author="" >
+            <span class="post-title" title="206.反转链表">206.反转链表</span>
+            <span class="post-date" title="2021-11-22 21:26:25">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/141e00396b65.html"
+           data-tag="LeetCode,算法,位运算"
+           data-author="" >
+            <span class="post-title" title="191.位1的个数">191.位1的个数</span>
+            <span class="post-date" title="2021-11-22 21:25:21">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/c768bf1a089a.html"
+           data-tag="LeetCode,算法,模拟"
+           data-author="" >
+            <span class="post-title" title="189.旋转数组">189.旋转数组</span>
+            <span class="post-date" title="2021-11-22 21:22:31">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/2c69516a9ba2.html"
+           data-tag="LeetCode,算法,哈希表,位运算,滑动窗口"
+           data-author="" >
+            <span class="post-title" title="187.重复的DNA序列">187.重复的DNA序列</span>
+            <span class="post-date" title="2021-11-22 21:21:01">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/85d9b685bde2.html"
+           data-tag="LeetCode,算法,双指针"
+           data-author="" >
+            <span class="post-title" title="167.两数之和II">167.两数之和II</span>
+            <span class="post-date" title="2021-11-22 21:19:58">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/18118145a58d.html"
+           data-tag="LeetCode,算法,二叉树"
+           data-author="" >
+            <span class="post-title" title="94.二叉树的中序遍历">94.二叉树的中序遍历</span>
+            <span class="post-date" title="2021-11-22 21:18:57">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/c1c7145ed1a4.html"
+           data-tag="LeetCode,算法,动态规划,记忆化搜索"
+           data-author="" >
+            <span class="post-title" title="70.爬楼梯">70.爬楼梯</span>
+            <span class="post-date" title="2021-11-22 21:17:24">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/16a8de5b2be6.html"
+           data-tag="LeetCode,算法,模拟"
+           data-author="" >
+            <span class="post-title" title="66.加一">66.加一</span>
+            <span class="post-date" title="2021-11-22 21:14:11">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 设计模式 "
+           href="/d62b9e5564c6.html"
+           data-tag="设计模式,抽象工厂模式"
+           data-author="" >
+            <span class="post-title" title="抽象工厂模式">抽象工厂模式</span>
+            <span class="post-date" title="2021-11-22 20:55:43">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 设计模式 "
+           href="/4d3cf45ee751.html"
+           data-tag="设计模式,抽象工厂模式"
+           data-author="" >
+            <span class="post-title" title="工厂模式">工厂模式</span>
+            <span class="post-date" title="2021-11-22 20:55:01">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 设计模式 "
+           href="/16838a5c909b.html"
+           data-tag="设计模式,单例模式"
+           data-author="" >
+            <span class="post-title" title="单例模式">单例模式</span>
+            <span class="post-date" title="2021-11-22 20:53:43">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 设计模式 "
+           href="/2791c83c1c4a.html"
+           data-tag="设计模式"
+           data-author="" >
+            <span class="post-title" title="前言：我回来了，我带着23种设计模式回来了">前言：我回来了，我带着23种设计模式回来了</span>
+            <span class="post-date" title="2021-11-22 20:52:46">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 服务网格 "
+           href="/e089d244d00f.html"
+           data-tag="微服务,服务网格,教程,Istio"
+           data-author="" >
+            <span class="post-title" title="【Istio从入门到入土】1. Service Mesh是什么？">【Istio从入门到入土】1. Service Mesh是什么？</span>
+            <span class="post-date" title="2021-11-22 20:48:48">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 K8S "
+           href="/b5a5a5f7e35a.html"
+           data-tag="K8S"
+           data-author="" >
+            <span class="post-title" title="史上最全面的Kubernetes（K8S）入门笔记">史上最全面的Kubernetes（K8S）入门笔记</span>
+            <span class="post-date" title="2021-11-22 20:47:14">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 架构 "
+           href="/e5dfdc4bb425.html"
+           data-tag="微服务,架构设计"
+           data-author="" >
+            <span class="post-title" title="微服务是万能的吗——我对微服务架构的思考">微服务是万能的吗——我对微服务架构的思考</span>
+            <span class="post-date" title="2021-11-22 20:45:17">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 服务网格 "
+           href="/dcae41fd9142.html"
+           data-tag="微服务,Istio,Spring Boot"
+           data-author="" >
+            <span class="post-title" title="使用Spring Boot+gRPC构建微服务并部署到Istio">使用Spring Boot+gRPC构建微服务并部署到Istio</span>
+            <span class="post-date" title="2021-11-22 20:40:43">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/4668f5a5a767.html"
+           data-tag="LeetCode,算法,二分查找"
+           data-author="" >
+            <span class="post-title" title="35.搜索插入位置">35.搜索插入位置</span>
+            <span class="post-date" title="2021-11-22 20:24:24">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/9d136f73c318.html"
+           data-tag="LeetCode,算法,模拟"
+           data-author="" >
+            <span class="post-title" title="9.回文数">9.回文数</span>
+            <span class="post-date" title="2021-11-22 20:23:18">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/44a22b6dbd7c.html"
+           data-tag="LeetCode,算法,模拟,链表"
+           data-author="" >
+            <span class="post-title" title="2.两数相加">2.两数相加</span>
+            <span class="post-date" title="2021-11-22 20:21:43">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 LeetCode "
+           href="/51cdcbf7c8a7.html"
+           data-tag="LeetCode,算法,哈希表"
+           data-author="" >
+            <span class="post-title" title="1.两数之和">1.两数之和</span>
+            <span class="post-date" title="2021-11-22 20:18:57">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 教程 Markdown "
+           href="/dfb7905cca2c.html"
+           data-tag="教程,Markdown"
+           data-author="" >
+            <span class="post-title" title="给想学Markdown的你的一个简单的Markdown语法教程">给想学Markdown的你的一个简单的Markdown语法教程</span>
+            <span class="post-date" title="2021-11-22 20:14:35">2021/11/22</span>
+        </a>
+        
+        <a  class="全部文章 教程 后端开发 "
+           href="/b01551ccd0cb.html"
+           data-tag="教程,后端开发"
+           data-author="" >
+            <span class="post-title" title="一文看懂Web后端开发">一文看懂Web后端开发</span>
+            <span class="post-date" title="2021-11-22 20:09:20">2021/11/22</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-【Divino的诞生】需求-架构图" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">【Divino的诞生】需求&amp;架构图</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="Divino">Divino</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color5">毕业设计</a>
+            
+            <a class="color2">Divino</a>
+            
+            <a class="color5">需求文档</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2022-05-09 06:07:09'>2022-05-09 05:54</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:2.3k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E3%80%90Divino-%E7%9A%84%E8%AF%9E%E7%94%9F%E3%80%91%E7%AE%80%E4%BB%8B-amp-%E6%9E%B6%E6%9E%84%E5%9B%BE"><span class="toc-text">【Divino 的诞生】简介 &amp; 架构图</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A%E6%AF%95%E8%AE%BE%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%81%9A%E4%B8%80%E4%B8%AA%E7%9B%91%E6%8E%A7%E7%B3%BB%E7%BB%9F%EF%BC%9F"><span class="toc-text">前言：毕设为什么要做一个监控系统？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%EF%BC%9ADivino-%E6%89%80%E9%9C%80%E8%A6%81%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%8A%9F%E8%83%BD%E5%88%B0%E5%BA%95%E6%9C%89%E5%93%AA%E4%BA%9B"><span class="toc-text">需求分析：Divino 所需要实现的功能到底有哪些</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%91%E6%8E%A7%E6%95%B0%E6%8D%AE%E8%8E%B7%E5%8F%96"><span class="toc-text">监控数据获取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0"><span class="toc-text">服务发现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="toc-text">数据可视化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%86%E5%8F%B2%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8"><span class="toc-text">历史数据存储</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%91%8A%E8%AD%A6"><span class="toc-text">告警</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E7%AB%AF"><span class="toc-text">前端</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E6%A0%88%EF%BC%9ADivino-%E6%98%AF%E7%94%A8%E4%BB%80%E4%B9%88%E6%8A%80%E6%9C%AF%E5%AE%9E%E7%8E%B0%E7%9A%84%EF%BC%9F"><span class="toc-text">技术栈：Divino 是用什么技术实现的？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%9B%BE%EF%BC%9ADivio-%E7%9A%84%E7%BB%93%E6%9E%84%E6%98%AF%E4%BB%80%E4%B9%88%E6%A0%B7%E7%9A%84%EF%BC%9F"><span class="toc-text">系统架构图：Divio 的结构是什么样的？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TODO%EF%BC%9ADivino-%E6%9C%AA%E6%9D%A5%E5%B0%86%E8%A6%81%E5%AE%9E%E7%8E%B0%E5%93%AA%E4%BA%9B%E5%8A%9F%E8%83%BD%EF%BC%9F"><span class="toc-text">TODO：Divino 未来将要实现哪些功能？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E5%90%8D%E7%94%B1%E6%9D%A5%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8F%AB-Divino%EF%BC%9F"><span class="toc-text">命名由来：为什么叫 Divino？</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-6 i,
+    .toc-level-6 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="【Divino-的诞生】简介-amp-架构图"><a href="#【Divino-的诞生】简介-amp-架构图" class="headerlink" title="【Divino 的诞生】简介 &amp; 架构图"></a>【Divino 的诞生】简介 &amp; 架构图</h1><blockquote>
+<p>注意：本文持续更新中，当前版本：0.0.4，更新于 2022.05.09</p>
+</blockquote>
+<h2 id="前言：毕设为什么要做一个监控系统？"><a href="#前言：毕设为什么要做一个监控系统？" class="headerlink" title="前言：毕设为什么要做一个监控系统？"></a>前言：毕设为什么要做一个监控系统？</h2><p>作为一名云原生与基础架构爱好者，开发一些开源的基础架构组件是我一直以来都非常想做的事情，而 <code>Divino</code> 就是我一直想做的一个开源监控系统，正好不知道毕业设计应该做什么，忽然灵机一动：反正今年也要做 <code>Divino</code>，不如就拿它来当毕业设计如何？这样既推动了 <code>Divino</code> 的进度也完成了毕业设计，一举两得。</p>
+<h2 id="需求分析：Divino-所需要实现的功能到底有哪些"><a href="#需求分析：Divino-所需要实现的功能到底有哪些" class="headerlink" title="需求分析：Divino 所需要实现的功能到底有哪些"></a>需求分析：Divino 所需要实现的功能到底有哪些</h2><h3 id="监控数据获取"><a href="#监控数据获取" class="headerlink" title="监控数据获取"></a>监控数据获取</h3><ul>
+<li><p>以 push 模型（<code>divino-agent</code> 和 <code>divino-exporter</code> 主动上报）获取监控数据；</p>
+</li>
+<li><blockquote>
+<p>使用 Push 模型的原因：</p>
+<p>Push 模型相比 Pull 模型有着更好的实时性，因为 Pull 模型类似于轮询所以具有一定的延时，Push 模型在具有大量高实时性的数据的监控系统中有着很好的表现。同时，Push 模型实现起来相对简单（只需要编写简单的 HTTP / gRPC 调用，不需要实现轮询等功能），被监控系统也可以自行决定上报数据的周期。</p>
+<p>但由于 Pull 模型也有其自身的优点：被监控系统不需要自行实现数据上报的逻辑而是只需要等待监控系统抓取数据、对被监控系统的要求更小、可定制化也更简单一些等，Divino 也在考虑支持 Pull 模型。</p>
+</blockquote>
+</li>
+<li><p>定义一种可扩展的数据源和数据采集协议，实现了该协议的数据源即可被视为 Agent（对于用户自定义的 Agent，有一个统称是 <code>divino-exporter</code>），达到自由扩展的目的；</p>
+</li>
+<li><p>通过 <code>etcd</code> 对 <code>divino-agent</code> 进行动态日志收集的配置从而使用 <code>divino-agent</code> 收集日志，<code>divino-agent</code> 将日志发送到 <code>NSQ</code>，<code>divino-server</code> 从 <code>NSQ</code> 消息队列中获取用户的日志，根据用户定义的分析模板提取出用户自定义的监控指标后发送给 <code>divino-alertmanager</code> 进行分析与告警；</p>
+</li>
+</ul>
+<h3 id="服务发现"><a href="#服务发现" class="headerlink" title="服务发现"></a>服务发现</h3><ul>
+<li>静态服务发现：在 <code>divino-server</code> 中进行配置，并周期性地发送心跳检测确认 <code>divino-agent</code> 和 <code>divino-notice</code> 的状态；</li>
+<li>动态服务发现：通过 <code>etcd</code> 进行自动化的服务发现：<code>divino-agent</code>和 <code>divino-notice</code> 按照一定格式注册到 <code>etcd</code> 中，<code>divino-agent</code> 监听该格式的键值对变化，动态地进行服务发现；</li>
+</ul>
+<h3 id="数据可视化"><a href="#数据可视化" class="headerlink" title="数据可视化"></a>数据可视化</h3><ul>
+<li>基于 <code>Ant Design Charts</code>，支持多种数据图表展示；</li>
+<li>配置某个监控数据需要使用何种图表进行数据可视化；</li>
+<li>基于 <code>WebSocket</code> 实现数据的自动刷新；</li>
+</ul>
+<h3 id="历史数据存储"><a href="#历史数据存储" class="headerlink" title="历史数据存储"></a>历史数据存储</h3><ul>
+<li>使用 <code>InfluxDB</code> 存储监控历史数据；</li>
+<li>使用 <code>MongoDB</code> 存储其他数据（异常日志数据、告警模板、告警历史等）；</li>
+</ul>
+<h3 id="告警"><a href="#告警" class="headerlink" title="告警"></a>告警</h3><ul>
+<li>告警服务 <code>divino-notice</code> 采用和 <code>divino-agent</code> 相同的方法进行动态配置和动态服务发现，同时也需要定义一种通用的告警数据协议，实现了该协议的组件即可被视为 <code>divino-notice</code>（与 <code>divino-agent</code> 和 <code>divino-exporter</code> 不同，不管是 <code>Divino</code> 官方提供的告警服务还是用户自定义的告警服务都称为 <code>divino-notice</code>）；</li>
+<li>对告警数据进行实时分析而不是查询历史数据进行分析，<code>divino-proxy</code> 同时将数据上报给 <code>divino-server</code> 和 <code>divino-alertmanager</code>，并根据 <code>divino-server</code> 的配置动态缓存数据、动态计算数据及数据变化是否达到告警阈值；</li>
+<li>解析失败的日志也会引起告警（级别由用户自己定义）；</li>
+<li><code>divino-notice</code> 进行服务发现时在元数据中表明自己所要接受的告警级别，<code>divino-alertmanager</code> 进行告警时根据告警级别对不同的 <code>divino-notice</code> 发送告警信息；</li>
+<li>用户可以自己定义告警信息模板，并存储在 <code>MongoDB</code> 中，告警时可以配置每种告警级别所对应的告警信息模板；</li>
+<li>告警信息会存入 <code>MongoDB</code> 供后续查阅使用；</li>
+<li>产生的告警信息按照告警优先级存入 <code>NSQ</code> 的不同队列中，<code>divino-alertmanager</code> 周期性地从 <code>NSQ</code> 中获取告警信息（例如 P1 级告警实时获取、P2 级告警一小时获取一次等，可以用 cron 表达式进行配置），并按照配置将告警信息发送给对应的 <code>divino-notice</code>；</li>
+</ul>
+<h3 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h3><ul>
+<li>前端基于 <code>React</code> + <code>Ant Design Pro</code>，这是我最熟悉的前端技术栈，也是我认为在无 SEO 需求的情况下开发效率最高、最贴近后端开发者思维的前端技术栈；</li>
+</ul>
+<h2 id="技术栈：Divino-是用什么技术实现的？"><a href="#技术栈：Divino-是用什么技术实现的？" class="headerlink" title="技术栈：Divino 是用什么技术实现的？"></a>技术栈：Divino 是用什么技术实现的？</h2><ul>
+<li>后端开发语言：<code>Go</code></li>
+<li>前端开发语言：<code>TypeScript</code></li>
+<li>Web 框架：<code>Gin</code></li>
+<li>前端框架：<code>Ant Design Pro</code>（基于 <code>React</code> 和 <code>Umi.js</code>）</li>
+<li>数据可视化框架：<code>ECharts</code></li>
+<li>服务注册中心：<code>etcd</code></li>
+<li>时序数据库：<code>InfluxDB</code></li>
+<li>NoSQL 数据库：<code>MongoDB</code></li>
+<li>消息队列：<code>NSQ</code></li>
+<li>持续补充中。。。</li>
+</ul>
+<h2 id="系统架构图：Divio-的结构是什么样的？"><a href="#系统架构图：Divio-的结构是什么样的？" class="headerlink" title="系统架构图：Divio 的结构是什么样的？"></a>系统架构图：Divio 的结构是什么样的？</h2><p><img src="https://gitee.com/QNKCDZ0/pictures/raw/master/img/20220509060157.png"></p>
+<ul>
+<li><code>divino-agent</code>：<code>Divino</code> 监控代理，与被监控服务部署在一起，收集被监控服务的基本信息（日志、CPU负载、内存负载等），使用 <code>gRPC</code> 与 <code>divino-proxy</code> 进行通信；</li>
+<li><code>divino-exporter</code>：用户自定义的 <code>Divino</code> 监控代理的统称，只要接入了服务注册（静态配置或动态发现均可）可以产生规定格式的监控数据的数据源即可被视为 <code>divino-exporter</code>，可以根据用户的需求灵活地向 <code>Divino</code> 发送用户自定义的监控指标，同时提供官方的 <code>Go</code> SDK 用于 export 用户业务系统中的一些数据（例如 <code>goroutine</code> 数量、请求成功率等）；</li>
+<li><code>divino-proxy</code>：<code>Divino</code> 代理服务，用于接收 <code>divino-agent</code> 和 <code>divino-exporter</code> 上报的数据并将同一份数据同时转发给 <code>divino-server</code> 和 <code>divino-alertmanager</code>。<code>divino-proxy</code> 不承担分析功能，仅仅起到一个中继站的作用（类似于 <code>Zabbix</code> 的 <code>proxy</code> 组件，但是多了将数据转发到两个不同服务的功能）；</li>
+<li><code>divino-server</code>：<code>Divino</code> 监控服务，是 <code>Divino</code> 的核心，起到存储监控数据、查询监控历史数据、动态配置管理、<code>divino-exporter</code> 和 <code>divino-notice</code> 静态配置等功能；</li>
+<li><code>divino-alertmanager</code>：<code>Divino</code> 告警管理服务，用于根据用户的配置动态地缓存一定量的历史数据，并针对这些历史数据进行分析从而调用不同的 <code>divino-notice</code> 完成告警功能；<code>divino-alertmanager</code> 同时也会接收 <code>divino-server</code> 上报的错误信息（如某个 <code>divino-exporter</code> down 等），并根据用户的配置发出告警；</li>
+<li><code>divino-notice</code>：<code>Divino</code> 告警服务，用于发出具体的告警信息。</li>
+</ul>
+<p>在系统的内部，高效且支持长链接的 <code>gRPC</code> 是最基本的通信方式；而在与用户自定义的服务进行通信时，考虑到针对第三方系统的适配性，简单的 <code>HTTP RESTful API</code> 也是可选的通信方式。</p>
+<h2 id="TODO：Divino-未来将要实现哪些功能？"><a href="#TODO：Divino-未来将要实现哪些功能？" class="headerlink" title="TODO：Divino 未来将要实现哪些功能？"></a>TODO：Divino 未来将要实现哪些功能？</h2><ul>
+<li>服务发现支持通过 <code>Kubernetes</code> 进行，以避免服务发现功能冲突，更好地适应云原生环境下的部署需求；</li>
+<li>接入自研的配置管理系统 <code>Imagine</code>（开发中）；</li>
+<li>支持 <code>Push</code> 模式并且可以配置哪些监控项目使用 <code>Push</code> 模式——毕竟只能用 <code>Pull</code> 还是有点太局限啦，而且 <code>Pull</code> 对被监控系统的压力会小一些，也会更容易定制化，给用户一个使用 <code>Pull</code> 或 <code>Push</code> 的选择；</li>
+<li>新需求持续发现中。。。</li>
+</ul>
+<h2 id="命名由来：为什么叫-Divino？"><a href="#命名由来：为什么叫-Divino？" class="headerlink" title="命名由来：为什么叫 Divino？"></a>命名由来：为什么叫 Divino？</h2><p>“divino”一词来源于西班牙语，是一个形容词，意为“神的”、“绝妙的”、“完美无缺的”。由于这个项目在设计之初就是一个 All-In-One 的监控系统，同时也是我做的第一个完整的开源项目，所以叫 <code>Divino</code> 是非常合适的。</p>
+<p><del>画外音：以上部分纯属胡说八道，请不要当真</del></p>
+<blockquote>
+<p>Trance luminary Armin van Buuren teams up with prolific melodic trance producer Maor Levi for an otherworldly collaboration, ‘Divino’ on ASOT. Achieving elegance and power from the very first beat, the pair devise a euphoric soundscape with soaring synths and majestic melodies, matched with a driving beat that will transport the listener to the depths of the dancefloor.</p>
+<p>Trance 大师 Armin van Buuren 与极富创造力的旋律派 Trance 制作人 Maor Levi 在 A State Of Trance 合作发行了一首超凡脱俗的全新单曲《Divino》。这首 Progressive Trance 从第一个节拍开始就展现出了优雅与力量，两人设计了由高昂的合成器音色与宏伟的旋律组成的令人陶醉的氛围，配上振奋的节拍，将听众带到舞池的深处。</p>
+<p>《Divino (Extended Mix)》</p>
+<p>时长：05:55</p>
+<p>发行日期：2021.04.23</p>
+<p>BPM：130</p>
+<p>风格：Progressive Trance</p>
+<p>调性：G minor</p>
+<p>厂牌：A State Of Trance</p>
+<p>from <a target="_blank" rel="noopener" href="https://www.armadamusic.com/music/divino">Armin van Buuren &amp; Maor Levi - Divino | Armada Music</a> &amp; <a target="_blank" rel="noopener" href="https://www.beatport.com/track/divino/15145883">Divino (Extended Mix) by Armin van Buuren, Maor Levi on Beatport</a></p>
+</blockquote>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎各位大佬指出任何有错误或不够清晰的表达。可以发可以邮件至 wendev1024@icloud.com 或添加微信 wendev1024 联系（请注明来源于我的个人网站）。 </span>
+    </div>
+</article>
+
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>【Divino的诞生】需求&amp;架构图</p>
+    <p><span class="copy-title">字数:</span><span class="post-count">2.3k</span></p>
+    <p><span class="copy-title">本文作者:</span><a  title="江文">江文</a></p>
+    <p><span class="copy-title">发布时间:</span>2022-05-09, 05:54:57</p>
+    <p><span class="copy-title">最后更新:</span>2022-05-09, 06:07:09</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/dbd4c7c7db54.html" title="【Divino的诞生】需求&amp;架构图">http://www.wendev.site/dbd4c7c7db54.html</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">&#34;署名-非商用-相同方式共享 4.0&#34;</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry"><span class="miit">
+                <img src="/img/gov.png" title="中华人民共和国工业和信息化部">
+                <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/#/Integrated/index">鲁ICP备19064728号-1</a>
+        </span>
+    
+    ©2019-2021 江文(Martin Jiang / WenDev)
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
