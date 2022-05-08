@@ -6,21 +6,22 @@
   <meta name="keywords" content=" LeetCode , 算法 , 字符串 ">
   <meta name="description" content="1816.截断句子 | 江文 - Golang | Back-End Develop | Cloud Native">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="15. 三数之和题目地址：15. 三数之和 解法：排序+双指针这道题最简单的解法当然是暴力：三个嵌套的for循环，但是估计多半会TLE，而且一直暴力也不是很好的选择，所以可以使用一种更高效的解法：排序+双指针。 首先对输入的数组进行排序，然后从头开始遍历数组中的每一个负数。设当前遍历到的负数的下标为i，那么使用两个指针l和r分别指向nums[i+1]和nums[len(nums)-1]。接着进行判">
+<meta name="description" content="【Divino 的诞生】简介 &amp; 架构图 注意：本文持续更新中，当前版本：0.0.4，更新于 2022.05.09  前言：毕设为什么要做一个监控系统？作为一名云原生与基础架构爱好者，开发一些开源的基础架构组件是我一直以来都非常想做的事情，而 Divino 就是我一直想做的一个开源监控系统，正好不知道毕业设计应该做什么，忽然灵机一动：反正今年也要做 Divino，不如就拿它来当毕业设计如何">
 <meta property="og:type" content="article">
-<meta property="og:title" content="15.三数之和">
-<meta property="og:url" content="http://www.wendev.site/2021/12/23/15-%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C/index.html">
+<meta property="og:title" content="【Divino的诞生】需求&amp;架构图">
+<meta property="og:url" content="http://www.wendev.site/2022/05/09/%E3%80%90Divino%E7%9A%84%E8%AF%9E%E7%94%9F%E3%80%91%E9%9C%80%E6%B1%82-%E6%9E%B6%E6%9E%84%E5%9B%BE/index.html">
 <meta property="og:site_name" content="江文 - Golang | Back-End Develop | Cloud Native">
-<meta property="og:description" content="15. 三数之和题目地址：15. 三数之和 解法：排序+双指针这道题最简单的解法当然是暴力：三个嵌套的for循环，但是估计多半会TLE，而且一直暴力也不是很好的选择，所以可以使用一种更高效的解法：排序+双指针。 首先对输入的数组进行排序，然后从头开始遍历数组中的每一个负数。设当前遍历到的负数的下标为i，那么使用两个指针l和r分别指向nums[i+1]和nums[len(nums)-1]。接着进行判">
+<meta property="og:description" content="【Divino 的诞生】简介 &amp; 架构图 注意：本文持续更新中，当前版本：0.0.4，更新于 2022.05.09  前言：毕设为什么要做一个监控系统？作为一名云原生与基础架构爱好者，开发一些开源的基础架构组件是我一直以来都非常想做的事情，而 Divino 就是我一直想做的一个开源监控系统，正好不知道毕业设计应该做什么，忽然灵机一动：反正今年也要做 Divino，不如就拿它来当毕业设计如何">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-12-23T09:26:47.000Z">
-<meta property="article:modified_time" content="2021-12-23T09:27:20.681Z">
+<meta property="og:image" content="https://gitee.com/QNKCDZ0/pictures/raw/master/img/20220509060157.png">
+<meta property="article:published_time" content="2022-05-08T21:54:57.000Z">
+<meta property="article:modified_time" content="2022-05-08T22:07:09.865Z">
 <meta property="article:author" content="江文">
-<meta property="article:tag" content="LeetCode">
-<meta property="article:tag" content="算法">
-<meta property="article:tag" content="双指针">
-<meta property="article:tag" content="排序">
+<meta property="article:tag" content="毕业设计">
+<meta property="article:tag" content="Divino">
+<meta property="article:tag" content="需求文档">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/QNKCDZ0/pictures/raw/master/img/20220509060157.png">
 
 
 <link rel="icon" href="/img/header.png">
@@ -142,7 +143,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(66)</small>
+                <small>(67)</small>
             
         </div>
     </li>
@@ -267,6 +268,20 @@
         
             
                 <li>
+                    <div data-rel="Divino">
+                        
+                        Divino
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
                     <div data-rel="K8S">
                         
                         K8S
@@ -311,8 +326,8 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="66">
-<input type="hidden" id="yelog_site_word_count" value="61.5k">
+<input type="hidden" id="yelog_site_posts_number" value="67">
+<input type="hidden" id="yelog_site_word_count" value="63.8k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -370,6 +385,10 @@
     <div class="tags-list">
     <input id="tag-search" />
     <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>毕业设计</a>
+            </li>
         
             <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>抽象工厂模式</a>
@@ -492,6 +511,10 @@
             </li>
         
             <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>需求文档</a>
+            </li>
+        
+            <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>字符串</a>
             </li>
         
@@ -505,6 +528,10 @@
         
             <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>DFS</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Divino</a>
             </li>
         
             <li class="article-tag-list-item">
@@ -545,6 +572,14 @@
     </div>
     
     <nav id="title-list-nav">
+        
+        <a  class="全部文章 Divino "
+           href="/2022/05/09/%E3%80%90Divino%E7%9A%84%E8%AF%9E%E7%94%9F%E3%80%91%E9%9C%80%E6%B1%82-%E6%9E%B6%E6%9E%84%E5%9B%BE/"
+           data-tag="毕业设计,Divino,需求文档"
+           data-author="" >
+            <span class="post-title" title="【Divino的诞生】需求&amp;架构图">【Divino的诞生】需求&amp;架构图</span>
+            <span class="post-date" title="2022-05-09 05:54:57">2022/05/09</span>
+        </a>
         
         <a  class="全部文章 LeetCode "
            href="/2021/12/23/15-%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C/"
