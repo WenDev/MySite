@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="referrer" content="no-referrer" />
-  <title>【Istio从入门到入土】1. Service Mesh是什么？ | 江文 - Golang | Back-End Develop | Cloud Native</title>
-  <meta name="keywords" content=" 微服务 , 服务网格 , 教程 , Istio ">
-  <meta name="description" content="【Istio从入门到入土】1. Service Mesh是什么？ | 江文 - Golang | Back-End Develop | Cloud Native">
+  <title>【Divino 的诞生】实现基于 etcd 的 gRPC 服务注册与发现 | 江文 - Golang | Back-End Develop | Cloud Native</title>
+  <meta name="keywords" content=" 毕业设计 , Divino , etcd , gRPC , 微服务 ">
+  <meta name="description" content="【Divino 的诞生】实现基于 etcd 的 gRPC 服务注册与发现 | 江文 - Golang | Back-End Develop | Cloud Native">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="【Divino 的诞生】实现基于 etcd 的 gRPC 服务注册与发现Divino 本来使用的是 Consul 作为服务注册与发现中心，但是随着 gRPC 移除了 naming 包，使用 Consul 作为服务注册与发现中心变得十分困难，而此时我发现 etcd 提供了官方的 gRPC Naming Resolver，于是就将服务注册与发现功能迁移到了 etcd，在此也顺便讲讲 naming.Re">
 <meta property="og:type" content="article">
@@ -1151,9 +1151,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-【Istio从入门到入土】1-Service-Mesh是什么？" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-【Divino的诞生】实现基于etcd的gRPC服务注册与发现" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">【Istio从入门到入土】1. Service Mesh是什么？</h1>
+        <h1 class="article-title">【Divino 的诞生】实现基于 etcd 的 gRPC 服务注册与发现</h1>
     
     <div class="article-meta">
         
@@ -1163,7 +1163,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="服务网格">服务网格</a>
+            <a  data-rel="Divino">Divino</a>
             
         </span>
         
@@ -1171,20 +1171,22 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
+            <a class="color5">毕业设计</a>
+            
+            <a class="color2">Divino</a>
+            
+            <a class="color5">etcd</a>
+            
+            <a class="color5">gRPC</a>
+            
             <a class="color4">微服务</a>
-            
-            <a class="color5">服务网格</a>
-            
-            <a class="color3">教程</a>
-            
-            <a class="color1">Istio</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-11-22 20:50:22'>2021-11-22 20:48</time>
+            发布时间 : <time class="date" title='最后更新: 2022-05-13 16:26:25'>2022-05-13 16:25</time>
         
     </div>
     <div class="article-meta">
@@ -1208,7 +1210,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Service-Mesh%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">Service Mesh是什么？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E5%BA%9F%E8%AF%9D"><span class="toc-text">一些废话</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Why-Service-Mesh%EF%BC%9F"><span class="toc-text">Why Service Mesh？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%A0%E7%BB%9F%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%A1%86%E6%9E%B6%E7%9A%84%E7%BC%BA%E7%82%B9"><span class="toc-text">传统微服务框架的缺点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#What-is-Service-Mesh%EF%BC%9F"><span class="toc-text">What is Service Mesh？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A5Istio%E4%B8%BA%E4%BB%A3%E8%A1%A8%E7%9A%84Service-Mesh%E7%9A%84%E4%BC%98%E7%82%B9"><span class="toc-text">以Istio为代表的Service Mesh的优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8Istio%EF%BC%9F"><span class="toc-text">为什么要用Istio？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Service-Mesh%E6%98%AF%E9%93%B6%E5%BC%B9%E5%90%97%EF%BC%9F"><span class="toc-text">Service Mesh是银弹吗？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-text">Reference</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E3%80%90Divino-%E7%9A%84%E8%AF%9E%E7%94%9F%E3%80%91%E5%AE%9E%E7%8E%B0%E5%9F%BA%E4%BA%8E-etcd-%E7%9A%84-gRPC-%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%8E%E5%8F%91%E7%8E%B0"><span class="toc-text">【Divino 的诞生】实现基于 etcd 的 gRPC 服务注册与发现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%8E%E5%8F%91%E7%8E%B0%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%B5%81%E7%A8%8B"><span class="toc-text">服务注册与发现的基本流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%83%E6%95%B0%E6%8D%AE%E7%9A%84%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1"><span class="toc-text">元数据的结构设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%8E%E5%8F%91%E7%8E%B0%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="toc-text">服务注册与发现客户端的设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%8E%E5%8F%91%E7%8E%B0%E5%8A%9F%E8%83%BD%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-text">服务注册与发现功能的实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95"><span class="toc-text">测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1224,78 +1226,443 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Service-Mesh是什么？"><a href="#Service-Mesh是什么？" class="headerlink" title="Service Mesh是什么？"></a>Service Mesh是什么？</h1><h2 id="一些废话"><a href="#一些废话" class="headerlink" title="一些废话"></a>一些废话</h2><p>嗯，又给自己挖了个大坑。</p>
-<p>作为一个<code>Cloud Native</code>和<code>Service Mesh</code>爱好者，我一直想为<code>Service Mesh</code>社区做出自己的贡献——但是我开始学习<code>Istio</code>才刚刚一年，并且我仅仅是个大学生，还没有接触过实际上线的微服务，更别说<code>Service Mesh</code>了。我如何才能为我所喜爱的这个社区做出我自己的贡献呢？</p>
-<p>在写这篇文章的晚上，突然想到了自己去年入门<code>Istio</code>时的情景。鉴于很多刚入坑的同学对<code>Istio</code>了解不足，且<code>Istio</code>作为一个大而全的大型微服务管理框架，相比<code>Spring Cloud</code>、<code>Go Micro</code>等微服务开发框架更加难以学习，而且由于<code>Istio</code>在国内还不太火（至少没像<code>Spring Cloud</code>那样火得一塌糊涂），面向零基础同学的教程比较少，而我最近在业余时间也经常学习<code>Istio</code>，所以我打算将自己学习的过程整理成一系列教程，以便像我一样零基础的同学可以快速入门，体会到<code>Istio</code>带给我们的巨大便利。</p>
-<p>这篇文章可能比较学术，主要是讲述什么是<code>Service Mesh</code>、我们为什么需要<code>Service Mesh</code>、为什么选择了<code>Istio</code>等问题。看不懂的话很正常，千万别放弃，要知道我一开始也被这些奇奇怪怪的名词搞得晕头转向，挣扎了一个月、放弃了好几次才真正入门，但当你在这个领域内越走越远，回过头来再看看这些名词，你就会觉得非常简单了。</p>
-<h2 id="Why-Service-Mesh？"><a href="#Why-Service-Mesh？" class="headerlink" title="Why Service Mesh？"></a>Why Service Mesh？</h2><h3 id="传统微服务框架的缺点"><a href="#传统微服务框架的缺点" class="headerlink" title="传统微服务框架的缺点"></a>传统微服务框架的缺点</h3><p>提到<code>微服务(Microservices)</code>，大多数人可能第一反应是<code>Spring Cloud</code>或者是<code>Go Micro</code>，或者是一些其他的微服务框架。这些框架其实仅仅可以称为“微服务开发框架”，我们在学习微服务的时候，都会从这样的微服务开发框架开始学起。这些微服务开发框架看似能为我们解决一切问题，实则不然，如果你读过Martin Fowler和James Lewis的<a target="_blank" rel="noopener" href="https://www.martinfowler.com/articles/microservices.html">《Microservices》</a><a target="_blank" rel="noopener" href="https://www.martinfowler.com/articles/microservices.html"> </a>，你或许就已经发现它们在某些方面其实严重地违背了微服务定义。那具体来讲，这些框架有什么缺点呢？</p>
+        <h1 id="【Divino-的诞生】实现基于-etcd-的-gRPC-服务注册与发现"><a href="#【Divino-的诞生】实现基于-etcd-的-gRPC-服务注册与发现" class="headerlink" title="【Divino 的诞生】实现基于 etcd 的 gRPC 服务注册与发现"></a>【Divino 的诞生】实现基于 etcd 的 gRPC 服务注册与发现</h1><p><code>Divino</code> 本来使用的是 <code>Consul</code> 作为服务注册与发现中心，但是随着 <code>gRPC</code> 移除了 <code>naming</code> 包，使用 <code>Consul</code> 作为服务注册与发现中心变得十分困难，而此时我发现 <code>etcd</code> 提供了官方的 <code>gRPC Naming Resolver</code>，于是就将服务注册与发现功能迁移到了 <code>etcd</code>，在此也顺便讲讲 <code>naming.Resolver</code> 被移除之后需要如何实现服务注册与发现功能。</p>
+<h2 id="服务注册与发现的基本流程"><a href="#服务注册与发现的基本流程" class="headerlink" title="服务注册与发现的基本流程"></a>服务注册与发现的基本流程</h2><p>基于 <code>etcd</code> 的 <code>gRPC</code> 服务注册与发现的基本流程如下：</p>
 <ol>
-<li><strong>服务治理逻辑与业务代码耦合</strong>。在<code>Spring Cloud</code>等框架中，服务治理逻辑存在于<code>Spring Cloud Alibaba</code>等<code>SDK</code>中，与业务代码紧密耦合；</li>
-<li><strong>服务治理逻辑对业务代码有较强的侵入性</strong>。当承载了服务治理逻辑的<code>SDK</code>发生升级且不向下兼容时，业务代码也必须跟着升级，即使业务逻辑没有发生任何的改变；并且，这些<code>SDK</code>可能相互之间还有版本兼容问题（我就遇到过）；</li>
-<li><strong>组件太多，且质量参差不齐</strong>。各种各样的组件令人眼花缭乱——例如，光是服务注册与发现就有<code>Zookeeper</code>、<code>Nacos</code>、<code>Consul</code>、<code>Eureka</code>等解决方案，并且它们的质量参差不齐，组件之间的代码很难完全复用，学习成本太高，若仅仅是为了实现服务治理就去学习这么多组件，也不是一个很好的选择；</li>
-<li><strong>绑定于同一种语言的技术栈</strong>。微服务的定义中有一条是：“微服务可用不同的语言开发，使用不同的数据存储技术，由不同的团队来管理”，而这些微服务开发框架实际上严重地违反了这一条规则——它们只能用一种语言进行开发，若要接入其它语言则需要手动实现这些框架的服务治理逻辑，加重了开发者的负担；</li>
-<li><strong>无服务调度、资源分配等功能</strong>。微服务架构非常复杂，需要有服务调度、资源分配、流量管理等功能，这些微服务开发框架并没有实现这些功能，而需要借助<code>Kubernetes</code>等平台来实现。但是实际部署时就会发现这些微服务开发框架与<code>Kubernetes</code>等平台在功能上有重合和冲突（例如，两者都实现了服务注册与发现功能），二者很难完美配合。</li>
+<li>初始化服务注册与发现客户端（其中包含一个空的服务实例列表、用于控制服务注册与发现过程的上下文 <code>context.Context</code>、<code>etcd</code> 客户端等）；</li>
+<li>初始化服务元数据，包含服务名称、服务编号（唯一，可用 <code>uuid</code> 生成）、<code>gRPC</code> 监听的地址等，并将该元数据包装成 <code>etcd gRPC Resolver</code> 可以识别的格式：<code>&#123;Addr: ..., Metadata: &#123;...&#125;&#125;</code>（也就是 <code>endpoint.Endpoint</code>）；</li>
+<li>申请一个租约（<code>lease</code>）用于健康检查；</li>
+<li>向 <code>etcd</code> <code>PUT</code> 一个键值对，其中 <code>key</code> 具有一定的格式（<code>Divino</code>使用的格式是 <code>/divino_services/服务名称/服务编号</code>，这主要是为了与 <code>etcd</code> 中的其他数据进行区分），<code>value</code> 为第 2 步初始化的服务元数据；</li>
+<li>使用 <code>KeepAlive</code> 配合 <code>lease</code> 实现健康检查；</li>
+<li>监听某一个前缀的键值对变化，动态地更新服务实例列表；</li>
+<li>监听退出信号，在收到信号之后删除 <code>etcd</code> 中对应的键值对，取消服务注册。</li>
 </ol>
-<p>并且，在实际开发过程中，我们很容易发现：好像这些传统微服务框架除了屏蔽了一些分布式系统中通信相关的底层逻辑（包括服务注册与发现、远程过程调用、负载均衡、限流熔断等，当然有的框架可能还实现了配置管理等）之外，好像并没有做什么其它的事情。是的，这就是微服务开发框架最大的缺点——它提供的功能实在是太少了，远远不足以支撑一个庞大的微服务系统。</p>
-<h3 id="What-is-Service-Mesh？"><a href="#What-is-Service-Mesh？" class="headerlink" title="What is Service Mesh？"></a>What is Service Mesh？</h3><p>了解了传统的微服务框架的缺点之后，我们很容易就能明白为什么要使用<code>Istio</code>了——<code>Istio</code>完美地解决了传统微服务框架的缺点。由于<code>Istio</code>实际上是一种<code>服务网格（Service Mesh）</code>的实现，而解决这些缺点的实际上是<code>Service Mesh</code>的优点（<code>Istio</code>只是<code>Service Mesh</code>的一种实现，实际上<code>Service Mesh</code>的实现不止这一种，还有<code>NginxMesh</code>和我非常想要学习的<code>Linkerd</code>等），在了解<code>Istio</code>和<code>Service Mesh</code>的优点之前，我们先来看看<code>Service Mesh</code>到底是什么。</p>
-<blockquote>
-<p>由于”Service Mesh”一词的翻译有很多——例如最常见的“服务网格”，还有“服务啮合层”之类的，为了减少误解，本文统一使用”Service Mesh”。</p>
-</blockquote>
-<p><code>Service Mesh</code>一词最早由开发<code>Linkerd</code>的Buoyant公司提出，并于2016年9月29日第一次公开使用了这一术语。Buoyant的CEO——William Morgan对<code>Service Mesh</code>的定义如下：</p>
-<blockquote>
-<p>A service mesh is a dedicated infrastructure layer for handling service-to-service communication. It’s responsible for the reliable delivery of requests  through the complex topology of services that comprise a modern, cloud  native application. In practice, the service mesh is typically implemented as an array of lightweight network proxies  that are deployed alongside application code, without the application  needing to be aware.</p>
-</blockquote>
-<p>翻译成中文就是：</p>
-<blockquote>
-<p>Service Mesh是一种专门用于处理服务间通信的基础设施层，它负责在构成现代云原生应用程序的复杂服务拓扑中可靠地传输请求。在实践中，Service Mesh常常被实现为一组与应用程序部署在一起、对应用程序透明的轻量级的网络代理。</p>
-</blockquote>
-<p>从这段话中我们可以知道：</p>
+<p>用时序图表示如下：</p>
+<p><img src="https://gitee.com/QNKCDZ0/pictures/raw/master/img/20220513031439.png"></p>
+<h2 id="元数据的结构设计"><a href="#元数据的结构设计" class="headerlink" title="元数据的结构设计"></a>元数据的结构设计</h2><p>元数据除了要包含服务的一些信息（服务名称、服务编号、<code>gRPC</code> 监听的地址等）还要可扩展，以便携带一些可供其他微服务使用的信息。最终根据需求，设计了以下格式的元数据：</p>
+<pre><code class="go">// ServiceInfo 服务注册信息（服务元数据）
+type ServiceInfo struct &#123;
+    ID      string                 // 服务实例编号
+    Name    string                 // 服务名称
+    Address string                 // 服务地址
+    Tags    map[string]interface&#123;&#125; // 服务注册时所携带的附加信息
+&#125;
+</code></pre>
+<p>当然，为了让这些信息可以被 <code>etcd gRPC Naming Resolver</code> 识别，还需要再包装一层：</p>
+<pre><code class="go">// ServiceInfoSer 服务注册信息的 etcd 表示形式
+type ServiceInfoSer struct &#123;
+    Addr     string      `json:&quot;Addr&quot;`     // 服务地址
+    Metadata ServiceInfo `json:&quot;Metadata&quot;` // 服务元数据（ServiceInfo）
+&#125;
+</code></pre>
+<p>这其实就是 <code>endpoint.Endpoint</code>，也有的文章是使用 <code>Endpoint</code> 配合 <code>EndpointManager</code> 实现 <code>gRPC</code> 服务注册与发现的，这样在代码方面会简单一些，但是考虑到除了 <code>gRPC</code> 服务注册与发现之外，其他一些功能也需要使用服务注册与发现的这些元数据（例如 <code>divino-server</code> 的动态服务发现列表展示功能等），所以就没有使用 <code>endpoint.Endpoint</code>，而是自己定义了相同的数据结构并且没有使用 <code>EndpointManager</code>。</p>
+<h2 id="服务注册与发现客户端的设计"><a href="#服务注册与发现客户端的设计" class="headerlink" title="服务注册与发现客户端的设计"></a>服务注册与发现客户端的设计</h2><p>一个服务注册与发现客户端应该包括：</p>
 <ol>
-<li><code>Service Mesh</code>是一种基础设施；</li>
-<li><code>Service Mesh</code>与云原生（<code>Cloud Native</code>，关于Cloud Native我们之后再展开聊聊）应用一起使用；</li>
-<li><code>Service Mesh</code>的功能是传输请求（或者叫“请求分发”）；</li>
-<li><code>Service Mesh</code>与应用程序部署在一起（可以理解为同一个<code>Kubernetes</code> <code>Pod</code>里的两个容器——这是<code>Istio</code>的实现方案；或者是一个应用程序进程和一个<code>Service Mesh</code>相关的进程绑定在一起）；</li>
-<li><code>Service Mesh</code>是对应用程序透明的（即应用程序感知不到<code>Service Mesh</code>的存在，或者说对应用程序零侵入）；</li>
-<li><code>Service Mesh</code>的实现形式是轻量级的网络代理（我们通常把它称为<code>Sidecar</code>）。</li>
+<li><code>etcd client</code> 实例，用于操作 <code>etcd</code>；</li>
+<li><code>context.Context</code>，用于控制服务注册与发现过程的执行（如果这个 <code>Context</code> 被 <code>cancel</code> 了，那么 <code>etcd</code> 操作也会一并被 <code>cancel</code>）；</li>
+<li>一个服务实例列表，这里为了方便查询，设计成了双层 <code>map</code>：<code>&#123;key: 服务名称, value: &#123;key: 服务编号, value: 服务元数据&#125;&#125;</code>。</li>
 </ol>
-<p>实际上，<code>Service Mesh</code>非常简单，它就是一些与服务绑定在一起的网络代理，还有一些对其进行控制和管理的逻辑。这些代理被称为<code>数据平面/数据面板(Data Plane)</code>，而对其进行管理和控制的逻辑被称为<code>控制平面/控制面板（Control Plane）</code>。数据平面会拦截不同服务之间的请求并对其进行处理（如鉴权、路由、负载均衡等）和转发，并收集一些监控数据以向控制平面汇报；控制平面对数据平面进行控制和协调，例如网络拓扑策略、配置的更新等，还会提供一些方便开发人员和运维人员使用的API。</p>
-<p>在有了<code>Service Mesh</code>之后，服务之间的调用就不会直接通过网络进行了，而是通过网络代理<code>Sidecar</code>进行。当发生服务间调用的时候，虽然从调用方服务本身看起来它是直接调用了被调用方，但是请求实际上是被<code>Sidecar</code>拦截并转发给被调用方了，也可以说是服务调用了<code>Sidecar</code>。<code>Sidecar</code>实际上封装了分布式系统中的各种复杂逻辑，并且对应用程序透明。</p>
-<p>还是不明白？那我画张图：</p>
-<p><img src="https://gitee.com/QNKCDZ0/pictures/raw/master/img/20210408012102.png"></p>
-<p>图中蓝绿色线可以理解为控制平面与数据平面的交互（如配置下发、数据上报等），而金绿色线可以理解为服务之间的网络请求。是不是一下就明白了呢？</p>
-<p>那为什么它叫<code>Service Mesh</code>呢？如果你只看图中金绿色的部分的话，很容易发现它就像一个网格一样，连接起了各个服务。只不过，实际的<code>Service Mesh</code>肯定比图上这个要复杂许多。</p>
-<p>这里再引用<a target="_blank" rel="noopener" href="https://www.servicemesher.com/istio-handbook/concepts/basic.html">Istio Handbook</a>中的一张图，个人认为这张图也非常浅显易懂。这张图中仅仅画出了<code>Service Mesh</code>本身，没有画出<code>Service Mesh</code>中的服务：</p>
-<p><img src="https://gitee.com/QNKCDZ0/pictures/raw/master/img/20210408012608.png"></p>
-<h3 id="以Istio为代表的Service-Mesh的优点"><a href="#以Istio为代表的Service-Mesh的优点" class="headerlink" title="以Istio为代表的Service Mesh的优点"></a>以Istio为代表的Service Mesh的优点</h3><p>了解了<code>Service Mesh</code>之后，结合前面提到的传统微服务框架的缺点，我们很容易看出<code>Service Mesh</code>的优点：</p>
-<ol>
-<li><strong>服务治理逻辑独立于业务代码</strong>。<code>Service Mesh</code>把绝大多数的服务治理逻辑从业务代码中剥离出来，成为了独立的进程（Sidecar），Sidecar对服务透明，实现了治理逻辑对业务代码的零侵入。实际上不只是代码零侵入，在运行时两者也没有任何的耦合；</li>
-</ol>
-<blockquote>
-<p>实际上这个说法并不严谨。在Service Mesh中，服务本身其实还是需要有很少的一点类似于协议编解码之类的服务治理逻辑的，并且有一些调用链追踪工具（尤其是方法级的调用链追踪）需要在应用程序中手动埋点。对于这两点，我们在之后的实际使用中会有更深的体会。</p>
-<p>但是，Service Mesh产生的这点侵入，相比传统微服务可是少太多了，所以在不严谨的场合下（例如你想安利你被传统微服务折磨的痛苦不堪的同学来用Service Mesh）也可以说“零侵入”。</p>
-</blockquote>
-<ol start="2">
-<li><strong>真正实现了跨技术栈开发</strong>。由于服务治理逻辑下沉到<code>Service Mesh</code>中，业务代码可以真正实现跨语言开发，不同语言实现的服务可以很方便地通过<code>Service Mesh</code>相互调用，需要的可能仅仅是一个很小的<code>SDK</code>（或者根本就不需要<code>SDK</code>）；</li>
-<li><strong>提供了统一、完整的解决方案</strong>。在同一种<code>Service Mesh</code>的实现产品中，实现各种功能所需的组件基本上是一致的，很少会遇到需要考虑组件选型的问题；</li>
-<li><strong>很方便地实现了服务治理</strong>。由于<code>Service Mesh</code>多了一层<code>Sidecar</code>，所以相比传统微服务它可以很方便地实现灰度发布、蓝绿部署、限流、熔断、故障注入等传统微服务难以实现的服务治理功能。</li>
-</ol>
-<p>实际上，它完美地解决了传统微服务中的大部分缺点。所以在我心中，<code>Service Mesh</code>是目前最棒的架构之一，也是大型微服务应用最终也是最完美的形态。当然，<code>Serverless</code>的出现可能会带来一些变革，但目前还未可知，我们可以一起期待。</p>
-<h3 id="为什么要用Istio？"><a href="#为什么要用Istio？" class="headerlink" title="为什么要用Istio？"></a>为什么要用Istio？</h3><p><code>Service Mesh</code>的优点我们已经了解了，那么为什么选择<code>Istio</code>呢？</p>
-<ol>
-<li><strong>完美兼容Kubernetes</strong>。如果你会使用容器编排工具<code>Kubernetes</code>，那么<code>Istio</code>的入门难度简直就是毛毛雨（虽然进阶和深入的难度还是挺高的，因为抽象的概念比较多），跟着官方文档走，很快就能学会如何使用<code>Istio</code>；</li>
-<li><strong>学习资源丰富</strong>。对于初学者来说，学习资源丰富是一件非常重要的事情。<code>Istio</code>的学习资源非常丰富，并且中文的学习资源也有很多，丰富的学习资源让初学者可以很快地入门；</li>
-<li><strong>方便易用，极大地简化微服务的开发、部署等工作</strong>。有了<code>Istio</code>，我们在开发微服务时就几乎不需要任何微服务框架了，我们可以开心地扔掉<code>Spring Cloud</code>等笨重的微服务开发框架，专注地实现微服务的业务逻辑，而不需要在业务代码中考虑服务治理功能，<code>Istio</code>会帮我们完成这些事；</li>
-<li><strong>服务治理能力强</strong>。根据<code>Service Mesh</code>的定义，<code>Service Mesh</code>本身是没有服务治理逻辑的，但是<code>Istio</code>就提供了强大、易用的服务治理能力。</li>
-</ol>
-<h2 id="Service-Mesh是银弹吗？"><a href="#Service-Mesh是银弹吗？" class="headerlink" title="Service Mesh是银弹吗？"></a>Service Mesh是银弹吗？</h2><p>任何一种架构方式都有其自身的缺点，没有一种架构能适合所有的业务场景，<code>Service Mesh</code>也不例外。虽然<code>Service Mesh</code>相比传统微服务有了很大的进步，被称为“第二代微服务”，但是它也存在以下不足之处：</p>
-<ol>
-<li><strong>复杂</strong>。<code>Service Mesh</code>引入了网络代理<code>Sidecar</code>，而我们知道，组成成分越多的系统就越复杂，每个组件都有出现故障的可能。在本就很复杂的微服务系统中引入<code>Sidecar</code>和其他一些控制逻辑，必然会增加系统的复杂度；并且，在引入了<code>Service Mesh</code>后，我们需要单独学习<code>Service Mesh</code>产品的使用，还需要了解<code>Service Mesh</code>产品中各种组件的功能及其与其他平台的适配与协作，这就要求我们有更强的处理复杂问题的能力；</li>
-<li><strong>延迟高、吞吐量低</strong>。经过<code>Sidecar</code>进行服务间调用必然会显著地增加延迟，也必然会降低应用的吞吐量，虽然这个延迟可能只有几毫秒到几十毫秒，但是在一些对低延迟要求特别高的场景下，这几毫秒的延迟可能就是不可接受的。</li>
-</ol>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/61901608">什么是Service Mesh</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.servicemesher.com/istio-handbook/concepts/basic.html">Istio Handbook</a>（强烈推荐对Service Mesh和Istio感兴趣的同学认真地读一读这个网站中的文章，虽然比较学术、有一定的阅读门槛，而且有一定基础（至少得用Istio部署过一个服务吧）之后才能读懂其中的很多内容，但写的实在是太棒了，每次阅读都会有新的感悟。<del>Service Mesher, 永远滴神！Jimmy Song, 永远滴神！啥时候我才能强大到可以加入Service Mesher啊，唉……</del>）</li>
-</ul>
+<pre><code class="go">// ServiceDiscoveryClient 服务注册与发现客户端
+type ServiceDiscoveryClient struct &#123;
+    client   *clientv3.Client
+    ctx      context.Context
+    services map[string]map[string]*ServiceInfo // 外层 map key 为服务名，内层 map key 为 ID
+&#125;
+</code></pre>
+<p>此时也可以写出初始化服务注册与发现客户端的逻辑了：</p>
+<pre><code class="go">// NewDiscoveryClient
+// @Description 初始化服务注册与发现客户端
+// @param ctx context.Context
+// @param endpoints etcd 地址，可以有多个
+// @param dialTimeout 超时时间
+// @return *ServiceDiscoveryClient 初始化成功时返回一个新的服务注册与发现客户端，失败时返回 nil
+// @return error 初始化成功时返回 nil，失败时返回具体的错误信息
+func NewDiscoveryClient(ctx context.Context, endpoints string, dialTimeout time.Duration) (*ServiceDiscoveryClient, error) &#123;
+    // 初始化 etcd 客户端
+    config := clientv3.Config&#123;
+        Endpoints:   strings.Split(endpoints, &quot;,&quot;),
+        DialTimeout: dialTimeout,
+    &#125;
+    cli, err := clientv3.New(config)
+    if err != nil &#123;
+        return nil, err
+    &#125;
+    // 构造成服务注册与发现客户端，返回
+    return &amp;ServiceDiscoveryClient&#123;
+        client:   cli,
+        ctx:      ctx,
+        services: make(map[string]map[string]*ServiceInfo),
+    &#125;, nil
+&#125;
+</code></pre>
+<p>根据以上设计，配合前文提到的关于 <code>etcd key</code> 的约定，最基本的向服务实例列表中添加或者删除服务实例的功能就可以实现了：</p>
+<pre><code class="go">// addService
+// @Description 为 ServiceDiscoveryClient 实例列表增加服务信息
+// @param key 新发现的服务在注册中心的 key
+// @param info 新发现的服务的 ServiceInfo，需要保存到 services 字段的 map 中
+func (c *ServiceDiscoveryClient) addService(key []byte, info ServiceInfo) &#123;
+    reg := regexp.MustCompile(`/divino_services/(\w+)/(.*)`)
+    if reg.Match(key) &#123;
+        keyInfo := reg.FindSubmatch(key)
+        // keyInfo[0]：整个 Key
+        // keyInfo[1]：服务名称
+        // keyInfo[2]：服务实例编号
+        serviceName := string(keyInfo[1])
+        serviceID := string(keyInfo[2])
+        // 将发现的服务保存到实例列表中
+        if c.services[serviceName] == nil &#123;
+            // 如果该服务对应的 map 还没有建立，就初始化一个
+            c.services[serviceName] = make(map[string]*ServiceInfo)
+        &#125;
+        // 否则直接添加到 map 对应的表项中
+        c.services[serviceName][serviceID] = &amp;info
+    &#125;
+    logger.Logger.Infof(&quot;[Discovery] Service discovered: %v&quot;, string(key))
+&#125;
+
+// deleteService
+// @Description 删除 ServiceDiscoveryClient 实例列表中的某个服务实例
+// @param key 服务实例在服务注册中心的 key
+func (c *ServiceDiscoveryClient) deleteService(key []byte) &#123;
+    reg := regexp.MustCompile(`/divino_services/(\w+)/(.*)`)
+    if reg.Match(key) &#123;
+        keyInfo := reg.FindSubmatch(key)
+        serviceName := string(keyInfo[1])
+        serviceID := string(keyInfo[2])
+        // 取消注册的情况下直接删除 service 表对应的服务名称的 map 里对应的服务实例即可
+        delete(c.services[serviceName], serviceID)
+        // 如果该服务在注册中心里已经没有实例了，就直接删掉该服务名称对应的 map
+        if len(c.services[serviceName]) == 0 &#123;
+            delete(c.services, serviceName)
+        &#125;
+    &#125;
+    logger.Logger.Infof(&quot;[Discovery] Service deleted: %v&quot;, string(key))
+&#125;
+</code></pre>
+<p>可以看到用双层 <code>map</code> 大大方便了删除功能的编写，只需要使用两个 <code>delete</code> 函数就能完成删除功能。</p>
+<h2 id="服务注册与发现功能的实现"><a href="#服务注册与发现功能的实现" class="headerlink" title="服务注册与发现功能的实现"></a>服务注册与发现功能的实现</h2><p>有了服务注册与发现客户端和<code>NewDiscoveryClient</code>、<code>addService</code>、<code>deleteService</code> 这三个基本的函数之后，服务注册与发现功能就很好实现了。由于我的注释写的比较详细，大家看注释来理解就可以了：</p>
+<p>服务注册：</p>
+<pre><code class="go">// Register
+// @Description 注册服务
+// @param info 服务的信息，包含服务名称、服务 ID、服务地址等
+// @param watchPrefix 要监听的服务前缀，设置这个参数是为了方便指定需要监听哪些服务实例列表的变化
+// @return error 注册失败时返回注册失败的错误信息
+// @return error
+func (c *ServiceDiscoveryClient) Register(info ServiceInfo, watchPrefix []string) error &#123;
+    // 服务注册格式：/divino_services/服务名称/服务实例编号
+    key := fmt.Sprintf(&quot;%s/%s/%s&quot;, CommonPrefix, info.Name, info.ID)
+    kv := clientv3.NewKV(c.client)
+    lease := clientv3.NewLease(c.client)
+
+    // 设置 60 秒租约，也就是 60 秒健康检查一次
+    leaseResp, err := lease.Grant(c.ctx, 60)
+    if err != nil &#123;
+        return err
+    &#125;
+
+    // 初始化服务注册信息，注册到 etcd
+    regInfo := ServiceInfoSer&#123;
+        Addr:     info.Address,
+        Metadata: info,
+    &#125;
+    b, err := json.Marshal(regInfo)
+    if err != nil &#123;
+        return err
+    &#125;
+    _, err = kv.Put(c.ctx, key, string(b), clientv3.WithLease(leaseResp.ID))
+    if err != nil &#123;
+        return err
+    &#125;
+    logger.Logger.Infof(&quot;[Discovery] Service registered, key: %v&quot;, key)
+
+    // KeepAlive 配合 lease 使用，实现健康检查的功能
+    ch, err := c.client.KeepAlive(c.ctx, leaseResp.ID)
+    if err != nil &#123;
+        logger.Logger.Errorf(&quot;[Discovery] Failed to KeepAlive: %v&quot;, err.Error())
+        return err
+    &#125;
+    go func() &#123;
+        // 不断取出并丢掉 KeepAlive channel 里面的值，防止出现 &quot;lease keepalive response queue is full; dropping response send&quot;
+        for &#123;
+            _ = &lt;-ch
+        &#125;
+    &#125;()
+
+    // 监听服务实例变化，动态更新本地服务发现实例列表
+    for _, p := range watchPrefix &#123;
+        go c.watch(p)
+    &#125;
+
+    return nil
+&#125;
+</code></pre>
+<p>取消注册：</p>
+<pre><code class="go">// UnRegister
+// @Description 取消服务注册
+// @param info 服务的信息，这里要用到服务 ID 和服务名称
+// @return error 取消注册失败时返回取消注册失败的错误信息
+func (c *ServiceDiscoveryClient) UnRegister(info ServiceInfo) error &#123;
+    // 取消服务注册时，只需要删除注册中心里对应的键值对即可
+    key := fmt.Sprintf(&quot;%s/%s/%s&quot;, CommonPrefix, info.Name, info.ID)
+    kv := clientv3.NewKV(c.client)
+    _, err := kv.Delete(c.ctx, key)
+    if err != nil &#123;
+        return err
+    &#125;
+    logger.Logger.Infof(&quot;[Discovery] Service unregistered, key: %v&quot;, key)
+    return nil
+&#125;
+</code></pre>
+<p>监听 <code>etcd</code> 并动态更新服务实例列表：</p>
+<pre><code class="go">// watch
+// @Description 监听 etcd 中某个前缀下的服务变化，动态更新服务实例列表
+// @param prefix 要监听的前缀
+func (c *ServiceDiscoveryClient) watch(prefix string) &#123;
+    // 监听前缀为 prefix 的键值对的变化
+    watchChan := c.client.Watch(c.ctx, prefix, clientv3.WithPrefix())
+    logger.Logger.Infof(&quot;[Discovery] Watching prefix: %v&quot;, prefix)
+    // 阻塞点，每当 etcd 中的服务实例列表发生变化时，这里才会继续往下运行
+    for watchResp := range watchChan &#123;
+        for _, e := range watchResp.Events &#123;
+            switch e.Type &#123;
+            case mvccpb.PUT: // 新增服务
+                var serviceInfo ServiceInfoSer
+                err := json.Unmarshal(e.Kv.Value, &amp;serviceInfo)
+                if err != nil &#123;
+                    logger.Logger.Errorf(&quot;[Discovery] Failed to unmarshal ServiceInfoSer, skipping: %v&quot;, err)
+                &#125; else &#123;
+                    c.addService(e.Kv.Key, serviceInfo.Metadata)
+                &#125;
+            case mvccpb.DELETE: // 删除服务
+                c.deleteService(e.Kv.Key)
+            &#125;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p><code>proto</code> 文件如下，当然你也可以用更复杂一点的 <code>proto</code> 文件进行测试：</p>
+<pre><code class="protobuf">syntax = &quot;proto3&quot;;
+
+option go_package = &quot;github.com/wendev/divino/divino-common/api&quot;;
+
+package api;
+
+message TestRequest &#123;
+  string name = 1;
+&#125;
+
+message TestResponse &#123;
+  string message = 1;
+&#125;
+
+service Test &#123;
+  rpc TestRPC (TestRequest) returns (TestResponse) &#123;&#125;
+&#125;
+</code></pre>
+<p>服务端（服务名：<code>divino_server</code>）：</p>
+<p>ps：<code>gin</code> 相关的逻辑与这篇文章没什么关系，可以不管，纯粹是因为我忘了删，毕竟这段代码是直接从 <code>Divino</code> 现有的代码里改过来的。。。</p>
+<pre><code class="go">package main
+
+import (
+    &quot;context&quot;
+    &quot;flag&quot;
+    &quot;fmt&quot;
+    &quot;github.com/gin-gonic/gin&quot;
+    &quot;github.com/google/uuid&quot;
+    &quot;github.com/wendev/divino/divino-common/api&quot;
+    &quot;github.com/wendev/divino/divino-common/discovery&quot;
+    &quot;github.com/wendev/divino/divino-common/logger&quot;
+    &quot;google.golang.org/grpc&quot;
+    &quot;net&quot;
+    &quot;net/http&quot;
+    &quot;os&quot;
+    &quot;os/signal&quot;
+    &quot;syscall&quot;
+    &quot;time&quot;
+)
+
+var grpcAddress string
+var httpAddress string
+
+func init() &#123;
+    flag.StringVar(&amp;grpcAddress, &quot;grpc-address&quot;, &quot;127.0.0.1:8131&quot;, &quot;divino_server gRPC 监听的地址&quot;)
+    flag.StringVar(&amp;httpAddress, &quot;http-address&quot;, &quot;127.0.0.1:8134&quot;, &quot;divino_server HTTP 监听的地址&quot;)
+    if !flag.Parsed() &#123;
+        flag.Parse()
+    &#125;
+&#125;
+
+func main() &#123;
+    // 初始化服务注册与发现客户端
+    discoveryClient, err := discovery.NewDiscoveryClient(context.Background(), &quot;127.0.0.1:2379&quot;, 10*time.Second)
+    if err != nil &#123;
+        logger.Logger.Fatal(err)
+    &#125;
+    // 初始化服务元数据
+    serviceInfo := discovery.ServiceInfo&#123;
+        ID:      uuid.New().String(),
+        Name:    &quot;divino_server&quot;,
+        Address: grpcAddress,
+        Tags:    nil,
+    &#125;
+    // 服务注册
+    err = discoveryClient.Register(serviceInfo, []string&#123;discovery.CommonPrefix + &quot;/divino_proxy&quot;&#125;)
+    if err != nil &#123;
+        logger.Logger.Fatal(err)
+    &#125;
+
+    go func() &#123;
+        // 启动 gRPC 服务端
+        lis, err := net.Listen(&quot;tcp&quot;, grpcAddress)
+        if err != nil &#123;
+            logger.Logger.Fatalf(&quot;Failed to listen: %v&quot;, err)
+        &#125;
+        fmt.Println(&quot;listening on &quot; + grpcAddress)
+        server := grpc.NewServer()
+        api.RegisterTestServer(server, &amp;TestRPCServer&#123;&#125;)
+        if err := server.Serve(lis); err != nil &#123;
+            logger.Logger.Fatal(err)
+        &#125;
+    &#125;()
+
+    app := gin.Default()
+    server := &amp;http.Server&#123;
+        Addr:    httpAddress,
+        Handler: app,
+    &#125;
+
+    go func() &#123;
+        // 开启 gin http 服务
+        if err := server.ListenAndServe(); err != nil &amp;&amp; err != http.ErrServerClosed &#123;
+            logger.Logger.Fatalf(&quot;Failed to listen: %v&quot;, err.Error())
+        &#125;
+    &#125;()
+
+    // 监听中止信号，实现 graceful shutdown
+    quit := make(chan os.Signal)
+    signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM, syscall.SIGQUIT)
+    &lt;-quit
+    logger.Logger.Info(&quot;Shutting down server...&quot;)
+    // 取消服务注册
+    err = discoveryClient.UnRegister(serviceInfo)
+    if err != nil &#123;
+        logger.Logger.Fatalf(&quot;Failed to unregister: %v&quot;, err.Error())
+    &#125;
+    // 关闭 http 服务
+    ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+    defer cancel()
+    if err := server.Shutdown(ctx); err != nil &#123;
+        logger.Logger.Fatalf(&quot;Failed to shut down server: %v&quot;, err.Error())
+    &#125;
+    logger.Logger.Infof(&quot;Server exited.&quot;)
+&#125;
+
+type TestRPCServer struct &#123;
+    api.TestServer
+&#125;
+
+func (s *TestRPCServer) TestRPC(ctx context.Context, req *api.TestRequest) (*api.TestResponse, error) &#123;
+    return &amp;api.TestResponse&#123;Message: &quot;Hello, &quot; + req.Name + &quot;, server grpcAddress is &quot; + grpcAddress&#125;, nil
+&#125;
+</code></pre>
+<p>客户端（服务名 <code>divino_proxy</code>）：</p>
+<pre><code class="go">package main
+
+import (
+    &quot;context&quot;
+    &quot;flag&quot;
+    &quot;fmt&quot;
+    &quot;github.com/google/uuid&quot;
+    &quot;github.com/wendev/divino/divino-common/api&quot;
+    &quot;github.com/wendev/divino/divino-common/discovery&quot;
+    &quot;github.com/wendev/divino/divino-common/logger&quot;
+    &quot;go.etcd.io/etcd/client/v3/naming/resolver&quot;
+    &quot;google.golang.org/grpc&quot;
+    &quot;google.golang.org/grpc/balancer/roundrobin&quot;
+    &quot;google.golang.org/grpc/credentials/insecure&quot;
+    &quot;time&quot;
+)
+
+var grpcAddress string
+
+func init() &#123;
+    flag.StringVar(&amp;grpcAddress, &quot;grpc-address&quot;, &quot;127.0.0.1:8132&quot;, &quot;divino_proxy gRPC 监听的地址&quot;)
+    if !flag.Parsed() &#123;
+        flag.Parse()
+    &#125;
+&#125;
+
+func main() &#123;
+    // 初始化服务注册与发现客户端
+    discoveryClient, err := discovery.NewDiscoveryClient(context.Background(), &quot;127.0.0.1:2379&quot;, 10*time.Second)
+    if err != nil &#123;
+        logger.Logger.Fatal(err)
+    &#125;
+    // 初始化服务元数据
+    serviceInfo := discovery.ServiceInfo&#123;
+        ID:      uuid.New().String(),
+        Name:    &quot;divino_proxy&quot;,
+        Address: grpcAddress,
+        Tags:    nil,
+    &#125;
+    // 服务注册
+    err = discoveryClient.Register(serviceInfo, []string&#123;discovery.CommonPrefix + &quot;/divino_server&quot;&#125;)
+    if err != nil &#123;
+        logger.Logger.Fatal(err)
+    &#125;
+
+    // 初始化 gRPC 客户端
+    conn, err := NewClient(discoveryClient)
+    if err != nil &#123;
+        logger.Logger.Fatalf(&quot;Failed to create gRPC client: %v&quot;, err.Error())
+    &#125;
+    defer func(conn *grpc.ClientConn) &#123;
+        err := conn.Close()
+        if err != nil &#123;
+            panic(err)
+        &#125;
+    &#125;(conn)
+    // 调用五次 divino-server
+    cli := api.NewTestClient(conn)
+    ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+    defer cancel()
+    for i := 0; i &lt; 5; i++ &#123;
+        response, err := cli.TestRPC(ctx, &amp;api.TestRequest&#123;Name: &quot;divino-proxy&quot;&#125;)
+        if err != nil &#123;
+            panic(err)
+        &#125;
+        fmt.Println(response.Message)
+    &#125;
+
+    // 调用完成后，取消服务注册
+    err = discoveryClient.UnRegister(serviceInfo)
+    if err != nil &#123;
+        logger.Logger.Fatalf(&quot;Failed to unregister: %v&quot;, err.Error())
+    &#125;
+&#125;
+
+func NewClient(disClient *discovery.ServiceDiscoveryClient) (*grpc.ClientConn, error) &#123;
+    etcdResolver, err := resolver.NewBuilder(disClient.GetEtcdClient())
+    // 这里第二个参数要写需要调用的服务名，不是自己的服务名哈
+    addr := fmt.Sprintf(&quot;etcd:///%s/%s&quot;, discovery.CommonPrefix, &quot;divino_server&quot;)
+    conn, err := grpc.Dial(addr, grpc.WithTransportCredentials(insecure.NewCredentials()), grpc.WithDefaultServiceConfig(fmt.Sprintf(`&#123;&quot;LoadBalancingPolicy&quot;: &quot;%s&quot;&#125;`, roundrobin.Name)), grpc.WithResolvers(etcdResolver))
+    if err != nil &#123;
+        return nil, err
+    &#125;
+    return conn, nil
+&#125;
+</code></pre>
+<p>首先启动两个监听不同端口的 <code>divino_server</code>，此时就可以在 <code>etcd</code> 里看到服务注册信息了：</p>
+<p><img src="https://gitee.com/QNKCDZ0/pictures/raw/master/img/20220513034108.png"></p>
+<p>然后启动 <code>divino_proxy</code> 进行测试：</p>
+<p><img src="https://gitee.com/QNKCDZ0/pictures/raw/master/img/20220513034215.png"></p>
+<p>可以看到，<code>divino_proxy</code> 首先注册了自己，然后发现了 <code>divino_server</code> 的两个实例并监听了 <code>/divino_services/divino_server</code> 前缀，接下来使用轮询算法对 <code>divino_server</code> 进行了五次调用，最后取消了自己的服务注册并退出，而此时从 <code>divino_server</code> 的日志中也可以看到 <code>divino_server</code> 也发现了 <code>divino_proxy</code> 取消服务注册的事件并清除了本地服务列表中的 <code>divino_proxy</code> 实例：</p>
+<p><img src="https://gitee.com/QNKCDZ0/pictures/raw/master/img/20220513034552.png"></p>
+<p>按 <code>Ctrl + C</code> 关闭其中一个 <code>divino_server</code>，可以看到这个 <code>divino_server</code> 调用了取消服务注册的逻辑，在 <code>etcd</code> 中对应的键值对也被删除了：</p>
+<p><img src="https://gitee.com/QNKCDZ0/pictures/raw/master/img/20220513034631.png"></p>
+<p><img src="https://gitee.com/QNKCDZ0/pictures/raw/master/img/20220513034810.png"></p>
+<p>至此，我们成功用 <code>etcd</code> 实现了 <code>gRPC</code> 的服务注册与发现。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>服务注册与发现可以说是微服务架构的系统中最重要的基础功能之一了，也是服务之间互相通信的基础。另外，动态配置管理、 <code>etcd</code> 分布式锁等功能的原理其实跟服务注册与发现差不多，其本质上也是对 <code>etcd</code> 中的键值对的操作与监听和对 <code>lease</code> 的灵活使用，如果能完全理解基于 <code>etcd</code> 的服务发现的原理即实现方法，那么这些功能的实现对你来说肯定也不复杂。</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎各位大佬指出任何有错误或不够清晰的表达。可以发可以邮件至 wendev1024@icloud.com 或添加微信 wendev1024 联系（请注明来源于我的个人网站）。 </span>
@@ -1305,12 +1672,12 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>【Istio从入门到入土】1. Service Mesh是什么？</p>
+    <p><span class="copy-title">文章标题:</span>【Divino 的诞生】实现基于 etcd 的 gRPC 服务注册与发现</p>
     <p><span class="copy-title">字数:</span><span class="post-count">3.7k</span></p>
     <p><span class="copy-title">本文作者:</span><a  title="江文">江文</a></p>
-    <p><span class="copy-title">发布时间:</span>2021-11-22, 20:48:48</p>
-    <p><span class="copy-title">最后更新:</span>2021-11-22, 20:50:22</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/e089d244d00f.html" title="【Istio从入门到入土】1. Service Mesh是什么？">http://www.wendev.site/e089d244d00f.html</a>
+    <p><span class="copy-title">发布时间:</span>2022-05-13, 16:25:08</p>
+    <p><span class="copy-title">最后更新:</span>2022-05-13, 16:26:25</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/f1df7f6b2d0f.html" title="【Divino 的诞生】实现基于 etcd 的 gRPC 服务注册与发现">http://www.wendev.site/f1df7f6b2d0f.html</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">&#34;署名-非商用-相同方式共享 4.0&#34;</a> 转载请保留原文链接及作者。
     </p>
