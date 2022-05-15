@@ -623,7 +623,7 @@
         
         <a  class="全部文章 LeetCode "
            href="/8996fc3f0af2.html"
-           data-tag="LeetCode,算法,模拟,哈希表,字符串"
+           data-tag="LeetCode,算法,哈希表,模拟,字符串"
            data-author="" >
             <span class="post-title" title="748.最短补全词">748.最短补全词</span>
             <span class="post-date" title="2021-12-12 17:31:10">2021/12/12</span>
@@ -775,7 +775,7 @@
         
         <a  class="全部文章 LeetCode "
            href="/3fec8ebec970.html"
-           data-tag="LeetCode,算法,模拟,哈希表"
+           data-tag="LeetCode,算法,哈希表,模拟"
            data-author="" >
             <span class="post-title" title="859.亲密字符串">859.亲密字符串</span>
             <span class="post-date" title="2021-11-23 17:39:52">2021/11/23</span>
@@ -1182,7 +1182,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2022-05-09 06:43:06'>2022-05-09 05:54</time>
+            发布时间 : <time class="date" title='最后更新: 2022-05-15 20:29:16'>2022-05-09 05:54</time>
         
     </div>
     <div class="article-meta">
@@ -1206,7 +1206,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E3%80%90Divino-%E7%9A%84%E8%AF%9E%E7%94%9F%E3%80%91%E7%AE%80%E4%BB%8B-amp-%E6%9E%B6%E6%9E%84%E5%9B%BE"><span class="toc-text">【Divino 的诞生】简介 &amp; 架构图</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A%E6%AF%95%E8%AE%BE%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%81%9A%E4%B8%80%E4%B8%AA%E7%9B%91%E6%8E%A7%E7%B3%BB%E7%BB%9F%EF%BC%9F"><span class="toc-text">前言：毕设为什么要做一个监控系统？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%EF%BC%9ADivino-%E6%89%80%E9%9C%80%E8%A6%81%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%8A%9F%E8%83%BD%E5%88%B0%E5%BA%95%E6%9C%89%E5%93%AA%E4%BA%9B"><span class="toc-text">需求分析：Divino 所需要实现的功能到底有哪些</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%91%E6%8E%A7%E6%95%B0%E6%8D%AE%E8%8E%B7%E5%8F%96"><span class="toc-text">监控数据获取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0"><span class="toc-text">服务发现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="toc-text">数据可视化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%86%E5%8F%B2%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8"><span class="toc-text">历史数据存储</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%91%8A%E8%AD%A6"><span class="toc-text">告警</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E7%AB%AF"><span class="toc-text">前端</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E6%A0%88%EF%BC%9ADivino-%E6%98%AF%E7%94%A8%E4%BB%80%E4%B9%88%E6%8A%80%E6%9C%AF%E5%AE%9E%E7%8E%B0%E7%9A%84%EF%BC%9F"><span class="toc-text">技术栈：Divino 是用什么技术实现的？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%9B%BE%EF%BC%9ADivio-%E7%9A%84%E7%BB%93%E6%9E%84%E6%98%AF%E4%BB%80%E4%B9%88%E6%A0%B7%E7%9A%84%EF%BC%9F"><span class="toc-text">系统架构图：Divio 的结构是什么样的？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TODO%EF%BC%9ADivino-%E6%9C%AA%E6%9D%A5%E5%B0%86%E8%A6%81%E5%AE%9E%E7%8E%B0%E5%93%AA%E4%BA%9B%E5%8A%9F%E8%83%BD%EF%BC%9F"><span class="toc-text">TODO：Divino 未来将要实现哪些功能？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E5%90%8D%E7%94%B1%E6%9D%A5%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8F%AB-Divino%EF%BC%9F"><span class="toc-text">命名由来：为什么叫 Divino？</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E3%80%90Divino-%E7%9A%84%E8%AF%9E%E7%94%9F%E3%80%91%E7%AE%80%E4%BB%8B-amp-%E6%9E%B6%E6%9E%84%E5%9B%BE"><span class="toc-text">【Divino 的诞生】简介 &amp; 架构图</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A%E6%AF%95%E8%AE%BE%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%81%9A%E4%B8%80%E4%B8%AA%E7%9B%91%E6%8E%A7%E7%B3%BB%E7%BB%9F%EF%BC%9F"><span class="toc-text">前言：毕设为什么要做一个监控系统？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%EF%BC%9ADivino-%E6%89%80%E9%9C%80%E8%A6%81%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%8A%9F%E8%83%BD%E5%88%B0%E5%BA%95%E6%9C%89%E5%93%AA%E4%BA%9B"><span class="toc-text">需求分析：Divino 所需要实现的功能到底有哪些</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%91%E6%8E%A7%E6%95%B0%E6%8D%AE%E8%8E%B7%E5%8F%96"><span class="toc-text">监控数据获取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0"><span class="toc-text">服务发现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="toc-text">数据可视化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%86%E5%8F%B2%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8"><span class="toc-text">历史数据存储</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%91%8A%E8%AD%A6"><span class="toc-text">告警</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E7%AB%AF"><span class="toc-text">前端</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E6%A0%88%EF%BC%9ADivino-%E6%98%AF%E7%94%A8%E4%BB%80%E4%B9%88%E6%8A%80%E6%9C%AF%E5%AE%9E%E7%8E%B0%E7%9A%84%EF%BC%9F"><span class="toc-text">技术栈：Divino 是用什么技术实现的？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%9B%BE%EF%BC%9ADivino-%E7%9A%84%E7%BB%93%E6%9E%84%E6%98%AF%E4%BB%80%E4%B9%88%E6%A0%B7%E7%9A%84%EF%BC%9F"><span class="toc-text">系统架构图：Divino 的结构是什么样的？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TODO%EF%BC%9ADivino-%E6%9C%AA%E6%9D%A5%E5%B0%86%E8%A6%81%E5%AE%9E%E7%8E%B0%E5%93%AA%E4%BA%9B%E5%8A%9F%E8%83%BD%EF%BC%9F"><span class="toc-text">TODO：Divino 未来将要实现哪些功能？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E5%90%8D%E7%94%B1%E6%9D%A5%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8F%AB-Divino%EF%BC%9F"><span class="toc-text">命名由来：为什么叫 Divino？</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1223,7 +1223,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="【Divino-的诞生】简介-amp-架构图"><a href="#【Divino-的诞生】简介-amp-架构图" class="headerlink" title="【Divino 的诞生】简介 &amp; 架构图"></a>【Divino 的诞生】简介 &amp; 架构图</h1><blockquote>
-<p>注意：本文持续更新中，当前版本：0.0.5，更新于 2022.05.09</p>
+<p>注意：本文持续更新中，当前版本：0.0.5，更新于 2022.05.15</p>
 </blockquote>
 <h2 id="前言：毕设为什么要做一个监控系统？"><a href="#前言：毕设为什么要做一个监控系统？" class="headerlink" title="前言：毕设为什么要做一个监控系统？"></a>前言：毕设为什么要做一个监控系统？</h2><p>作为一名云原生与基础架构爱好者，开发一些开源的基础架构组件是我一直以来都非常想做的事情，而 <code>Divino</code> 就是我一直想做的一个开源监控系统，正好不知道毕业设计应该做什么，忽然灵机一动：反正今年也要做 <code>Divino</code>，不如就拿它来当毕业设计如何？这样既推动了 <code>Divino</code> 的进度也完成了毕业设计，一举两得。</p>
 <h2 id="需求分析：Divino-所需要实现的功能到底有哪些"><a href="#需求分析：Divino-所需要实现的功能到底有哪些" class="headerlink" title="需求分析：Divino 所需要实现的功能到底有哪些"></a>需求分析：Divino 所需要实现的功能到底有哪些</h2><h3 id="监控数据获取"><a href="#监控数据获取" class="headerlink" title="监控数据获取"></a>监控数据获取</h3><ul>
@@ -1270,26 +1270,26 @@
 <li>前端开发语言：<code>TypeScript</code></li>
 <li>Web 框架：<code>Gin</code></li>
 <li>前端框架：<code>Ant Design Pro</code>（基于 <code>React</code> 和 <code>Umi.js</code>）</li>
-<li>数据可视化框架：<code>ECharts</code></li>
+<li>数据可视化框架：<code>Ant Design Charts</code></li>
 <li>服务注册中心：<code>etcd</code></li>
 <li>时序数据库：<code>InfluxDB</code></li>
 <li>NoSQL 数据库：<code>MongoDB</code></li>
 <li>消息队列：<code>NSQ</code></li>
 <li>持续补充中。。。</li>
 </ul>
-<h2 id="系统架构图：Divio-的结构是什么样的？"><a href="#系统架构图：Divio-的结构是什么样的？" class="headerlink" title="系统架构图：Divio 的结构是什么样的？"></a>系统架构图：Divio 的结构是什么样的？</h2><p><img src="https://gitee.com/QNKCDZ0/pictures/raw/master/img/20220509064040.png"></p>
+<h2 id="系统架构图：Divino-的结构是什么样的？"><a href="#系统架构图：Divino-的结构是什么样的？" class="headerlink" title="系统架构图：Divino 的结构是什么样的？"></a>系统架构图：Divino 的结构是什么样的？</h2><p><img src="https://gitee.com/QNKCDZ0/pictures/raw/master/img/20220509064040.png"></p>
 <ul>
 <li><code>divino-agent</code>：<code>Divino</code> 监控代理，与被监控服务部署在一起，收集被监控服务的基本信息（日志、CPU负载、内存负载等），使用 <code>gRPC</code> 与 <code>divino-proxy</code> 进行通信；</li>
 <li><code>divino-exporter</code>：用户自定义的 <code>Divino</code> 监控代理的统称，只要接入了服务注册（静态配置或动态发现均可）可以产生规定格式的监控数据的数据源即可被视为 <code>divino-exporter</code>，可以根据用户的需求灵活地向 <code>Divino</code> 发送用户自定义的监控指标，同时提供官方的 <code>Go</code> SDK 用于 export 用户业务系统中的一些数据（例如 <code>goroutine</code> 数量、请求成功率等）；</li>
 <li><code>divino-proxy</code>：<code>Divino</code> 代理服务，用于接收 <code>divino-agent</code> 和 <code>divino-exporter</code> 上报的数据并将同一份数据同时转发给 <code>divino-server</code> 和 <code>divino-alertmanager</code>。<code>divino-proxy</code> 不承担分析功能，仅仅起到一个中继站的作用（类似于 <code>Zabbix</code> 的 <code>proxy</code> 组件，但是多了将数据转发到两个不同服务的功能）；</li>
 <li><code>divino-server</code>：<code>Divino</code> 监控服务，是 <code>Divino</code> 的核心，起到存储监控数据、查询监控历史数据、动态配置管理、<code>divino-exporter</code> 和 <code>divino-notice</code> 静态配置等功能；</li>
-<li><code>divino-alertmanager</code>：<code>Divino</code> 告警管理服务，用于根据用户的配置动态地缓存一定量的历史数据，并针对这些历史数据进行分析从而调用不同的 <code>divino-notice</code> 完成告警功能；<code>divino-alertmanager</code> 同时也会接收 <code>divino-server</code> 上报的错误信息（如某个 <code>divino-exporter</code> down 等），并根据用户的配置发出告警；</li>
+<li><code>divino-alertmanager</code>：<code>Divino</code> 告警管理服务，用于根据用户的配置按照一定频率查询 <code>InfluxDB</code> 中对应的历史数据，并针对这些历史数据进行分析从而调用不同的 <code>divino-notice</code> 完成告警功能；<code>divino-alertmanager</code> 同时也会接收 <code>divino-server</code> 上报的错误信息（如某个 <code>divino-exporter</code> down 等），并根据用户的配置发出告警；</li>
 <li><code>divino-notice</code>：<code>Divino</code> 告警服务，用于发出具体的告警信息。</li>
 </ul>
 <p>在系统的内部，高效且支持长链接的 <code>gRPC</code> 是最基本的通信方式；而在与用户自定义的服务进行通信时，考虑到针对第三方系统的适配性，简单的 <code>HTTP RESTful API</code> 也是可选的通信方式。</p>
 <h2 id="TODO：Divino-未来将要实现哪些功能？"><a href="#TODO：Divino-未来将要实现哪些功能？" class="headerlink" title="TODO：Divino 未来将要实现哪些功能？"></a>TODO：Divino 未来将要实现哪些功能？</h2><ul>
 <li>服务发现支持通过 <code>Kubernetes</code> 进行，以避免服务发现功能冲突，更好地适应云原生环境下的部署需求；</li>
-<li>接入自研的配置管理系统 <code>Imagine</code>（开发中）；</li>
+<li>接入自研的配置管理系统 <code>Imagine</code>（开发中）和自研的 <code>NSQ</code> 认证服务 <code>nsq-auth</code>；</li>
 <li>支持 <code>Push</code> 模式并且可以配置哪些监控项目使用 <code>Push</code> 模式——毕竟只能用 <code>Pull</code> 还是有点太局限啦，而且 <code>Pull</code> 对被监控系统的压力会小一些，也会更容易定制化，给用户一个使用 <code>Pull</code> 或 <code>Push</code> 的选择；</li>
 <li>新需求持续发现中。。。</li>
 </ul>
@@ -1320,7 +1320,7 @@
     <p><span class="copy-title">字数:</span><span class="post-count">2.3k</span></p>
     <p><span class="copy-title">本文作者:</span><a  title="江文">江文</a></p>
     <p><span class="copy-title">发布时间:</span>2022-05-09, 05:54:57</p>
-    <p><span class="copy-title">最后更新:</span>2022-05-09, 06:43:06</p>
+    <p><span class="copy-title">最后更新:</span>2022-05-15, 20:29:16</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/0cbb6f5c9cd2.html" title="【Divino的诞生】简介 &amp; 架构图">http://www.wendev.site/0cbb6f5c9cd2.html</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">&#34;署名-非商用-相同方式共享 4.0&#34;</a> 转载请保留原文链接及作者。
